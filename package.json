@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "framer-motion": "^12.34.3",
+    "lucide-react": "^0.575.0",
+    "qrcode.react": "^4.2.0",
+    "react-to-print": "^3.3.0"
+  }
+}
