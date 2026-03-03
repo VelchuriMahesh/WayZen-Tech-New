@@ -2,17 +2,43 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { motion } from 'framer-motion';
-import { Sparkles, Linkedin, Instagram, ArrowDown } from 'lucide-react';
+import { Sparkles, Linkedin, Instagram, ShieldAlert } from 'lucide-react';
 
-// ✅ FIX: Move outside to resolve ESLint dependency warning
-const ROLE_PRIORITY = {
-  "co-founder": 1,
-  "ceo": 2,
-  "founder": 3,
-  "cto": 4,
-  "creative director": 5,
-  "manager": 6,
-  "developer": 7
+// --- BACKGROUND ALERT ANIMATION ---
+const WayzenAlertBackground = () => {
+  const rows = [1, 2, 3, 4, 5]; 
+  const text = "WAYZEN WAYZEN WAYZEN WAYZEN WAYZEN WAYZEN WAYZEN ";
+
+  return (
+    <div className="fixed inset-0 overflow-hidden bg-[#02020a] pointer-events-none z-0">
+      {/* Moving Text Rows */}
+      <div className="flex flex-col justify-around h-full opacity-30">
+        {rows.map((row, i) => (
+          <motion.div
+            key={i}
+            initial={{ x: i % 2 === 0 ? "-50%" : "0%" }}
+            animate={{ x: i % 2 === 0 ? "0%" : "-50%" }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="whitespace-nowrap flex select-none"
+          >
+            <span className="text-[18vw] font-black text-blue-500/20 tracking-tighter leading-none uppercase italic border-text">
+              {text}
+            </span>
+            <span className="text-[18vw] font-black text-blue-500/20 tracking-tighter leading-none uppercase italic border-text">
+              {text}
+            </span>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Full Screen Scanning Laser */}
+      <motion.div 
+        animate={{ translateY: ['-100vh', '100vh'] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+        className="absolute top-0 left-0 w-full h-[2px] bg-blue-400/40 shadow-[0_0_20px_rgba(59,130,246,0.8)] z-50"
+      />
+    </div>
+  );
 };
 
 const Team = () => {
@@ -22,144 +48,108 @@ const Team = () => {
     const fetchTeam = async () => {
       const snap = await getDocs(collection(db, "team"));
       const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      
-      const sortedData = data.sort((a, b) => {
-        const priorityA = ROLE_PRIORITY[a.role?.toLowerCase()] || 99;
-        const priorityB = ROLE_PRIORITY[b.role?.toLowerCase()] || 99;
-        return priorityA - priorityB;
-      });
-
-      setTeam(sortedData);
+      setTeam(data);
     };
     fetchTeam();
-  }, []); // Safely empty
+  }, []);
+
+  const marqueeItems = [...team, ...team];
 
   return (
-    <div className="bg-[#02020a] min-h-screen py-16 md:py-24 px-4 md:px-6 overflow-hidden relative selection:bg-indigo-500">
+    <div className="min-h-screen py-20 overflow-hidden relative selection:bg-blue-500">
       
-      {/* --- VIBRANT TECH BACKGROUND --- */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2], rotate: [0, 90, 0] }}
-          transition={{ duration: 15, repeat: Infinity }}
-          className="absolute top-[-10%] left-[-5%] w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-600/20 blur-[100px] md:blur-[150px] rounded-full"
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.3, 0.1] }}
-          transition={{ duration: 20, repeat: Infinity }}
-          className="absolute bottom-[-10%] right-[-5%] w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-fuchsia-600/20 blur-[100px] md:blur-[150px] rounded-full"
-        />
-      </div>
+      {/* 1. ANIMATED BACKGROUND */}
+      <WayzenAlertBackground />
 
-      <div className="max-w-7xl mx-auto mb-16 md:mb-20 relative z-10 text-center md:text-left px-4">
-        <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
-            <span className="h-[1px] w-12 bg-indigo-500"></span>
-            <span className="text-indigo-400 font-black uppercase tracking-[0.3em] text-[10px] md:text-xs">Our Visionaries</span>
+      {/* 2. CONTENT LAYER */}
+      <div className="relative z-10">
+        
+        {/* HEADER */}
+        <div className="max-w-7xl mx-auto mb-16 text-center px-6">
+          <div className="flex items-center justify-center gap-4 mb-4">
+              <span className="h-[2px] w-12 bg-blue-600"></span>
+              <div className="flex items-center gap-2">
+                <ShieldAlert size={14} className="text-blue-500 animate-pulse" />
+                <span className="text-blue-400 font-black uppercase tracking-[0.4em] text-[10px]">Active Personnel</span>
+              </div>
+              <span className="h-[2px] w-12 bg-blue-600"></span>
+          </div>
+          <h2 className="text-white text-6xl md:text-8xl font-black tracking-tighter uppercase italic">
+            WAYZEN <span className="text-blue-500 underline decoration-blue-500/30">CORE</span>
+          </h2>
         </div>
-        <motion.h2 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-white text-5xl md:text-8xl font-black tracking-tighter leading-none"
-        >
-          MEET THE <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-fuchsia-400">
-            CREATIVES
-          </span>
-        </motion.h2>
-      </div>
 
-      {/* --- TEAM GRID / STACK --- */}
-      {/* On mobile: Vertical Reveal Stack | On Desktop: Horizontal Scroll */}
-      <div className="relative z-10 flex flex-col md:flex-row md:flex-nowrap gap-12 md:gap-8 overflow-x-hidden md:overflow-x-auto no-scrollbar pb-24 pt-5 md:snap-x md:snap-mandatory px-2 md:px-4 cursor-grab active:cursor-grabbing">
-        {team.map((member, index) => (
-          <motion.div
-            key={member.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: index * 0.1, duration: 0.8 }}
-            className="md:snap-center shrink-0 w-full md:w-[420px]"
+        {/* TEAM MARQUEE */}
+        <div className="relative w-full overflow-hidden">
+          {/* Vignette effect on edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 md:w-60 bg-gradient-to-r from-black via-black/40 to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 md:w-60 bg-gradient-to-l from-black via-black/40 to-transparent z-20 pointer-events-none" />
+
+          <motion.div 
+            className="flex gap-8 md:gap-12 pr-12 w-max"
+            animate={{ x: [0, "-50%"] }} 
+            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+            whileHover={{ animationPlayState: "paused" }}
           >
-            <div className="group relative aspect-[4/5] rounded-[2.5rem] md:rounded-[3.5rem] overflow-hidden bg-slate-900/40 backdrop-blur-md border border-white/10 shadow-2xl">
-              
-              {/* MOVING PHOTO (Ken Burns Effect) */}
-              <motion.div 
-                animate={{ 
-                  scale: [1, 1.1, 1],
-                  x: [0, -10, 0],
-                  y: [0, -5, 0]
-                }}
-                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 w-full h-full"
-              >
-                <img 
-                  src={member.img} 
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-
-              {/* HEAVY GRADIENT OVERLAY (Protects Text Visibility) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#02020a] via-[#02020a]/40 to-transparent opacity-90 group-hover:via-indigo-900/30 transition-all duration-500" />
-
-              {/* Content Box */}
-              <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
-                <div className="relative z-20">
+            {marqueeItems.map((member, index) => (
+              <div key={`${member.id}-${index}`} className="shrink-0 w-[300px] md:w-[400px]">
+                <div className="group relative aspect-[3/4] rounded-[2rem] overflow-hidden border-2 border-blue-500/20 shadow-[0_0_30px_rgba(0,0,0,0.5)]">
                   
-                  {/* GLASS ROLE BADGE: Ensures CEO/Role is always visible */}
-                  <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-xl bg-indigo-500/20 backdrop-blur-md border border-indigo-400/30">
-                    <Sparkles size={14} className="text-indigo-400" />
-                    <p className="text-indigo-300 font-black text-[10px] md:text-xs uppercase tracking-[0.2em]">
+                  {/* FULL COLOR IMAGE (No Grayscale) */}
+                  <img 
+                    src={member.img} 
+                    alt={member.name}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+
+                  {/* High-Tech Overlay on Image */}
+                  <div className="absolute inset-0 bg-blue-950/10 mix-blend-overlay group-hover:bg-transparent transition-colors" />
+                  
+                  {/* Animated Scanline inside the card */}
+                  <motion.div 
+                    animate={{ top: ['-10%', '110%'] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    className="absolute left-0 w-full h-[1px] bg-blue-400/30 z-10"
+                  />
+
+                  {/* Gradient for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90" />
+
+                  {/* Content */}
+                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                    <div className="relative z-20">
+                      <div className="inline-block mb-3 px-4 py-1 bg-blue-600 text-white font-black text-[10px] uppercase tracking-widest skew-x-[-12deg]">
                         {member.role}
-                    </p>
-                  </div>
-                  
-                  <h3 className="text-white text-4xl md:text-5xl font-black tracking-tighter mb-6 group-hover:text-indigo-200 transition-colors">
-                    {member.name}
-                  </h3>
+                      </div>
+                      
+                      <h3 className="text-white text-3xl md:text-4xl font-black tracking-tight mb-4 uppercase italic leading-none">
+                        {member.name}
+                      </h3>
 
-                  {/* Social Action Bar */}
-                  <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500">
-                     <button className="p-4 bg-white/10 hover:bg-indigo-600 backdrop-blur-md rounded-2xl text-white transition-all shadow-xl">
-                        <Linkedin size={20} />
-                     </button>
-                     <button className="p-4 bg-white/10 hover:bg-fuchsia-600 backdrop-blur-md rounded-2xl text-white transition-all shadow-xl">
-                        <Instagram size={20} />
-                     </button>
-                     <div className="h-[1px] flex-1 bg-gradient-to-r from-indigo-500/50 to-transparent"></div>
+                      <div className="flex items-center gap-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                         <a href="#" className="p-3 bg-blue-600 hover:bg-white hover:text-blue-600 rounded-lg text-white transition-all shadow-lg">
+                            <Linkedin size={20} />
+                         </a>
+                         <a href="#" className="p-3 bg-blue-600 hover:bg-white hover:text-blue-600 rounded-lg text-white transition-all shadow-lg">
+                            <Instagram size={20} />
+                         </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* Floating Index Number */}
-              <div className="absolute top-8 right-8 w-12 h-12 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 flex items-center justify-center shadow-inner">
-                 <span className="text-indigo-300 font-mono text-sm font-black">
-                    /0{index + 1}
-                 </span>
-              </div>
-            </div>
+            ))}
           </motion.div>
-        ))}
-      </div>
+        </div>
 
-      {/* FOOTER ACCENT */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-indigo-500/30 font-black tracking-widest text-[10px] uppercase relative z-10 mt-10">
-         <div className="flex items-center gap-2">
-            <p className="hidden md:block">Drag to explore</p>
-            <p className="md:hidden">Scroll to discover</p>
-            <ArrowDown size={14} className="md:hidden animate-bounce" />
-         </div>
-         <div className="flex gap-4">
-            <div className="w-2 h-2 rounded-full bg-indigo-500 animate-ping"></div>
-            <div className="w-2 h-2 rounded-full bg-purple-500 animate-ping delay-75"></div>
-            <div className="w-2 h-2 rounded-full bg-fuchsia-500 animate-ping delay-150"></div>
-         </div>
+        {/* BOTTOM LABEL */}
+        <div className="mt-16 text-center relative z-10">
+           <div className="inline-flex items-center gap-3 px-8 py-4 bg-blue-600/10 border-2 border-blue-500/40 text-blue-400 rounded-xl">
+              <span className="w-2 h-2 bg-blue-500 rounded-full animate-ping" />
+              <span className="text-xs font-black uppercase tracking-[0.3em]">Team Promise: We Won’t Disappoint</span>
+           </div>
+        </div>
       </div>
-
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
     </div>
   );
 };
