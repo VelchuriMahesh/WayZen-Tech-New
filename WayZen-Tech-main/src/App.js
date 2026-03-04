@@ -11,7 +11,6 @@ import Team from './components/team';
 import { About } from './components/About';
 import { ProjectForm } from './components/ProjectForm';
 import { Portfolio } from './components/Portfolio';
-import { Experience } from './components/Experience';
 import { Techalien } from './components/Techalien';
 import ServicesPage from './components/ServicesPage';
 import { CyberPaymentModal } from './components/CyberPaymentModal';
@@ -179,7 +178,7 @@ function App() {
         </header>
 
         <About />
-        <Experience />
+
         <div className="bg-white rounded-t-[60px] overflow-hidden">
           <Portfolio />
         </div>

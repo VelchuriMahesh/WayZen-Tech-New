@@ -3,27 +3,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Globe, TrendingUp, Instagram, Video, 
-  CheckCircle2, ArrowRight, Zap, GraduationCap, MousePointer2, ChevronDown 
+  CheckCircle2, ArrowRight, Zap, MousePointer2, ChevronDown 
 } from 'lucide-react';
 
 const services = [
-  {
-    id: "btech-projects",
-    title: "B.Tech Project Support",
-    icon: GraduationCap,
-    tagline: "Complete academic project support.",
-    features: [
-      "Complete End-to-End Project Development",
-      "IEEE-Format Research Paper Drafting",
-      "Plagiarism Report (Turnitin-based)",
-      "60+ Page Structured Documentation",
-      "20–30 Slide Professional PPT",
-      "Code Explanation & Walkthrough",
-      "Viva & Defense Preparation"
-    ],
-    details: "We help B.Tech students build technically strong projects. From implementation to documentation — everything is structured to help you score high.",
-    color: "indigo"
-  },
   {
     id: "web",
     title: "Website Development",
@@ -64,6 +47,7 @@ const services = [
 ];
 
 export default function ServicesPage() {
+  // Defaults to the first item in the new list (Website Development)
   const [activeTab, setActiveTab] = useState(services[0]);
   const [expandedMobileId, setExpandedMobileId] = useState(services[0].id);
 
@@ -108,7 +92,7 @@ export default function ServicesPage() {
           </motion.div>
         </header>
 
-        {/* --- MOBILE VIEW (Accordion Style) --- */}
+        {/* --- MOBILE VIEW --- */}
         <div className="lg:hidden space-y-4">
           {services.map((item) => (
             <div key={item.id} className="overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md">
@@ -160,7 +144,7 @@ export default function ServicesPage() {
           </a>
         </div>
 
-        {/* --- DESKTOP VIEW (Original Sidebar Style) --- */}
+        {/* --- DESKTOP VIEW --- */}
         <div className="hidden lg:grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5 space-y-4">
             {services.map((item) => (
