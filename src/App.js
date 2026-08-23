@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, Phone, Instagram, Zap, ArrowRight, 
-  MessageCircle, Send, Info, Cpu, Globe, Rocket, Code2, Database
+  MessageCircle, Send, Info, Cpu, Globe, Rocket, Code2, Database,
+  Smartphone, Bot, Search, BarChart3, Receipt, GraduationCap, CheckCircle2, ShieldCheck
 } from 'lucide-react';
 
 // React Router
@@ -10,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from
 
 // Components
 import { Navbar } from './components/Navbar';
+import { MobileBottomNav } from './components/MobileBottomNav';
 import Team from './components/team';
 import About from "./components/About";
 import WhatIsWayZenTech from "./components/WhatIsWayZenTech"; 
@@ -18,7 +20,6 @@ import { Portfolio } from './components/Portfolio';
 import { Techalien } from './components/Techalien';
 import ServicesPage from './components/ServicesPage';
 import { AdminDashboard } from './components/AdminDashboard';
-import { UnlockPortalSection } from './components/UnlockPortalSection';
 
 // SEO Manager (Background execution only - Zero UI change)
 import { SEOHandler } from './seo/SEOHandler';
@@ -86,6 +87,263 @@ const Floating3DSpace = () => {
   );
 };
 
+// --- SERVICES DATA FOR ONE-BY-ONE SHOWCASE ---
+const homeServicesList = [
+  {
+    id: 'web-dev',
+    title: 'Custom Website & Web App Development',
+    category: 'Full-Stack Engineering',
+    icon: Globe,
+    gradient: 'from-blue-600 to-indigo-600',
+    tag: 'MERN & Next.js',
+    desc: 'High-performance corporate websites, reactive portals, SaaS platforms, and custom web applications engineered for speed, clean code, and conversions.',
+    deliverables: ['Custom Responsive Design', 'SEO & Performance Optimized', 'Database & API Integrations', 'Admin Control Panels']
+  },
+  {
+    id: 'mobile-dev',
+    title: 'Mobile App Development (iOS & Android)',
+    category: 'Cross-Platform Apps',
+    icon: Smartphone,
+    gradient: 'from-purple-600 to-pink-600',
+    tag: 'Flutter & React Native',
+    desc: 'Native-feel iOS and Android applications with smooth 60fps animations, push notifications, offline storage, and secure backend APIs.',
+    deliverables: ['App Store & Play Store Ready', 'Real-Time Data Sync', 'Payment Gateway Integration', 'Intuitive Mobile UI/UX']
+  },
+  {
+    id: 'ai-automation',
+    title: 'AI Automation & Business Process Solutions',
+    category: 'Intelligent Systems',
+    icon: Bot,
+    gradient: 'from-emerald-600 to-teal-600',
+    tag: 'OpenAI & Custom LLMs',
+    desc: 'Eliminate repetitive manual tasks with custom AI chatbots, autonomous WhatsApp enquiry handling, and automated business workflows.',
+    deliverables: ['24/7 Customer Chatbots', 'Automated Lead Routing', 'Document & Data Processing', 'Workflow Efficiency']
+  },
+  {
+    id: 'seo-marketing',
+    title: 'High-Intent SEO & Local Search Growth',
+    category: 'Organic Visibility',
+    icon: Search,
+    gradient: 'from-amber-500 to-orange-600',
+    tag: 'Google Rankings',
+    desc: 'Comprehensive technical SEO, on-page optimization, local Google Business Profile dominance, and content strategies that rank for real customer searches.',
+    deliverables: ['Technical SEO Architecture', 'Local Keyword Dominance', 'Structured Data Schema', 'Speed & Core Web Vitals']
+  },
+  {
+    id: 'google-ads',
+    title: 'Google Ads & Digital Performance Marketing',
+    category: 'Targeted Advertising',
+    icon: BarChart3,
+    gradient: 'from-rose-600 to-red-600',
+    tag: 'ROI-Driven PPC',
+    desc: 'High-converting Google Search campaigns, Instagram ad creatives, and performance marketing designed to generate qualified business leads.',
+    deliverables: ['Search & Display Ads', 'Ad Copy & Conversion Funnels', 'Audience Retargeting', 'Transparent ROI Analytics']
+  },
+  {
+    id: 'billing-software',
+    title: 'Custom Billing & POS Software Solutions',
+    category: 'Enterprise Software',
+    icon: Receipt,
+    gradient: 'from-cyan-600 to-blue-600',
+    tag: 'Custom ERP & POS',
+    desc: 'Tailor-made billing software, barcode scanning, GST tax calculations, automated PDF invoice generation, and WhatsApp receipt delivery.',
+    deliverables: ['Custom Invoice Workflows', 'GST & Financial Reports', 'Stock & Inventory Control', 'Offline-First Reliability']
+  },
+  {
+    id: 'academic-projects',
+    title: 'Academic & R&D Projects Incubator',
+    category: 'Academic Support',
+    icon: GraduationCap,
+    gradient: 'from-indigo-600 to-violet-700',
+    tag: 'B.Tech & M.Tech IEEE',
+    desc: 'Complete engineering project guidance, IEEE standard research documentation, clean source code, PPTs, and viva preparation support.',
+    deliverables: ['IEEE Research Base Papers', 'Complete Tested Codebases', 'Project Reports & PPTs', 'Execution & Viva Guidance']
+  }
+];
+
+// --- COMPONENT: SERVICES ONE-BY-ONE SHOWCASE ---
+const ServicesShowcase = () => {
+  const navigate = useNavigate();
+
+  return (
+    <section className="py-16 md:py-24 px-4 md:px-6 bg-white relative overflow-hidden border-t border-slate-100">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest mb-3">
+            <Cpu size={12} /> Full-Spectrum Capabilities
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight text-slate-950">
+            Our Core <span className="text-blue-600">Services</span>
+          </h2>
+          <p className="text-sm md:text-lg text-slate-500 mt-3 font-medium">
+            Engineered with modern architectures to accelerate growth, automate workflows, and build scalable digital assets.
+          </p>
+        </div>
+
+        {/* Services Rendered One by One */}
+        <div className="space-y-6 md:space-y-8">
+          {homeServicesList.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="group relative bg-slate-50 hover:bg-white rounded-3xl md:rounded-[36px] p-6 md:p-10 border border-slate-200/80 hover:border-blue-300 shadow-sm hover:shadow-xl transition-all"
+              >
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-center">
+                  
+                  {/* Left Column: Icon & Titles */}
+                  <div className="lg:col-span-4 flex items-start gap-4">
+                    <div className={`p-4 md:p-5 rounded-2xl md:rounded-3xl bg-gradient-to-br ${service.gradient} text-white shadow-lg shrink-0 group-hover:scale-105 transition-transform`}>
+                      <Icon size={28} className="md:w-8 md:h-8" />
+                    </div>
+                    <div>
+                      <span className="text-[10px] font-black uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-md border border-blue-100">
+                        {service.tag}
+                      </span>
+                      <h3 className="text-xl md:text-2xl font-black text-slate-900 mt-2 tracking-tight">
+                        {service.title}
+                      </h3>
+                      <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">
+                        {service.category}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Middle Column: Description & Deliverables */}
+                  <div className="lg:col-span-5 space-y-3">
+                    <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
+                      {service.desc}
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
+                      {service.deliverables.map((deliv, i) => (
+                        <div key={i} className="flex items-center gap-2 text-[11px] md:text-xs font-semibold text-slate-700">
+                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0" />
+                          <span>{deliv}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Column: Direct Actions */}
+                  <div className="lg:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-2.5 justify-end">
+                    <button
+                      onClick={() => navigate('/services')}
+                      className="w-full bg-slate-950 hover:bg-blue-600 text-white px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow"
+                    >
+                      <span>Explore Details</span>
+                      <ArrowRight size={14} />
+                    </button>
+                    <button
+                      onClick={() => window.open('https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20know%20more%20about%20' + encodeURIComponent(service.title), '_blank')}
+                      className="w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                    >
+                      <MessageCircle size={14} />
+                      <span>WhatsApp Inquire</span>
+                    </button>
+                  </div>
+
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- COMPONENT: ABOUT COMPANY HIGHLIGHT ON HOMEPAGE ---
+const AboutCompanyHighlight = () => {
+  const navigate = useNavigate();
+
+  const stats = [
+    { label: "Global Deliveries", value: "65+", desc: "Web, AI & Software Projects" },
+    { label: "On-Time Success", value: "100%", desc: "Production Ready Deployments" },
+    { label: "Engineering Frameworks", value: "12+", desc: "MERN, Python, Next.js, Flutter" },
+    { label: "Support & Maintenance", value: "24/7", desc: "Dedicated Engineer Sync" }
+  ];
+
+  return (
+    <section className="py-16 md:py-24 px-4 md:px-6 bg-slate-950 text-white relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
+          
+          {/* Left Column: Story & Vision */}
+          <div className="lg:col-span-6 space-y-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest">
+              <ShieldCheck size={12} /> Technology Foundry
+            </div>
+            
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
+              Engineering the Next Generation of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Digital Solutions</span>
+            </h2>
+
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
+              **WayZenTech** is a premier software engineering and AI collective based in India. We combine deep technical rigor with commercial focus — building high-speed business websites, reactive web applications, automated AI pipelines, and custom software systems designed to scale.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <h4 className="font-bold text-white text-sm mb-1">Direct Engineering Sync</h4>
+                <p className="text-xs text-slate-400">No account managers or middle layers. Talk directly to developers on WhatsApp.</p>
+              </div>
+              <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
+                <h4 className="font-bold text-white text-sm mb-1">Scalable Clean Architecture</h4>
+                <p className="text-xs text-slate-400">Built with modern tech stacks tested for speed, SEO, and robust reliability.</p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
+              <button
+                onClick={() => navigate('/about')}
+                className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-600/30"
+              >
+                <span>Read Full Company Story</span>
+                <ArrowRight size={16} />
+              </button>
+              <button
+                onClick={() => window.open('https://wa.me/919398724704', '_blank')}
+                className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+              >
+                <MessageCircle size={16} />
+                <span>Talk with Engineers</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Right Column: Statistics Grid */}
+          <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+            {stats.map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-6 md:p-8 bg-gradient-to-b from-white/10 to-white/5 rounded-3xl border border-white/10 flex flex-col justify-between"
+              >
+                <div className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
+                  {stat.value}
+                </div>
+                <div className="mt-4">
+                  <h4 className="text-sm md:text-base font-bold text-white">{stat.label}</h4>
+                  <p className="text-[11px] text-slate-400 mt-0.5">{stat.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- COMPONENT: HOME PAGE ---
 const HomePage = () => {
   const navigate = useNavigate();
@@ -97,6 +355,7 @@ const HomePage = () => {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
     >
+      {/* 1. HERO SECTION */}
       <header className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center items-center px-4 md:px-6 pt-24 md:pt-20 overflow-hidden bg-white">
         <TechGrid />
         <Floating3DSpace />
@@ -149,15 +408,23 @@ const HomePage = () => {
         </div>
       </header>
       
+      {/* 2. SERVICES ONE-BY-ONE SHOWCASE (BELOW HERO) */}
+      <ServicesShowcase />
+
+      {/* 3. ABOUT COMPANY HIGHLIGHT */}
+      <AboutCompanyHighlight />
+
+      {/* 4. FEATURED PROJECTS PORTFOLIO (2 Grids Mobile 1:1, 4 Grids Web 1:1) */}
       <Portfolio />
-      <UnlockPortalSection upiId="9398724704@ybl" />
       
+      {/* 5. PROJECT INQUIRY FORM */}
       <section id="request" className="py-16 md:py-32 px-4 bg-slate-50">
         <div className="max-w-7xl mx-auto bg-slate-900 rounded-[32px] md:rounded-[60px] overflow-hidden shadow-2xl">
           <ProjectForm />
         </div>
       </section>
 
+      {/* 6. WHATSAPP CONNECT BANNER */}
       <WhatsAppFooterSection />
     </motion.div>
   );
@@ -194,7 +461,7 @@ function AppContent() {
   const location = useLocation();
 
   return (
-    <div className="antialiased font-sans bg-white relative overflow-x-hidden">
+    <div className="antialiased font-sans bg-white relative overflow-x-hidden pb-16 md:pb-0">
       <ScrollToTop />
       <SEOHandler />
       <Navbar />
@@ -240,8 +507,13 @@ function AppContent() {
         </Routes>
       </AnimatePresence>
 
+      {/* FLOATING ACTION HUB (CALL, WHATSAPP, AI CHATBOT) */}
       <Techalien />
 
+      {/* MOBILE BOTTOM NAVIGATION BAR */}
+      <MobileBottomNav />
+
+      {/* FOOTER */}
       <footer className="pt-20 md:pt-40 pb-8 md:pb-12 bg-slate-950 text-white relative rounded-t-[40px] md:rounded-t-[60px]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 mb-16 md:mb-20">

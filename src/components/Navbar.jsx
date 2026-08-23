@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Menu, X, Home, Users, Cpu,  Info } from 'lucide-react';
+import { Menu, X, Home, Users, Cpu, Info, MessageSquare } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
@@ -24,8 +24,8 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[100] bg-white/70 backdrop-blur-2xl border-b border-slate-200/50">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 w-full z-[100] bg-white/80 backdrop-blur-2xl border-b border-slate-200/60 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
         
         {/* LOGO */}
         <motion.div 
@@ -57,44 +57,51 @@ export const Navbar = () => {
             </button>
           ))}
 
-          <div className="px-4 border-l border-slate-200 ml-2 flex items-center gap-4">
-            <button
-              onClick={() => handleNavigation('/admin')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] transition-all border-2 ${
-                isActive('/admin')
-                ? "bg-slate-950 border-slate-950 text-white shadow-2xl"
-                : "bg-white border-blue-600 text-blue-600 hover:bg-blue-600"
-              }`}
-            >
-              <ShieldCheck size={14} /> System Access
-            </button>
-          </div>
+          <button
+            onClick={() => {
+              if (location.pathname === '/') {
+                document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
+              } else {
+                navigate('/');
+                setTimeout(() => document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' }), 300);
+              }
+            }}
+            className="ml-4 bg-slate-950 text-white hover:bg-blue-600 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all shadow-md active:scale-95"
+          >
+            Start Project
+          </button>
         </div>
 
-        {/* MOBILE TOGGLE */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+        {/* MOBILE TOP CTA */}
+        <div className="flex md:hidden items-center gap-2">
+          <button
+            onClick={() => window.open('https://wa.me/919398724704', '_blank')}
+            className="bg-emerald-500 text-white px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 shadow-sm"
+          >
+            <MessageSquare size={12} /> WhatsApp
+          </button>
+          <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-slate-700">
+            {isOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE MENU DROPDOWN */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-slate-200"
+            className="md:hidden bg-white border-b border-slate-200 shadow-xl"
           >
-            <div className="p-6 space-y-4">
+            <div className="p-6 space-y-3">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => handleNavigation(link.path)}
-                  className={`w-full text-left flex items-center gap-4 p-4 rounded-2xl font-bold ${
-                    isActive(link.path) ? "bg-blue-50 text-blue-600" : "bg-slate-50"
+                  className={`w-full text-left flex items-center gap-4 p-3.5 rounded-2xl font-bold transition-colors ${
+                    isActive(link.path) ? "bg-blue-50 text-blue-600" : "bg-slate-50 text-slate-700"
                   }`}
                 >
                   {link.icon} {link.label}

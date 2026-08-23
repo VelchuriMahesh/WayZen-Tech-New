@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Plus, X, Phone, ArrowRight } from 'lucide-react';
+import { ExternalLink, Instagram, Plus, X, Phone, ArrowRight, Globe } from 'lucide-react';
 
 export const Portfolio = () => {
   const [projects, setProjects] = useState([]);
@@ -13,7 +13,50 @@ export const Portfolio = () => {
     const fetchProjects = async () => {
       try {
         const snap = await getDocs(collection(db, "projects"));
-        setProjects(snap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        const data = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        if (data.length > 0) {
+          setProjects(data);
+        } else {
+          // Default showcase projects if firestore is empty
+          setProjects([
+            {
+              id: 'p1',
+              title: 'NextGen AI Dashboard',
+              category: 'AI & Web App',
+              desc: 'High-speed business analytics and AI workflow automation platform engineered with MERN stack & OpenAI APIs.',
+              img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+              link: 'https://www.wayzentechofficial.com',
+              instagram: 'https://instagram.com/way_zentech'
+            },
+            {
+              id: 'p2',
+              title: 'Luxury Retail & E-Commerce',
+              category: 'E-Commerce',
+              desc: 'Modern online storefront with instant payment gateways, live order tracking, and ultra-fast responsive design.',
+              img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+              link: 'https://www.wayzentechofficial.com',
+              instagram: 'https://instagram.com/way_zentech'
+            },
+            {
+              id: 'p3',
+              title: 'HealthCare Clinic Suite',
+              category: 'Custom Software',
+              desc: 'Patient appointment management, billing system, and automated WhatsApp appointment reminders.',
+              img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80',
+              link: 'https://www.wayzentechofficial.com',
+              instagram: 'https://instagram.com/way_zentech'
+            },
+            {
+              id: 'p4',
+              title: 'Smart Billing & POS System',
+              category: 'Billing Software',
+              desc: 'Offline-ready custom invoice generation, GST tax reporting, inventory control and WhatsApp receipt delivery.',
+              img: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80',
+              link: 'https://www.wayzentechofficial.com',
+              instagram: 'https://instagram.com/way_zentech'
+            }
+          ]);
+        }
       } catch (error) {
         console.error("Error fetching projects:", error);
       }
@@ -24,8 +67,8 @@ export const Portfolio = () => {
   return (
     <section className="relative py-12 md:py-24 px-4 md:px-6 overflow-hidden min-h-screen bg-slate-50">
       
-      {/* --- OPTIMIZED BACKGROUND ANIMATION --- */}
-      <div className="absolute inset-0 -z-10 opacity-50 md:opacity-100">
+      {/* --- BACKGROUND ACCENTS --- */}
+      <div className="absolute inset-0 -z-10 opacity-50 md:opacity-100 pointer-events-none">
         <motion.div 
           animate={{ scale: [1, 1.1, 1], x: [0, 50, 0] }}
           transition={{ duration: 20, repeat: Infinity }}
@@ -39,65 +82,115 @@ export const Portfolio = () => {
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Responsive Header */}
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 md:mb-20">
-          <h2 className="text-4xl md:text-7xl font-black mb-4 tracking-tighter text-slate-900 leading-tight">
-            Featured <br className="md:hidden" />
-            <span className="text-blue-600">Projects</span>
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8 md:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest mb-3">
+            Proof of Work & Portfolio
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black tracking-tighter text-slate-900 leading-tight">
+            Featured <span className="text-blue-600">Projects</span>
           </h2>
-          <div className="h-1.5 w-16 md:w-24 bg-blue-600 rounded-full" />
+          <div className="h-1.5 w-16 md:w-24 bg-blue-600 rounded-full mt-3" />
         </motion.div>
 
-        {/* --- GRID --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((p, index) => (
-            <motion.div
-              key={p.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.05 }}
-              onMouseEnter={() => setHoveredId(p.id)}
-              onMouseLeave={() => setHoveredId(null)}
-              onClick={() => setSelectedProject(p)}
-              className="group relative bg-white rounded-[32px] md:rounded-[40px] p-2 md:p-3 shadow-xl shadow-slate-200/50 border border-white hover:border-blue-200 transition-colors cursor-pointer"
-            >
-              <div className="relative overflow-hidden rounded-[26px] md:rounded-[32px] aspect-[4/5] bg-slate-100">
-                <motion.img 
-                  animate={{ scale: hoveredId === p.id ? 1.05 : 1 }}
-                  src={p.img} 
-                  alt={p.title} 
-                  className="w-full h-full object-cover" 
-                />
+        {/* --- GRID: 2 COLUMNS IN MOBILE (1:1 SIZE), 4 COLUMNS IN DESKTOP (1:1 SIZE) --- */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+          {projects.map((p, index) => {
+            const liveLink = p.link || 'https://www.wayzentechofficial.com';
+            const instaLink = p.instagram || p.instaLink || 'https://instagram.com/way_zentech';
 
-                <div className="absolute bottom-4 right-4 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                  <div className="bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl text-blue-600">
-                    <Plus size={20} />
+            return (
+              <motion.div
+                key={p.id || index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ delay: index * 0.05 }}
+                onMouseEnter={() => setHoveredId(p.id)}
+                onMouseLeave={() => setHoveredId(null)}
+                className="group relative bg-white rounded-2xl md:rounded-[32px] p-2.5 md:p-3.5 shadow-lg shadow-slate-200/50 border border-slate-100 hover:border-blue-300 transition-all flex flex-col justify-between"
+              >
+                {/* 1:1 SQUARE ASPECT RATIO CONTAINER */}
+                <div 
+                  onClick={() => setSelectedProject(p)}
+                  className="relative overflow-hidden rounded-xl md:rounded-2xl aspect-square bg-slate-100 cursor-pointer"
+                >
+                  <motion.img 
+                    animate={{ scale: hoveredId === p.id ? 1.06 : 1 }}
+                    transition={{ duration: 0.3 }}
+                    src={p.img || '/logo.png'} 
+                    alt={p.title} 
+                    className="w-full h-full object-cover" 
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-70 group-hover:opacity-90 transition-opacity" />
+
+                  {/* Badge & Quick Action */}
+                  <div className="absolute top-2 left-2 md:top-3 md:left-3">
+                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-wider text-white bg-blue-600/90 backdrop-blur-md px-2 py-0.5 rounded-md shadow">
+                      {p.category || "Live"}
+                    </span>
+                  </div>
+
+                  <div className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-lg md:rounded-xl shadow-lg text-blue-600 opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                    <Plus size={14} className="md:w-4 md:h-4" />
                   </div>
                 </div>
-              </div>
 
-              <div className="p-4 md:p-6">
-                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
-                  {p.category || "Development"}
-                </span>
-                <h3 className="text-xl md:text-2xl font-black text-slate-900 mt-3 tracking-tight group-hover:text-blue-600 transition-colors">
-                  {p.title}
-                </h3>
-              </div>
-            </motion.div>
-          ))}
+                {/* PROJECT DESCRIPTION & DETAILS */}
+                <div className="pt-2.5 md:pt-3 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 
+                      onClick={() => setSelectedProject(p)}
+                      className="text-xs sm:text-sm md:text-base font-black text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors line-clamp-1 cursor-pointer"
+                    >
+                      {p.title}
+                    </h3>
+                    <p className="text-[10px] sm:text-xs text-slate-500 line-clamp-2 mt-1 leading-relaxed">
+                      {p.desc || "Modern digital solution engineered for performance, scalability, and seamless user experience."}
+                    </p>
+                  </div>
+
+                  {/* ACTION LINKS (LIVE URL + INSTAGRAM LINK) */}
+                  <div className="flex items-center justify-between gap-1.5 pt-2.5 mt-2 border-t border-slate-100">
+                    <a
+                      href={liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 inline-flex items-center justify-center gap-1 bg-slate-900 hover:bg-blue-600 text-white px-2 py-1.5 rounded-lg text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      title="Open Live Website"
+                    >
+                      <Globe size={11} />
+                      <span>Live URL</span>
+                      <ExternalLink size={10} />
+                    </a>
+
+                    <a
+                      href={instaLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center p-1.5 bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+                      title="View on Instagram"
+                    >
+                      <Instagram size={13} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
 
       {/* --- DETAIL MODAL --- */}
       <AnimatePresence>
         {selectedProject && (
-          <div className="fixed inset-0 z-[1000] flex items-end md:items-center justify-center p-0 md:p-8">
+          <div className="fixed inset-0 z-[1000] flex items-end md:items-center justify-center p-0 md:p-6">
             <motion.div 
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="absolute inset-0 bg-slate-950/60 backdrop-blur-md"
+              className="absolute inset-0 bg-slate-950/70 backdrop-blur-md"
             />
 
             <motion.div 
@@ -106,63 +199,65 @@ export const Portfolio = () => {
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative w-full max-w-5xl bg-white rounded-t-[32px] md:rounded-[40px] overflow-hidden shadow-2xl flex flex-col md:flex-row h-[90vh] md:h-auto md:max-h-[85vh]"
+              className="relative w-full max-w-4xl bg-white rounded-t-[28px] md:rounded-[36px] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh] z-10"
             >
               <button 
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 p-3 bg-white/80 backdrop-blur-md text-slate-900 rounded-full shadow-lg z-50 hover:bg-red-50 hover:text-red-500 transition-all"
+                className="absolute top-4 right-4 p-2.5 bg-white/90 backdrop-blur-md text-slate-900 rounded-full shadow-lg z-50 hover:bg-red-50 hover:text-red-500 transition-all"
               >
-                <X size={20}/>
+                <X size={18}/>
               </button>
 
-              <div className="w-full md:w-5/12 h-[30vh] md:h-auto shrink-0 overflow-hidden">
-                <img src={selectedProject.img} className="w-full h-full object-cover" alt={selectedProject.title} />
+              <div className="w-full md:w-1/2 h-[35vh] md:h-auto shrink-0 overflow-hidden bg-slate-100 relative">
+                <img src={selectedProject.img || '/logo.png'} className="w-full h-full object-cover" alt={selectedProject.title} />
+                <div className="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider shadow-md">
+                  {selectedProject.category || "Live Project"}
+                </div>
               </div>
 
-              <div className="w-full md:w-7/12 p-6 md:p-12 overflow-y-auto bg-white">
-                <div className="flex items-center gap-3 mb-4 md:mb-6">
-                   <div className="h-[2px] w-8 bg-blue-600" />
-                   <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">Project Case Study</span>
+              <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto bg-white flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-blue-600">Case Study & Overview</span>
+                  <h2 className="text-2xl md:text-4xl font-black text-slate-900 mt-1 mb-4 leading-tight tracking-tight">
+                    {selectedProject.title}
+                  </h2>
+
+                  <div className="bg-slate-50 p-4 md:p-5 rounded-2xl border border-slate-100 mb-6">
+                    <p className="text-slate-600 text-xs md:text-sm leading-relaxed whitespace-pre-line">
+                      {selectedProject.desc || "Engineered with modern full-stack technologies, clean architecture, high-speed performance, and responsive UI."}
+                    </p>
+                  </div>
                 </div>
 
-                <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 leading-tight tracking-tighter">
-                  {selectedProject.title}
-                </h2>
-
-                <div className="bg-slate-50 p-5 md:p-6 rounded-2xl md:rounded-3xl border border-slate-100 mb-6 md:mb-8">
-                   <p className="text-slate-600 text-sm md:text-lg leading-relaxed whitespace-pre-line">
-                     {selectedProject.desc}
-                   </p>
-                </div>
-
-                {selectedProject.desc?.includes("+91") && (
-                   <div className="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl border border-blue-100 mb-8">
-                      <div className="shrink-0 w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
-                         <Phone size={18} />
-                      </div>
-                      <div>
-                         <p className="text-[9px] font-black text-blue-600 uppercase tracking-widest">Inquiry Node</p>
-                         <p className="text-sm font-bold text-slate-900 tracking-tight">+91 93987 24704</p>
-                      </div>
-                   </div>
-                )}
-
-                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
-                  {selectedProject.link && (
+                <div className="space-y-3 pt-4 border-t border-slate-100">
+                  <div className="flex flex-col sm:flex-row gap-2.5">
                     <a 
-                      href={selectedProject.link} 
+                      href={selectedProject.link || 'https://www.wayzentechofficial.com'} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-xl font-bold hover:bg-blue-600 transition-all shadow-xl shadow-slate-200"
+                      className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-slate-900 text-white rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-blue-600 transition-all shadow-md"
                     >
-                      Explore Live <ExternalLink size={18} />
+                      <Globe size={16} /> Explore Live Site <ExternalLink size={14} />
                     </a>
-                  )}
+
+                    <a 
+                      href={selectedProject.instagram || selectedProject.instaLink || 'https://instagram.com/way_zentech'} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="flex items-center justify-center gap-2 px-5 py-3.5 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-xl font-bold text-xs uppercase tracking-wider hover:opacity-90 transition-all shadow-md"
+                    >
+                      <Instagram size={16} /> Instagram Reel / Post
+                    </a>
+                  </div>
+
                   <button 
-                    onClick={() => setSelectedProject(null)}
-                    className="flex md:hidden items-center justify-center gap-2 px-8 py-4 bg-slate-100 text-slate-600 rounded-xl font-bold"
+                    onClick={() => {
+                      setSelectedProject(null);
+                      window.open('https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20saw%20your%20project:%20' + encodeURIComponent(selectedProject.title), '_blank');
+                    }}
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-emerald-500 text-white rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-emerald-600 transition-all"
                   >
-                    Back to Portfolio <ArrowRight size={18} />
+                    <Phone size={14} /> Inquire About Similar Project on WhatsApp
                   </button>
                 </div>
               </div>
@@ -173,3 +268,5 @@ export const Portfolio = () => {
     </section>
   );
 };
+
+export default Portfolio;
