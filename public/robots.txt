@@ -1,5 +1,37 @@
+# WayZenTech Robots.txt
+# https://www.wayzentechofficial.com/
+
 User-agent: *
 Allow: /
+Allow: /services
+Allow: /about
+Allow: /team
+Allow: /what-is-wayzentech
+Allow: /web-development
+Allow: /website-development
+Allow: /mobile-app-development
+Allow: /ai-development
+Allow: /ai-automation
+Allow: /business-automation
+Allow: /whatsapp-automation
+Allow: /digital-marketing
+Allow: /seo
+Allow: /local-seo
+Allow: /google-ads
+Allow: /billing-software
+Allow: /custom-software-development
+Allow: /ecommerce-development
+Allow: /web-development-company-palnadu
+Allow: /website-development-company-vijayawada
+Allow: /digital-marketing-agency-vijayawada
+Allow: /seo-company-guntur-palnadu
+Allow: /web-development-company-hyderabad
+Allow: /ai-automation-company-hyderabad
+Allow: /web-development-company-bangalore
+Allow: /digital-marketing-agency-bangalore
+
+# Disallow internal administrative portal
 Disallow: /admin
 
+# XML Sitemap
 Sitemap: https://www.wayzentechofficial.com/sitemap.xml

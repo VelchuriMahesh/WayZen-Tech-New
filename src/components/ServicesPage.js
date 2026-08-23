@@ -60,7 +60,7 @@ export default function ServicesPage() {
       
       {/* --- BACKGROUND ELEMENTS --- */}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
-        <img src="/logo.png" alt="" className="w-[300px] md:w-[800px] h-auto object-contain" />
+        <img src="/logo.png" alt="WayZenTech Watermark Logo" className="w-[300px] md:w-[800px] h-auto object-contain" />
       </div>
       <div className="absolute top-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-blue-600/10 blur-[80px] md:blur-[120px] rounded-full" />
       <div className="absolute bottom-0 left-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-purple-600/10 blur-[80px] md:blur-[120px] rounded-full" />

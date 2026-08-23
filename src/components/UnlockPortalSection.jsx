@@ -27,7 +27,7 @@ const CyberReceipt = React.forwardRef(({ amount, transactionId, date, name }, re
     <div className="relative z-10">
       <div className="flex justify-between items-start mb-16 border-b-2 border-slate-100 pb-10">
         <div className="flex items-center gap-4">
-          <img src="/logo.png" alt="Wayzen Logo" className="w-16 h-16 object-contain" />
+          <img src="/logo.png" alt="WayZenTech Official Logo" className="w-16 h-16 object-contain" />
           <div>
             <h1 className="text-4xl font-black tracking-tighter uppercase italic">
               Wayzen<span className="text-blue-600">Tech</span>

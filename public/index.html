@@ -5,76 +5,116 @@
 
     <!-- 1. ICONS & BRANDING -->
     <link rel="icon" href="%PUBLIC_URL%/logo.png" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <!-- 2. MOBILE OPTIMIZATION -->
+    <!-- 2. MOBILE OPTIMIZATION & PERFORMANCE -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#020617" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- 3. PRIMARY SEO TAGS -->
-    <title>WayZenTech (WayZen Tech) | Web Development, AI & Student Projects</title>
-
-    <meta name="title" content="WayZenTech (WayZen Tech) | Web Development, AI Solutions, Student Projects">
-    <meta name="description" content="WayZenTech (also known as WayZen Tech) is an India-based IT company specializing in MERN stack development, AI solutions, digital marketing, and B.Tech/M.Tech project solutions." />
-    <meta name="keywords" content="WayZenTech, WayZen Tech, wayzentech, wayzen tech, web development company, MERN stack, AI development, software development, digital marketing, B.Tech projects, M.Tech projects, India IT services" />
+    <!-- 3. PRIMARY DEFAULT SEO TAGS (Synchronized via background React SEOHandler) -->
+    <title>WayZenTech | Web Development, AI Automation, SEO & Digital Marketing</title>
+    <meta name="title" content="WayZenTech | Web Development, AI Automation, SEO & Digital Marketing" />
+    <meta name="description" content="WayZenTech provides website and app development, AI solutions, business automation, SEO, digital marketing, billing software and custom digital solutions for businesses in India." />
+    <meta name="keywords" content="WayZenTech, WayZen Tech, web development company in India, website development company in India, AI development company in India, AI automation services for businesses, best SEO company in India, digital marketing agency in India, custom billing software development, best web development company in Palnadu, website development company in Vijayawada, web development company in Hyderabad, web development company in Bangalore" />
     <meta name="author" content="WayZenTech" />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
-    <!-- IMPORTANT: CANONICAL -->
-    <link rel="canonical" href="https://www.wayzentechofficial.com" />
+    <!-- 4. CANONICAL URL -->
+    <link rel="canonical" href="https://www.wayzentechofficial.com/" />
 
-    <!-- 4. OPEN GRAPH / SOCIAL MEDIA -->
-    <meta property="og:title" content="WayZenTech - Web Development & Digital Growth" />
-    <meta property="og:description" content="Architecting modern websites, AI tools, and professional academic projects." />
-    <meta property="og:url" content="https://www.wayzentechofficial.com" />
+    <!-- 5. OPEN GRAPH / FACEBOOK / LINKEDIN -->
+    <meta property="og:site_name" content="WayZenTech" />
+    <meta property="og:title" content="WayZenTech | Web Development, AI Automation, SEO & Digital Marketing" />
+    <meta property="og:description" content="WayZenTech provides website and app development, AI solutions, business automation, SEO, digital marketing, billing software and custom digital solutions for businesses in India." />
+    <meta property="og:url" content="https://www.wayzentechofficial.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://www.wayzentechofficial.com/logo.png" />
 
-    <!-- 5. TWITTER CARD -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="WayZenTech | IT & Marketing">
-    <meta property="twitter:description" content="Custom software and aggressive growth strategies for the next generation.">
+    <!-- 6. TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WayZenTech | Web Development, AI Automation, SEO & Digital Marketing" />
+    <meta name="twitter:description" content="WayZenTech provides website and app development, AI solutions, business automation, SEO, digital marketing, billing software and custom digital solutions for businesses in India." />
+    <meta name="twitter:image" content="https://www.wayzentechofficial.com/logo.png" />
 
-    <!-- 6. STRUCTURED DATA -->
+    <!-- 7. DEFAULT STRUCTURED DATA (JSON-LD) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "WayZenTech",
-      "alternateName": "WayZen Tech",
-      "url": "https://www.wayzentechofficial.com",
-      "logo": "https://www.wayzentechofficial.com/logo.png",
-      "image": "https://www.wayzentechofficial.com/logo.png",
-      "description": "WayZenTech is an India-based IT solutions company specializing in Full-Stack Web Development (MERN), AI integration, Digital Marketing, and professional Academic (B.Tech/M.Tech) project solutions.",
-      "telephone": "+91-9398724704",
-      "foundingDate": "2023",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "IN"
-      }
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://www.wayzentechofficial.com/#organization",
+          "name": "WayZenTech",
+          "alternateName": [
+            "WayZen Tech",
+            "Way Zen Tech",
+            "WayZenTech India",
+            "WayZen Tech India"
+          ],
+          "url": "https://www.wayzentechofficial.com",
+          "logo": "https://www.wayzentechofficial.com/logo.png",
+          "image": "https://www.wayzentechofficial.com/logo.png",
+          "description": "WayZenTech is an India-based technology and growth collective providing custom website development, MERN stack web applications, AI automation, local SEO, and custom billing software solutions.",
+          "telephone": "+91-9398724704",
+          "email": "wayzentech@gmail.com",
+          "foundingDate": "2023",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Main Road",
+            "addressLocality": "Narasaraopet",
+            "addressRegion": "Andhra Pradesh",
+            "postalCode": "522601",
+            "addressCountry": "IN"
+          },
+          "areaServed": [
+            "Palnadu",
+            "Narasaraopet",
+            "Guntur",
+            "Vijayawada",
+            "Hyderabad",
+            "Bangalore",
+            "India"
+          ],
+          "sameAs": [
+            "https://instagram.com/way_zentech"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.wayzentechofficial.com/#website",
+          "url": "https://www.wayzentechofficial.com",
+          "name": "WayZenTech",
+          "alternateName": [
+            "WayZen Tech",
+            "Way Zen Tech",
+            "WayZenTech India",
+            "WayZen Tech India"
+          ],
+          "publisher": {
+            "@id": "https://www.wayzentechofficial.com/#organization"
+          }
+        }
+      ]
     }
     </script>
-
   </head>
 
   <body style="background-color: #020617;">
-    
-    <!-- SEO CONTENT (VISIBLE TO GOOGLE) -->
-    <h1>WayZenTech</h1>
+    <noscript>
+      <div style="padding: 24px; font-family: sans-serif; color: #ffffff; background-color: #020617; max-width: 800px; margin: auto;">
+        <h1>WayZenTech — Web Development, AI Automation, SEO & Digital Marketing</h1>
+        <p>
+          WayZenTech (also known as WayZen Tech) provides website and app development, AI solutions, business automation, SEO, digital marketing, billing software and custom digital solutions for businesses in India.
+        </p>
+        <p>
+          Serving businesses across Palnadu, Narasaraopet, Guntur, Vijayawada, Hyderabad, Bangalore, and nationwide.
+        </p>
+      </div>
+    </noscript>
 
-    <p>
-      WayZenTech (also known as WayZen Tech) is a modern web development and AI solutions company.
-      Many users search for WayZen Tech when looking for WayZenTech services.
-    </p>
-
-    <p>
-      WayZenTech provides MERN stack development, AI solutions, digital marketing, and academic projects.
-      Both WayZenTech and WayZen Tech represent the same company.
-    </p>
-
-    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
   </body>
 </html>

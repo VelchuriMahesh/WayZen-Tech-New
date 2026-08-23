@@ -34,7 +34,7 @@ export const Navbar = () => {
           whileHover={{ scale: 1.02 }}
         >
           <div className="w-10 h-10 rounded-xl overflow-hidden border border-slate-200 shadow-sm flex-shrink-0">
-            <img src="logo.png" alt="Logo" className="w-full h-full object-cover" />
+            <img src="/logo.png" alt="WayZenTech Official Logo" className="w-full h-full object-cover" />
           </div>
           <span className="text-2xl font-black tracking-tighter text-slate-900 uppercase italic">
             WayZen<span className="text-blue-600">Tech</span>

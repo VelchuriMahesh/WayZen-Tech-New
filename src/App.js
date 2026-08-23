@@ -20,6 +20,9 @@ import ServicesPage from './components/ServicesPage';
 import { AdminDashboard } from './components/AdminDashboard';
 import { UnlockPortalSection } from './components/UnlockPortalSection';
 
+// SEO Manager (Background execution only - Zero UI change)
+import { SEOHandler } from './seo/SEOHandler';
+
 // --- HELPER: SMOOTH SCROLL TO TOP ---
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -171,7 +174,6 @@ const WhatsAppFooterSection = () => (
       >
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-center md:text-left">
           <div className="bg-[#25D366] p-4 md:p-6 rounded-2xl md:rounded-3xl text-white shadow-lg group-hover:rotate-12 transition-transform">
-            {/* Fixed the Error here: Using className for responsive sizing instead of md:size */}
             <MessageCircle className="w-7 h-7 md:w-8 md:h-8" fill="currentColor" />
           </div>
           <div>
@@ -194,16 +196,47 @@ function AppContent() {
   return (
     <div className="antialiased font-sans bg-white relative overflow-x-hidden">
       <ScrollToTop />
+      <SEOHandler />
       <Navbar />
       
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
+          {/* Base Approved Pages */}
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/team" element={<Team />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/about" element={<About />} />
           <Route path="/what-is-wayzentech" element={<WhatIsWayZenTech />} />
+
+          {/* Service Target URLs (Mapping 30-Keyword Master Strategy) */}
+          <Route path="/web-development" element={<ServicesPage />} />
+          <Route path="/website-development" element={<ServicesPage />} />
+          <Route path="/mobile-app-development" element={<ServicesPage />} />
+          <Route path="/ai-development" element={<ServicesPage />} />
+          <Route path="/ai-automation" element={<ServicesPage />} />
+          <Route path="/business-automation" element={<ServicesPage />} />
+          <Route path="/whatsapp-automation" element={<ServicesPage />} />
+          <Route path="/digital-marketing" element={<ServicesPage />} />
+          <Route path="/seo" element={<ServicesPage />} />
+          <Route path="/local-seo" element={<ServicesPage />} />
+          <Route path="/google-ads" element={<ServicesPage />} />
+          <Route path="/billing-software" element={<ServicesPage />} />
+          <Route path="/custom-software-development" element={<ServicesPage />} />
+          <Route path="/ecommerce-development" element={<ServicesPage />} />
+
+          {/* Location Target URLs (Mapping 30-Keyword Master Strategy) */}
+          <Route path="/web-development-company-palnadu" element={<HomePage />} />
+          <Route path="/website-development-company-vijayawada" element={<HomePage />} />
+          <Route path="/digital-marketing-agency-vijayawada" element={<HomePage />} />
+          <Route path="/seo-company-guntur-palnadu" element={<HomePage />} />
+          <Route path="/web-development-company-hyderabad" element={<HomePage />} />
+          <Route path="/ai-automation-company-hyderabad" element={<HomePage />} />
+          <Route path="/web-development-company-bangalore" element={<HomePage />} />
+          <Route path="/digital-marketing-agency-bangalore" element={<HomePage />} />
+
+          {/* Fallback */}
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </AnimatePresence>
 
