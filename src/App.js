@@ -20,9 +20,11 @@ import { Portfolio } from './components/Portfolio';
 import { Techalien } from './components/Techalien';
 import ServicesPage from './components/ServicesPage';
 import { AdminDashboard } from './components/AdminDashboard';
+import { SeoPageTemplate } from './components/SeoPageTemplate';
 
 // SEO Manager (Background execution only - Zero UI change)
 import { SEOHandler } from './seo/SEOHandler';
+import { seoContentDatabase } from './seo/seoContentData';
 
 // --- HELPER: SMOOTH SCROLL TO TOP ---
 const ScrollToTop = () => {
@@ -31,6 +33,20 @@ const ScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
   return null;
+};
+
+// --- DYNAMIC SEO ROUTE RENDERER ---
+const SeoRoutePage = () => {
+  const location = useLocation();
+  let path = location.pathname;
+  if (path.length > 1 && path.endsWith('/')) {
+    path = path.slice(0, -1);
+  }
+  const content = seoContentDatabase[path] || seoContentDatabase[location.pathname];
+  if (content) {
+    return <SeoPageTemplate pageData={content} />;
+  }
+  return <ServicesPage />;
 };
 
 // --- BACKGROUND: TECH GRID ---
@@ -96,6 +112,7 @@ const homeServicesList = [
     icon: Globe,
     gradient: 'from-blue-600 to-indigo-600',
     tag: 'MERN & Next.js',
+    path: '/web-development',
     desc: 'High-performance corporate websites, reactive portals, SaaS platforms, and custom web applications engineered for speed, clean code, and conversions.',
     deliverables: ['Custom Responsive Design', 'SEO & Performance Optimized', 'Database & API Integrations', 'Admin Control Panels']
   },
@@ -106,6 +123,7 @@ const homeServicesList = [
     icon: Smartphone,
     gradient: 'from-purple-600 to-pink-600',
     tag: 'Flutter & React Native',
+    path: '/mobile-app-development',
     desc: 'Native-feel iOS and Android applications with smooth 60fps animations, push notifications, offline storage, and secure backend APIs.',
     deliverables: ['App Store & Play Store Ready', 'Real-Time Data Sync', 'Payment Gateway Integration', 'Intuitive Mobile UI/UX']
   },
@@ -116,6 +134,7 @@ const homeServicesList = [
     icon: Bot,
     gradient: 'from-emerald-600 to-teal-600',
     tag: 'OpenAI & Custom LLMs',
+    path: '/ai-automation',
     desc: 'Eliminate repetitive manual tasks with custom AI chatbots, autonomous WhatsApp enquiry handling, and automated business workflows.',
     deliverables: ['24/7 Customer Chatbots', 'Automated Lead Routing', 'Document & Data Processing', 'Workflow Efficiency']
   },
@@ -126,6 +145,7 @@ const homeServicesList = [
     icon: Search,
     gradient: 'from-amber-500 to-orange-600',
     tag: 'Google Rankings',
+    path: '/seo',
     desc: 'Comprehensive technical SEO, on-page optimization, local Google Business Profile dominance, and content strategies that rank for real customer searches.',
     deliverables: ['Technical SEO Architecture', 'Local Keyword Dominance', 'Structured Data Schema', 'Speed & Core Web Vitals']
   },
@@ -136,6 +156,7 @@ const homeServicesList = [
     icon: BarChart3,
     gradient: 'from-rose-600 to-red-600',
     tag: 'ROI-Driven PPC',
+    path: '/google-ads',
     desc: 'High-converting Google Search campaigns, Instagram ad creatives, and performance marketing designed to generate qualified business leads.',
     deliverables: ['Search & Display Ads', 'Ad Copy & Conversion Funnels', 'Audience Retargeting', 'Transparent ROI Analytics']
   },
@@ -146,6 +167,7 @@ const homeServicesList = [
     icon: Receipt,
     gradient: 'from-cyan-600 to-blue-600',
     tag: 'Custom ERP & POS',
+    path: '/billing-software',
     desc: 'Tailor-made billing software, barcode scanning, GST tax calculations, automated PDF invoice generation, and WhatsApp receipt delivery.',
     deliverables: ['Custom Invoice Workflows', 'GST & Financial Reports', 'Stock & Inventory Control', 'Offline-First Reliability']
   },
@@ -156,6 +178,7 @@ const homeServicesList = [
     icon: GraduationCap,
     gradient: 'from-indigo-600 to-violet-700',
     tag: 'B.Tech & M.Tech IEEE',
+    path: '/services',
     desc: 'Complete engineering project guidance, IEEE standard research documentation, clean source code, PPTs, and viva preparation support.',
     deliverables: ['IEEE Research Base Papers', 'Complete Tested Codebases', 'Project Reports & PPTs', 'Execution & Viva Guidance']
   }
@@ -232,7 +255,7 @@ const ServicesShowcase = () => {
                   {/* Right Column: Direct Actions */}
                   <div className="lg:col-span-3 flex flex-col sm:flex-row lg:flex-col gap-2.5 justify-end">
                     <button
-                      onClick={() => navigate('/services')}
+                      onClick={() => navigate(service.path || '/services')}
                       className="w-full bg-slate-950 hover:bg-blue-600 text-white px-5 py-3 rounded-xl font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow"
                     >
                       <span>Explore Details</span>
@@ -284,7 +307,7 @@ const AboutCompanyHighlight = () => {
             </h2>
 
             <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-              **WayZenTech** is a premier software engineering and AI collective based in India. We combine deep technical rigor with commercial focus — building high-speed business websites, reactive web applications, automated AI pipelines, and custom software systems designed to scale.
+              WayZenTech is a premier software engineering and AI collective based in India. We combine deep technical rigor with commercial focus — building high-speed business websites, reactive web applications, automated AI pipelines, and custom software systems designed to scale.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
@@ -477,30 +500,30 @@ function AppContent() {
           <Route path="/what-is-wayzentech" element={<WhatIsWayZenTech />} />
 
           {/* Service Target URLs (Mapping 30-Keyword Master Strategy) */}
-          <Route path="/web-development" element={<ServicesPage />} />
-          <Route path="/website-development" element={<ServicesPage />} />
-          <Route path="/mobile-app-development" element={<ServicesPage />} />
-          <Route path="/ai-development" element={<ServicesPage />} />
-          <Route path="/ai-automation" element={<ServicesPage />} />
-          <Route path="/business-automation" element={<ServicesPage />} />
-          <Route path="/whatsapp-automation" element={<ServicesPage />} />
-          <Route path="/digital-marketing" element={<ServicesPage />} />
-          <Route path="/seo" element={<ServicesPage />} />
-          <Route path="/local-seo" element={<ServicesPage />} />
-          <Route path="/google-ads" element={<ServicesPage />} />
-          <Route path="/billing-software" element={<ServicesPage />} />
-          <Route path="/custom-software-development" element={<ServicesPage />} />
-          <Route path="/ecommerce-development" element={<ServicesPage />} />
+          <Route path="/web-development" element={<SeoRoutePage />} />
+          <Route path="/website-development" element={<SeoRoutePage />} />
+          <Route path="/mobile-app-development" element={<SeoRoutePage />} />
+          <Route path="/ai-development" element={<SeoRoutePage />} />
+          <Route path="/ai-automation" element={<SeoRoutePage />} />
+          <Route path="/business-automation" element={<SeoRoutePage />} />
+          <Route path="/whatsapp-automation" element={<SeoRoutePage />} />
+          <Route path="/digital-marketing" element={<SeoRoutePage />} />
+          <Route path="/seo" element={<SeoRoutePage />} />
+          <Route path="/local-seo" element={<SeoRoutePage />} />
+          <Route path="/google-ads" element={<SeoRoutePage />} />
+          <Route path="/billing-software" element={<SeoRoutePage />} />
+          <Route path="/custom-software-development" element={<SeoRoutePage />} />
+          <Route path="/ecommerce-development" element={<SeoRoutePage />} />
 
           {/* Location Target URLs (Mapping 30-Keyword Master Strategy) */}
-          <Route path="/web-development-company-palnadu" element={<HomePage />} />
-          <Route path="/website-development-company-vijayawada" element={<HomePage />} />
-          <Route path="/digital-marketing-agency-vijayawada" element={<HomePage />} />
-          <Route path="/seo-company-guntur-palnadu" element={<HomePage />} />
-          <Route path="/web-development-company-hyderabad" element={<HomePage />} />
-          <Route path="/ai-automation-company-hyderabad" element={<HomePage />} />
-          <Route path="/web-development-company-bangalore" element={<HomePage />} />
-          <Route path="/digital-marketing-agency-bangalore" element={<HomePage />} />
+          <Route path="/web-development-company-palnadu" element={<SeoRoutePage />} />
+          <Route path="/website-development-company-vijayawada" element={<SeoRoutePage />} />
+          <Route path="/digital-marketing-agency-vijayawada" element={<SeoRoutePage />} />
+          <Route path="/seo-company-guntur-palnadu" element={<SeoRoutePage />} />
+          <Route path="/web-development-company-hyderabad" element={<SeoRoutePage />} />
+          <Route path="/ai-automation-company-hyderabad" element={<SeoRoutePage />} />
+          <Route path="/web-development-company-bangalore" element={<SeoRoutePage />} />
+          <Route path="/digital-marketing-agency-bangalore" element={<SeoRoutePage />} />
 
           {/* Fallback */}
           <Route path="*" element={<HomePage />} />

@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { seoPages, siteConfig } from './seoConfig';
+import { seoContentDatabase } from './seoContentData';
 
 /**
  * Invisible SEO Manager component.
- * Synchronously injects and updates document.title, meta tags, canonicals,
- * OpenGraph, Twitter Cards, and schema.org JSON-LD scripts upon route changes.
- * ZERO UI / ZERO DOM changes.
+ * Synchronously injects and updates document.title, meta descriptions, canonicals,
+ * OpenGraph, Twitter Cards, Breadcrumbs, FAQs, and schema.org JSON-LD scripts upon route changes.
+ * 
+ * NOTE: As per Google Search guidelines, <meta name="keywords"> is completely omitted.
+ * ZERO UI / ZERO layout changes.
  */
 export const SEOHandler = () => {
   const location = useLocation();
@@ -18,11 +21,12 @@ export const SEOHandler = () => {
       path = path.slice(0, -1);
     }
 
-    const pageData = seoPages[path] || seoPages[location.pathname] || seoPages['/'];
+    const pageMeta = seoPages[path] || seoPages[location.pathname] || seoPages['/'];
+    const pageContent = seoContentDatabase[path] || seoContentDatabase[location.pathname];
 
     // 1. Update Document Title
-    if (pageData.title) {
-      document.title = pageData.title;
+    if (pageMeta.title) {
+      document.title = pageMeta.title;
     }
 
     // Helper function to update or create meta tags
@@ -37,14 +41,15 @@ export const SEOHandler = () => {
       element.setAttribute('content', content);
     };
 
-    // 2. Primary Meta Tags
-    updateMetaTag('name', 'description', pageData.description);
-    const keywordsStr = [
-      pageData.primaryKeyword,
-      ...(pageData.secondaryKeywords || [])
-    ].filter(Boolean).join(', ');
-    updateMetaTag('name', 'keywords', keywordsStr);
-    updateMetaTag('name', 'robots', pageData.noIndex ? 'noindex, nofollow' : 'index, follow');
+    // Remove legacy meta keywords tag if present in DOM
+    const legacyKeywords = document.querySelector('meta[name="keywords"]');
+    if (legacyKeywords) {
+      legacyKeywords.remove();
+    }
+
+    // 2. Primary Meta Tags (No meta keywords per Google specification)
+    updateMetaTag('name', 'description', pageMeta.description);
+    updateMetaTag('name', 'robots', pageMeta.noIndex ? 'noindex, nofollow' : 'index, follow');
 
     // 3. Canonical Tag
     let canonicalLink = document.querySelector('link[rel="canonical"]');
@@ -53,23 +58,24 @@ export const SEOHandler = () => {
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
     }
-    canonicalLink.setAttribute('href', pageData.canonical || `https://www.wayzentechofficial.com${path}/`);
+    const cleanCanonical = pageMeta.canonical || `https://www.wayzentechofficial.com${path === '/' ? '/' : path + '/'}`;
+    canonicalLink.setAttribute('href', cleanCanonical);
 
     // 4. OpenGraph Tags
     updateMetaTag('property', 'og:site_name', siteConfig.brandName);
-    updateMetaTag('property', 'og:title', pageData.title);
-    updateMetaTag('property', 'og:description', pageData.description);
-    updateMetaTag('property', 'og:url', pageData.canonical || `https://www.wayzentechofficial.com${path}/`);
-    updateMetaTag('property', 'og:type', pageData.ogType || 'website');
+    updateMetaTag('property', 'og:title', pageMeta.title);
+    updateMetaTag('property', 'og:description', pageMeta.description);
+    updateMetaTag('property', 'og:url', cleanCanonical);
+    updateMetaTag('property', 'og:type', pageMeta.ogType || 'website');
     updateMetaTag('property', 'og:image', `${siteConfig.domain}/logo.png`);
 
     // 5. Twitter Card Tags
     updateMetaTag('name', 'twitter:card', 'summary_large_image');
-    updateMetaTag('name', 'twitter:title', pageData.title);
-    updateMetaTag('name', 'twitter:description', pageData.description);
+    updateMetaTag('name', 'twitter:title', pageMeta.title);
+    updateMetaTag('name', 'twitter:description', pageMeta.description);
     updateMetaTag('name', 'twitter:image', `${siteConfig.domain}/logo.png`);
 
-    // 6. Dynamic JSON-LD Structured Data
+    // 6. Dynamic JSON-LD Structured Data Graph
     const existingSchemaScript = document.getElementById('dynamic-route-schema');
     if (existingSchemaScript) {
       existingSchemaScript.remove();
@@ -115,35 +121,65 @@ export const SEOHandler = () => {
       }
     ];
 
-    // Page-Specific Schema
-    if (pageData.schemaType === 'Service') {
+    // Page-Specific Service or LocalBusiness Schema
+    if (pageMeta.schemaType === 'Service') {
       schemas.push({
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": pageData.primaryKeyword,
-        "description": pageData.description,
+        "name": pageContent ? pageContent.h1 : pageMeta.primaryKeyword,
+        "description": pageMeta.description,
         "provider": {
           "@id": `${siteConfig.domain}/#organization`
         },
-        "serviceType": pageData.primaryKeyword,
+        "serviceType": pageMeta.primaryKeyword,
         "areaServed": siteConfig.serviceAreas
       });
-    } else if (pageData.schemaType === 'LocalBusiness' || pageData.location) {
+    } else if (pageMeta.schemaType === 'LocalBusiness' || pageMeta.location) {
       schemas.push({
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "name": `WayZenTech - ${pageData.location || "India"}`,
-        "description": pageData.description,
-        "url": pageData.canonical,
+        "name": `WayZenTech - ${pageMeta.location || "India"}`,
+        "description": pageMeta.description,
+        "url": cleanCanonical,
         "telephone": siteConfig.phone,
         "email": siteConfig.email,
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": pageData.location || "Narasaraopet",
+          "addressLocality": pageMeta.location || "Narasaraopet",
           "addressRegion": "Andhra Pradesh",
           "addressCountry": "IN"
         },
-        "areaServed": [pageData.location, "Andhra Pradesh", "Telangana", "Karnataka", "India"].filter(Boolean)
+        "areaServed": [pageMeta.location, "Andhra Pradesh", "Telangana", "Karnataka", "India"].filter(Boolean)
+      });
+    }
+
+    // BreadcrumbList Schema (if breadcrumbs available)
+    if (pageContent?.breadcrumbs && pageContent.breadcrumbs.length > 0) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": pageContent.breadcrumbs.map((crumb, idx) => ({
+          "@type": "ListItem",
+          "position": idx + 1,
+          "name": crumb.name,
+          "item": crumb.path === "/" ? siteConfig.domain : `${siteConfig.domain}${crumb.path}/`
+        }))
+      });
+    }
+
+    // FAQPage Schema (if FAQs available)
+    if (pageContent?.faqs && pageContent.faqs.length > 0) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": pageContent.faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
+          }
+        }))
       });
     }
 
