@@ -152,28 +152,29 @@ export const Portfolio = () => {
                     </p>
                   </div>
 
-                  {/* ACTION LINKS (LIVE URL + INSTAGRAM LINK) */}
-                  <div className="flex items-center justify-between gap-1.5 pt-2.5 mt-2 border-t border-slate-100">
+                  {/* ACTION LINKS (LIVE WEBSITE + INSTAGRAM BUTTONS - EQUAL BIG BUTTONS) */}
+                  <div className="grid grid-cols-2 gap-2 pt-3 mt-2 border-t border-slate-100">
                     <a
                       href={liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-1 bg-slate-900 hover:bg-blue-600 text-white px-2 py-1.5 rounded-lg text-[9px] sm:text-[10px] font-bold uppercase tracking-wider transition-colors"
+                      className="inline-flex items-center justify-center gap-1.5 bg-slate-900 hover:bg-blue-600 text-white py-2.5 px-2 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all shadow-sm hover:shadow-md"
                       title="Open Live Website"
                     >
-                      <Globe size={11} />
-                      <span>Live URL</span>
-                      <ExternalLink size={10} />
+                      <Globe size={13} className="shrink-0" />
+                      <span className="truncate">Website</span>
+                      <ExternalLink size={11} className="shrink-0 opacity-70" />
                     </a>
 
                     <a
                       href={instaLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center p-1.5 bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+                      className="inline-flex items-center justify-center gap-1.5 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:opacity-95 text-white py-2.5 px-2 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all shadow-sm hover:shadow-md"
                       title="View on Instagram"
                     >
-                      <Instagram size={13} />
+                      <Instagram size={13} className="shrink-0" />
+                      <span className="truncate">Instagram</span>
                     </a>
                   </div>
                 </div>
