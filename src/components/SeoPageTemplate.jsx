@@ -4,10 +4,9 @@ import {
   ChevronRight, ChevronDown, CheckCircle2, ArrowRight, 
   MessageCircle, Phone, Globe, ShieldCheck, Sparkles 
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const SeoPageTemplate = ({ pageData }) => {
-  const navigate = useNavigate();
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
   if (!pageData) return null;

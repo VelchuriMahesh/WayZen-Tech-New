@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Instagram, Plus, X, Phone, ArrowRight, Globe } from 'lucide-react';
+import { ExternalLink, Instagram, Plus, X, Phone, Globe } from 'lucide-react';
 
 export const Portfolio = () => {
   const [projects, setProjects] = useState([]);
