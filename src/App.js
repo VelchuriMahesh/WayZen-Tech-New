@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, Phone, Instagram, Zap, ArrowRight, 
   MessageCircle, Send, Info, Cpu, Globe, Rocket, Code2, Database,
-  ShieldCheck, Sparkles
+  ShieldCheck, Sparkles, Compass, CheckCircle2
 } from 'lucide-react';
 
 // React Router
@@ -274,6 +274,166 @@ const KineticWaveTitle = () => {
   );
 };
 
+// --- COMPONENT: BRAND MEANING & THREE PILLARS (WAY / ZEN / TECH) ---
+const BrandPillarsSection = () => {
+  const pillars = [
+    {
+      id: "way",
+      letter: "WAY",
+      title: "The Path",
+      tagline: "Strategic Vision & Trajectory",
+      description: "Every transformative product begins with clarity of direction. We engineer precise technological roadmaps that guide ideas from initial concept to high-scale digital reality.",
+      icon: <Compass className="w-6 h-6 md:w-7 md:h-7 text-blue-600" />,
+      badges: ["Strategic Architecture", "Market Trajectory", "User Journey Blueprint"],
+      gradient: "from-blue-600 to-cyan-500",
+      accentBg: "bg-blue-50/80",
+      borderAccent: "border-blue-500/40 hover:border-blue-600",
+      glowColor: "rgba(37, 99, 235, 0.15)",
+      badgeColor: "bg-blue-100 text-blue-800 border-blue-200"
+    },
+    {
+      id: "zen",
+      letter: "ZEN",
+      title: "Mastery",
+      tagline: "Architectural Precision & Purity",
+      description: "True mastery is eliminating chaos and complexity. We engineer clean-code architectures with zero bloat, sub-second latency, rigorous security protocols, and 99.99% operational uptime.",
+      icon: <ShieldCheck className="w-6 h-6 md:w-7 md:h-7 text-indigo-600" />,
+      badges: ["Architectural Purity", "Sub-Second Latency", "99.99% Reliability"],
+      gradient: "from-indigo-600 to-purple-600",
+      accentBg: "bg-indigo-50/80",
+      borderAccent: "border-indigo-500/40 hover:border-indigo-600",
+      glowColor: "rgba(99, 102, 241, 0.15)",
+      badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-200"
+    },
+    {
+      id: "tech",
+      letter: "TECH",
+      title: "Next-Gen",
+      tagline: "AI Systems & Future-Ready Tech",
+      description: "Leveraging tomorrow's engineering today. Autonomous AI workflows, cloud-native microservices, reactive MERN web applications, and intelligent systems built for infinite scale.",
+      icon: <Cpu className="w-6 h-6 md:w-7 md:h-7 text-cyan-600" />,
+      badges: ["Generative AI Systems", "Scalable Cloud MERN", "Autonomous Agents"],
+      gradient: "from-cyan-500 to-emerald-500",
+      accentBg: "bg-cyan-50/80",
+      borderAccent: "border-cyan-500/40 hover:border-cyan-600",
+      glowColor: "rgba(6, 182, 212, 0.15)",
+      badgeColor: "bg-cyan-100 text-cyan-800 border-cyan-200"
+    }
+  ];
+
+  return (
+    <section id="brand-meaning" className="relative py-14 sm:py-20 md:py-28 px-4 md:px-6 bg-slate-50/90 border-y border-slate-200/80 overflow-hidden">
+      {/* Background Decorative Rings & Ambient Glows */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-gradient-to-r from-blue-400/10 via-indigo-400/10 to-cyan-400/10 blur-3xl pointer-events-none rounded-full" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-200/80 shadow-sm mb-4"
+          >
+            <Sparkles size={13} className="text-blue-600 animate-spin" />
+            <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.22em] text-blue-600">
+              The Meaning of WayZenTech
+            </span>
+          </motion.div>
+
+          <motion.h2 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight leading-snug md:leading-tight"
+          >
+            “The <span className="text-blue-600 underline decoration-blue-500/40">Way</span> to the{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500">
+              Next Generation
+            </span>{" "}
+            of Technology.”
+          </motion.h2>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-3.5 text-xs sm:text-sm md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto"
+          >
+            Every system we engineer is anchored in three non-negotiable principles — clear strategic direction, uncompromising architectural mastery, and next-gen engineering.
+          </motion.p>
+        </div>
+
+        {/* 3 HIGH-CONTRAST HIGHLIGHTED PILLAR CARDS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
+          {pillars.map((pillar, idx) => (
+            <motion.div
+              key={pillar.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.15, duration: 0.5 }}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className={`group relative rounded-3xl md:rounded-[32px] p-6 sm:p-7 md:p-8 bg-white border-2 ${pillar.borderAccent} shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden`}
+              style={{ boxShadow: `0 12px 30px ${pillar.glowColor}` }}
+            >
+              {/* Subtle Corner Gradient Glow */}
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${pillar.gradient} opacity-10 group-hover:opacity-20 blur-xl transition-opacity pointer-events-none rounded-bl-full`} />
+
+              <div>
+                {/* Top Row: Icon + Letter Badge */}
+                <div className="flex items-center justify-between mb-5">
+                  <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl ${pillar.accentBg} flex items-center justify-center shadow-inner border border-white/60`}>
+                    {pillar.icon}
+                  </div>
+                  <span className={`text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-full border ${pillar.badgeColor}`}>
+                    0{idx + 1} // PILLAR
+                  </span>
+                </div>
+
+                {/* Pillar Identity */}
+                <div className="mb-3">
+                  <div className={`text-xs sm:text-sm font-mono font-black tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r ${pillar.gradient}`}>
+                    {pillar.letter}
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-0.5">
+                    {pillar.title}
+                  </h3>
+                  <div className="text-xs font-bold text-slate-500 mt-1">
+                    {pillar.tagline}
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-3">
+                  {pillar.description}
+                </p>
+              </div>
+
+              {/* Bottom Feature Badges */}
+              <div className="pt-6 mt-6 border-t border-slate-100 flex flex-wrap gap-1.5">
+                {pillar.badges.map((b, i) => (
+                  <span 
+                    key={i} 
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100/90 text-slate-700 text-[10px] font-semibold"
+                  >
+                    <CheckCircle2 size={11} className="text-emerald-500" />
+                    {b}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
 // --- COMPONENT: HOME PAGE ---
 const HomePage = () => {
   const navigate = useNavigate();
@@ -305,43 +465,14 @@ const HomePage = () => {
           {/* KINETIC WAVE ANIMATED TITLE */}
           <KineticWaveTitle />
           
-          {/* OFFICIAL BRAND PHILOSOPHY CARD */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="w-full max-w-xl mx-auto my-3 sm:my-4 px-2"
-          >
-            <div className="relative group p-4 sm:p-5 rounded-2xl md:rounded-3xl bg-slate-50/90 hover:bg-white border border-slate-200/80 hover:border-blue-300 shadow-sm hover:shadow-md transition-all">
-              <p className="text-xs sm:text-sm md:text-base font-semibold text-slate-800 italic leading-relaxed">
-                “The Way to the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black not-italic">Next Generation</span> of Technology.”
-              </p>
-              
-              <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-200/60 text-[9px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-600">
-                <div className="flex flex-col items-center">
-                  <span className="font-black text-blue-600">WAY</span>
-                  <span className="text-[8px] sm:text-[9px] text-slate-400">The Path</span>
-                </div>
-                <div className="flex flex-col items-center border-x border-slate-200/60">
-                  <span className="font-black text-indigo-600">ZEN</span>
-                  <span className="text-[8px] sm:text-[9px] text-slate-400">Mastery</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="font-black text-cyan-600">TECH</span>
-                  <span className="text-[8px] sm:text-[9px] text-slate-400">Next-Gen</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
           {/* Subtitle */}
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-xs sm:text-sm md:text-base text-slate-500 max-w-lg mx-auto font-medium leading-relaxed px-2 mt-1"
+            transition={{ delay: 0.2 }}
+            className="text-xs sm:text-sm md:text-base text-slate-600 max-w-lg mx-auto font-medium leading-relaxed px-2 mt-2"
           >
-            Engineering <span className="text-slate-900 font-bold underline decoration-blue-500/40">AI Systems</span>, Scalable Web Applications & Enterprise Software Solutions.
+            Engineering <span className="text-slate-950 font-bold underline decoration-blue-500/40">AI Systems</span>, Scalable MERN Apps & Enterprise Software Solutions.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -368,8 +499,50 @@ const HomePage = () => {
             </motion.button>
           </div>
 
+          {/* QUICK HERO PILLARS BAR (Prominently visible directly inside the initial Hero viewport!) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-8 sm:mt-10 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 text-xs z-10"
+          >
+            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-400 font-bold mr-1">
+              Core Essence:
+            </span>
+            
+            <button 
+              onClick={() => document.getElementById("brand-meaning")?.scrollIntoView({ behavior: "smooth" })}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-50/90 hover:bg-blue-100/90 border-2 border-blue-500/30 text-slate-900 font-bold shadow-sm transition-all group"
+            >
+              <span className="text-blue-600 font-black">WAY</span>
+              <span className="text-slate-300">/</span>
+              <span className="text-slate-800 text-[11px] group-hover:text-blue-700">The Path</span>
+            </button>
+
+            <button 
+              onClick={() => document.getElementById("brand-meaning")?.scrollIntoView({ behavior: "smooth" })}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/90 hover:bg-indigo-100/90 border-2 border-indigo-500/30 text-slate-900 font-bold shadow-sm transition-all group"
+            >
+              <span className="text-indigo-600 font-black">ZEN</span>
+              <span className="text-slate-300">/</span>
+              <span className="text-slate-800 text-[11px] group-hover:text-indigo-700">Mastery</span>
+            </button>
+
+            <button 
+              onClick={() => document.getElementById("brand-meaning")?.scrollIntoView({ behavior: "smooth" })}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-50/90 hover:bg-cyan-100/90 border-2 border-cyan-500/30 text-slate-900 font-bold shadow-sm transition-all group"
+            >
+              <span className="text-cyan-600 font-black">TECH</span>
+              <span className="text-slate-300">/</span>
+              <span className="text-slate-800 text-[11px] group-hover:text-cyan-700">Next-Gen</span>
+            </button>
+          </motion.div>
+
         </div>
       </header>
+      
+      {/* 1.5 BRAND PHILOSOPHY & THREE PILLARS SHOWCASE (WAY / ZEN / TECH) */}
+      <BrandPillarsSection />
       
       {/* 2. INNOVATIVE 5-STYLE INTERACTIVE SERVICES SHOWCASE */}
       <InnovativeServicesShowcase />
