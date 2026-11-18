@@ -484,7 +484,7 @@ function AppContent() {
   const location = useLocation();
 
   return (
-    <div className="antialiased font-sans bg-white relative overflow-x-hidden pb-16 md:pb-0">
+    <div className="antialiased font-sans bg-white relative overflow-x-hidden pb-20 md:pb-0">
       <ScrollToTop />
       <SEOHandler />
       <Navbar />

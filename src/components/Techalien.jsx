@@ -109,7 +109,7 @@ export const Techalien = () => {
   };
 
   return (
-    <div className="fixed bottom-20 md:bottom-8 right-4 md:right-8 z-[999] flex flex-col items-end gap-3 pointer-events-auto">
+    <div className="fixed bottom-20 md:bottom-8 right-3 md:right-8 z-[90] flex flex-col items-end gap-2 md:gap-3 pointer-events-auto">
       
       {/* 1. FLOATING CALL BUTTON */}
       <motion.a
@@ -117,9 +117,9 @@ export const Techalien = () => {
         whileTap={{ scale: 0.95 }}
         href="tel:+919398724704"
         title="Call WayZenTech (+91 9398724704)"
-        className="w-12 h-12 md:w-14 md:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,99,235,0.4)] transition-all cursor-pointer"
+        className="w-10 h-10 md:w-14 md:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer"
       >
-        <Phone size={22} className="animate-pulse" />
+        <Phone size={18} className="md:w-5 md:h-5 animate-pulse" />
       </motion.a>
 
       {/* 2. FLOATING WHATSAPP BUTTON */}
@@ -128,9 +128,9 @@ export const Techalien = () => {
         whileTap={{ scale: 0.95 }}
         onClick={() => window.open('https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20inquire%20about%20your%20services', '_blank')}
         title="Chat on WhatsApp (+91 9398724704)"
-        className="w-12 h-12 md:w-14 md:h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-all cursor-pointer"
+        className="w-10 h-10 md:w-14 md:h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-all cursor-pointer"
       >
-        <MessageCircle size={24} fill="currentColor" />
+        <MessageCircle size={20} className="md:w-6 md:h-6" fill="currentColor" />
       </motion.button>
 
       {/* 3. AI CHATBOT MODAL */}
@@ -243,13 +243,13 @@ export const Techalien = () => {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-12 h-12 md:w-14 md:h-14 bg-slate-950 text-emerald-400 rounded-full border-2 border-emerald-500 flex items-center justify-center shadow-[0_0_25px_rgba(16,185,129,0.4)] cursor-pointer"
+        className="w-10 h-10 md:w-14 md:h-14 bg-slate-950 text-emerald-400 rounded-full border-2 border-emerald-500 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.35)] cursor-pointer"
         title="Open Techalien AI Chatbot"
       >
         {isOpen ? (
-          <X size={22} className="text-emerald-400" />
+          <X size={18} className="md:w-5 md:h-5 text-emerald-400" />
         ) : (
-          <Dna size={24} className="text-emerald-400 animate-pulse" />
+          <Dna size={18} className="md:w-6 md:h-6 text-emerald-400 animate-pulse" />
         )}
       </motion.button>
     </div>
