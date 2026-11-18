@@ -56,7 +56,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <section className="min-h-screen bg-[#050505] text-white py-12 md:py-24 px-4 md:px-6 relative overflow-hidden">
+    <section className="min-h-screen bg-[#050505] text-white pt-24 md:pt-32 pb-32 md:pb-24 px-4 md:px-6 relative overflow-hidden">
       
       {/* --- BACKGROUND ELEMENTS --- */}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
@@ -68,12 +68,12 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* --- HEADER --- */}
-        <header className="mb-12 md:mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+        <header className="mb-10 md:mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-6">
           <div>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-8xl font-black tracking-tighter"
+              className="text-4xl sm:text-6xl md:text-8xl font-black tracking-tight leading-tight"
             >
               OUR <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">EXPERTISE.</span>
             </motion.h2>

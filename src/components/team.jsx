@@ -29,7 +29,7 @@ const Team = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#050505] py-20 relative overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-[#050505] pt-24 md:pt-32 pb-32 md:pb-24 px-4 md:px-6 relative overflow-hidden">
       
       {/* 1. BACKGROUND TECH GRID */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">

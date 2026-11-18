@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Mail, Phone, Instagram, Zap, ArrowRight, 
   MessageCircle, Send, Info, Cpu, Globe, Rocket, Code2, Database,
-  Smartphone, Bot, Search, BarChart3, Receipt, GraduationCap, CheckCircle2, ShieldCheck
+  Smartphone, Bot, Search, BarChart3, Receipt, GraduationCap, CheckCircle2, ShieldCheck, Sparkles
 } from 'lucide-react';
 
 // React Router
@@ -367,6 +367,88 @@ const AboutCompanyHighlight = () => {
   );
 };
 
+// --- COMPONENT: KINETIC WAVE TITLE ---
+const KineticWaveTitle = () => {
+  const wayzenChars = ["W", "a", "y", "Z", "e", "n"];
+  const techChars = ["T", "e", "c", "h"];
+
+  return (
+    <div className="relative inline-flex items-center justify-center select-none py-2 my-2 sm:my-4">
+      {/* Dynamic Multi-Color Ambient Plasma Glow */}
+      <motion.div 
+        animate={{
+          scale: [1, 1.18, 0.92, 1],
+          opacity: [0.3, 0.55, 0.3],
+          rotate: [0, 180, 360]
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "linear"
+        }}
+        className="absolute -inset-6 sm:-inset-16 bg-gradient-to-tr from-blue-500/25 via-indigo-500/25 to-cyan-400/25 blur-2xl sm:blur-[100px] rounded-full pointer-events-none -z-10"
+      />
+
+      {/* Main Kinetic Wave Heading */}
+      <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-[130px] font-black tracking-tighter leading-[0.9] md:leading-[0.85] flex items-center justify-center flex-wrap">
+        {/* "WayZen" in Onyx Slate */}
+        <span className="inline-flex text-slate-950">
+          {wayzenChars.map((char, index) => (
+            <motion.span
+              key={`w-${index}`}
+              animate={{
+                y: [0, -10, 0, 7, 0],
+                rotateZ: [0, -1.2, 0, 1.2, 0]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: index * 0.12,
+                ease: "easeInOut"
+              }}
+              whileHover={{ 
+                scale: 1.16, 
+                color: "#2563eb",
+                transition: { duration: 0.15 } 
+              }}
+              className="inline-block transition-colors cursor-pointer transform-gpu"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </span>
+
+        {/* "Tech" in Electric Vibrant Gradient with Neon Wave Motion */}
+        <span className="inline-flex italic ml-1.5 sm:ml-2">
+          {techChars.map((char, index) => (
+            <motion.span
+              key={`t-${index}`}
+              animate={{
+                y: [0, -12, 0, 9, 0],
+                rotateZ: [0, 2, 0, -2, 0]
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: (wayzenChars.length + index) * 0.12,
+                ease: "easeInOut"
+              }}
+              whileHover={{ 
+                scale: 1.2, 
+                rotateZ: 6,
+                transition: { duration: 0.15 } 
+              }}
+              className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-500 cursor-pointer transform-gpu drop-shadow-[0_4px_16px_rgba(37,99,235,0.25)]"
+            >
+              {char}
+            </motion.span>
+          ))}
+        </span>
+      </h1>
+    </div>
+  );
+};
+
 // --- COMPONENT: HOME PAGE ---
 const HomePage = () => {
   const navigate = useNavigate();
@@ -379,55 +461,88 @@ const HomePage = () => {
       transition={{ duration: 0.5 }}
     >
       {/* 1. HERO SECTION */}
-      <header className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center items-center px-4 md:px-6 pt-24 md:pt-20 overflow-hidden bg-white">
+      <header className="relative min-h-[92vh] md:min-h-screen flex flex-col justify-center items-center px-4 md:px-6 pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-white">
         <TechGrid />
         <Floating3DSpace />
         
-        <div className="relative z-20 max-w-7xl mx-auto text-center">
+        <div className="relative z-20 max-w-5xl mx-auto text-center flex flex-col items-center">
+          
+          {/* Animated Innovation Pill */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="mb-4 md:mb-6 inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em]"
+            className="mb-4 sm:mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-cyan-500/10 border border-blue-500/25 text-blue-600 text-[9px] sm:text-[11px] font-black uppercase tracking-[0.2em] shadow-sm backdrop-blur-md"
           >
-            <Zap size={10} className="animate-bounce" /> Innovation Foundry
+            <Sparkles size={12} className="animate-spin text-blue-600" />
+            <span>The Way to the Next Generation of Technology</span>
           </motion.div>
           
-          <motion.h1 
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="text-5xl sm:text-7xl lg:text-8xl xl:text-[130px] font-black tracking-tighter text-slate-950 leading-[0.9] md:leading-[0.85] mb-6 md:mb-10"
-          >
-            WayZen<span className="text-transparent bg-clip-text bg-gradient-to-br from-blue-600 to-indigo-500 italic">Tech</span>
-          </motion.h1>
+          {/* KINETIC WAVE ANIMATED TITLE */}
+          <KineticWaveTitle />
           
+          {/* OFFICIAL BRAND PHILOSOPHY CARD */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="w-full max-w-xl mx-auto my-3 sm:my-4 px-2"
+          >
+            <div className="relative group p-4 sm:p-5 rounded-2xl md:rounded-3xl bg-slate-50/90 hover:bg-white border border-slate-200/80 hover:border-blue-300 shadow-sm hover:shadow-md transition-all">
+              <p className="text-xs sm:text-sm md:text-base font-semibold text-slate-800 italic leading-relaxed">
+                “The Way to the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 font-black not-italic">Next Generation</span> of Technology.”
+              </p>
+              
+              <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-200/60 text-[9px] sm:text-[11px] font-mono uppercase tracking-wider text-slate-600">
+                <div className="flex flex-col items-center">
+                  <span className="font-black text-blue-600">WAY</span>
+                  <span className="text-[8px] sm:text-[9px] text-slate-400">The Path</span>
+                </div>
+                <div className="flex flex-col items-center border-x border-slate-200/60">
+                  <span className="font-black text-indigo-600">ZEN</span>
+                  <span className="text-[8px] sm:text-[9px] text-slate-400">Mastery</span>
+                </div>
+                <div className="flex flex-col items-center">
+                  <span className="font-black text-cyan-600">TECH</span>
+                  <span className="text-[8px] sm:text-[9px] text-slate-400">Next-Gen</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Subtitle */}
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-base md:text-xl lg:text-2xl text-slate-500 max-w-xs md:max-w-2xl mx-auto font-medium leading-relaxed px-2"
+            transition={{ delay: 0.3 }}
+            className="text-xs sm:text-sm md:text-base text-slate-500 max-w-lg mx-auto font-medium leading-relaxed px-2 mt-1"
           >
-            Engineering <span className="text-slate-900 font-bold underline decoration-blue-500/30">AI Systems</span>, Scalable MERN Apps & Premium Academic Projects.
+            Engineering <span className="text-slate-900 font-bold underline decoration-blue-500/40">AI Systems</span>, Scalable Web Applications & Enterprise Software Solutions.
           </motion.p>
 
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 md:gap-6 pt-10 md:pt-16 px-4">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 pt-6 sm:pt-8 w-full sm:w-auto px-4">
             <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => document.getElementById("request").scrollIntoView({ behavior: "smooth" })} 
-              className="w-full sm:w-auto group bg-slate-950 text-white px-8 md:px-12 py-4 md:py-6 rounded-[20px] md:rounded-[24px] font-bold flex items-center justify-center gap-3 shadow-2xl hover:bg-blue-600 transition-all"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => document.getElementById("request")?.scrollIntoView({ behavior: "smooth" })} 
+              className="w-full sm:w-auto group bg-slate-950 text-white px-7 md:px-10 py-3.5 md:py-4 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-xl hover:bg-blue-600 transition-all"
             >
-              Start Request <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+              <Zap size={14} className="text-yellow-400 fill-yellow-400" />
+              <span>Start Request</span>
+              <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
             </motion.button>
 
             <motion.button 
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => navigate('/what-is-wayzentech')} 
-              className="w-full sm:w-auto group bg-white text-slate-950 border-2 border-slate-100 px-8 md:px-12 py-4 md:py-6 rounded-[20px] md:rounded-[24px] font-bold flex items-center justify-center gap-3 hover:border-blue-500 transition-all shadow-lg"
+              className="w-full sm:w-auto group bg-white text-slate-900 border-2 border-slate-200/90 hover:border-blue-500 px-7 md:px-10 py-3.5 md:py-4 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all"
             >
-              <Info size={18} className="text-blue-500" /> What is WayZenTech?
+              <Info size={15} className="text-blue-500" />
+              <span>What is WayZenTech?</span>
             </motion.button>
           </div>
+
         </div>
       </header>
       

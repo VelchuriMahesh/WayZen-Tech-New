@@ -57,24 +57,8 @@ const WayZenAbout = () => {
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden">
       
-      {/* Navigation */}
-      <nav className="flex justify-between items-center p-6 lg:px-12 border-b border-white/10 backdrop-blur-md sticky top-0 z-50 bg-black/50">
-        <div 
-          onClick={() => navigate('/')} 
-          className="text-xl md:text-2xl font-black tracking-tighter uppercase cursor-pointer hover:opacity-80 transition-opacity"
-        >
-          WayZen<span className="text-cyan-500">Tech.</span>
-        </div>
-        <button 
-          onClick={contactWhatsApp}
-          className="bg-white text-black px-5 py-2 md:px-6 md:py-2 rounded-full text-xs md:text-sm font-bold hover:bg-cyan-400 transition-colors duration-300"
-        >
-          Get a Quote
-        </button>
-      </nav>
-
       {/* Hero Section */}
-      <section className="relative pt-16 md:pt-20 pb-24 md:pb-32 px-6 overflow-hidden">
+      <section className="relative pt-24 md:pt-32 pb-24 md:pb-32 px-4 md:px-6 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[400px] bg-cyan-500/10 blur-[80px] md:blur-[120px] rounded-full" />
         
         <div className="max-w-6xl mx-auto text-center relative z-10">

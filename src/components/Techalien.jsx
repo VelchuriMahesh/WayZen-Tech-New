@@ -109,28 +109,28 @@ export const Techalien = () => {
   };
 
   return (
-    <div className="fixed bottom-20 md:bottom-8 right-3 md:right-8 z-[90] flex flex-col items-end gap-2 md:gap-3 pointer-events-auto">
+    <div className="fixed bottom-24 md:bottom-8 right-3 md:right-8 z-[90] flex flex-col items-end gap-2 md:gap-3 pointer-events-auto">
       
-      {/* 1. FLOATING CALL BUTTON */}
+      {/* 1. FLOATING CALL BUTTON (Desktop only - Mobile has direct access in top drawer and footer) */}
       <motion.a
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         href="tel:+919398724704"
         title="Call WayZenTech (+91 9398724704)"
-        className="w-10 h-10 md:w-14 md:h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer"
+        className="hidden md:flex w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full items-center justify-center shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer"
       >
-        <Phone size={18} className="md:w-5 md:h-5 animate-pulse" />
+        <Phone size={22} className="animate-pulse" />
       </motion.a>
 
-      {/* 2. FLOATING WHATSAPP BUTTON */}
+      {/* 2. FLOATING WHATSAPP BUTTON (Desktop only - Mobile has direct WhatsApp in top pill and bottom dock) */}
       <motion.button
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => window.open('https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20inquire%20about%20your%20services', '_blank')}
         title="Chat on WhatsApp (+91 9398724704)"
-        className="w-10 h-10 md:w-14 md:h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-all cursor-pointer"
+        className="hidden md:flex w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-all cursor-pointer"
       >
-        <MessageCircle size={20} className="md:w-6 md:h-6" fill="currentColor" />
+        <MessageCircle size={24} fill="currentColor" />
       </motion.button>
 
       {/* 3. AI CHATBOT MODAL */}
