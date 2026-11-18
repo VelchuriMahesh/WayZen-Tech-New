@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  X, ShieldCheck, Plus, Minus, Printer, Fingerprint, 
-  Cpu, Mail, User, Loader2, CheckCircle2, Zap 
+  X, Plus, Minus, Printer, Fingerprint, 
+  Cpu, Mail, User, CheckCircle2, Zap 
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { useReactToPrint } from 'react-to-print';
@@ -49,10 +49,9 @@ const CyberReceipt = React.forwardRef(({ amount, transactionId, date, name }, re
 export const CyberPaymentModal = ({ isOpen, onClose, upiId = "9398724704@ybl" }) => {
   const [amount, setAmount] = useState(1000);
   const [step, setStep] = useState('info'); 
-  const [utr, setUtr] = useState('');
+  const [utr] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [unlockCode, setUnlockCode] = useState('');
   
   const contentRef = useRef(null);
   const reactToPrintFn = useReactToPrint({ contentRef });

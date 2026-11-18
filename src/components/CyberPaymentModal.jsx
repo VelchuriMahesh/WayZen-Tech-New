@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  X, ShieldCheck, Plus, Minus, Printer, Fingerprint, 
-  Cpu, Mail, User, Loader2, CheckCircle2, Zap, Smartphone, ArrowRight, Lock
+  X, Plus, Minus, Printer, Fingerprint, 
+  Cpu, User, Loader2, CheckCircle2, Zap, ArrowRight, Lock
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { useReactToPrint } from 'react-to-print';

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom'; // Added for navigation
 import { 
   Code2, Rocket, GraduationCap, Smartphone, 
-  Zap, Phone, ArrowRight 
+  Zap, ArrowRight 
 } from 'lucide-react';
 
 const WayZenAbout = () => {
@@ -43,10 +43,6 @@ const WayZenAbout = () => {
     }
   ];
 
-  // Helper function for WhatsApp
-  const contactWhatsApp = () => {
-    window.open('https://wa.me/919398724704', '_blank');
-  };
 
   const fadeIn = {
     initial: { opacity: 0, y: 20 },

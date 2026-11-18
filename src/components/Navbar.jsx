@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Home, Users, Cpu, Info, MessageSquare, Zap, ArrowRight, Phone, Sparkles 
+  Home, Users, Cpu, Info, MessageSquare, Zap, ArrowRight, Phone 
 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 

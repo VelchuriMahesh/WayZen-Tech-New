@@ -390,7 +390,7 @@ const BrandPillarsSection = () => {
                     {pillar.icon}
                   </div>
                   <span className={`text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-full border ${pillar.badgeColor}`}>
-                    0{idx + 1} // PILLAR
+                    0{idx + 1} • PILLAR
                   </span>
                 </div>
 
