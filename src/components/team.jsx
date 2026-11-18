@@ -166,9 +166,9 @@ const Team = () => {
         </div>
 
         {/* BOTTOM TERMINATOR */}
-        <div className="flex flex-col items-center mt-40">
-           <div className="w-4 h-4 bg-blue-500 rounded-full shadow-[0_0_20px_rgba(59,130,246,1)]" />
-           <div className="text-slate-700 text-[8px] font-bold uppercase tracking-[1em] mt-8">End of Neural Chain</div>
+        <div className="flex flex-col items-center mt-16 mb-8">
+           <div className="w-4 h-4 bg-blue-500 rounded-full shadow-[0_0_20px_rgba(59,130,246,1)] animate-ping" />
+           <div className="text-slate-500 text-[9px] font-bold uppercase tracking-[0.5em] mt-4 font-mono">End of Neural Chain</div>
         </div>
       </div>
 

@@ -1,13 +1,12 @@
 "use client";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { 
   Target, GraduationCap, ArrowUpRight, 
   Zap, Globe, Code2, Cpu, 
-  Layers, MessageSquare,
-  Trophy, Smartphone, PenTool,
-  Home, Briefcase 
+  Layers,
+  Trophy, Smartphone, PenTool
 } from "lucide-react";
 
 // --- 1. MAGICAL GLOW TRAIL ---
@@ -98,21 +97,6 @@ const FeatureCard = ({ title, desc, icon: Icon, color, delay }) => (
 const WhatIsWayZenTech = () => {
   const navigate = useNavigate();
 
-  // UseCallback for performance and to satisfy linting
-  const handleNav = useCallback((item) => {
-    if (item.path === "whatsapp") {
-      window.open('https://wa.me/919398724704', '_blank');
-    } else {
-      navigate(item.path);
-    }
-  }, [navigate]);
-
-  const navItems = [
-    { label: "Home", icon: <Home size={18} />, path: "/" },
-    { label: "Work", icon: <Briefcase size={18} />, path: "/services" },
-    { label: "Talk", icon: <MessageSquare size={18} />, path: "whatsapp" },
-  ];
-
   return (
     <div className="relative min-h-screen bg-[#020617] text-white selection:bg-blue-500/40 overflow-x-hidden">
       <MagicTrail />
@@ -193,23 +177,6 @@ const WhatIsWayZenTech = () => {
         </div>
       </section>
 
-      {/* BOTTOM NAVIGATION DOCK */}
-      <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[1000] flex items-center gap-1 p-1.5 bg-black/70 backdrop-blur-3xl border border-white/10 rounded-full shadow-2xl">
-        {navItems.map((item, i) => (
-          <div 
-            key={i} 
-            onClick={() => handleNav(item)}
-            className="px-5 py-3 md:px-8 md:py-4 rounded-full text-white/70 hover:text-white hover:bg-white/10 cursor-pointer transition-all flex items-center gap-3 group active:scale-90"
-          >
-            {item.icon}
-            <span className="text-[10px] md:text-[11px] font-black uppercase tracking-widest">{item.label}</span>
-          </div>
-        ))}
-      </nav>
-
-      <footer className="relative z-10 py-20 pb-32 text-center opacity-30 text-[8px] font-mono tracking-[0.3em] uppercase px-6">
-        WayZenTech Foundry // © 2024 Engineering Supremacy
-      </footer>
     </div>
   );
 };

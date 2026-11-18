@@ -22,6 +22,7 @@ import ServicesPage from './components/ServicesPage';
 import { AdminDashboard } from './components/AdminDashboard';
 import { SeoPageTemplate } from './components/SeoPageTemplate';
 import { InnovativeServicesShowcase } from './components/InnovativeServicesShowcase';
+import { JourneyConnector } from './components/JourneyConnector';
 
 // SEO Manager (Background execution only - Zero UI change)
 import { SEOHandler } from './seo/SEOHandler';
@@ -468,6 +469,9 @@ function AppContent() {
           <Route path="*" element={<HomePage />} />
         </Routes>
       </AnimatePresence>
+
+      {/* INTER-PAGE ECOSYSTEM JOURNEY CONNECTOR */}
+      <JourneyConnector />
 
       {/* FLOATING ACTION HUB (CALL, WHATSAPP, AI CHATBOT) */}
       <Techalien />

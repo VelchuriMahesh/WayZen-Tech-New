@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom'; // Added for navigation
 import { 
   Code2, Rocket, GraduationCap, Smartphone, 
-  Zap, Mail, Phone, Instagram, ArrowRight 
+  Zap, Phone, ArrowRight 
 } from 'lucide-react';
 
 const WayZenAbout = () => {
@@ -156,69 +156,16 @@ const WayZenAbout = () => {
           </h2>
           <p className="text-lg md:text-2xl text-gray-400 mb-10 font-mono">+91 9398724704</p>
           <button 
-            onClick={() => navigate('/')}
+            onClick={() => {
+              navigate('/');
+              setTimeout(() => document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' }), 300);
+            }}
             className="w-full md:w-auto bg-cyan-500 text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl shadow-cyan-500/20"
           >
             START YOUR PROJECT
           </button>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-20 px-6 border-t border-white/10">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
-          <div className="text-center md:text-left">
-            <div className="text-2xl font-black mb-6 uppercase tracking-tighter">WayZen<span className="text-cyan-500">Tech</span></div>
-            <p className="text-gray-500 text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
-              Premium Digital Collective engineering the next generation of software and growth. Global Ready.
-            </p>
-          </div>
-          
-          <div className="text-center md:text-left">
-            <h5 className="font-mono text-cyan-500 text-[10px] mb-8 uppercase tracking-[0.3em]">Contact Sync</h5>
-            <ul className="space-y-4">
-              <li 
-                onClick={() => window.location.href = 'mailto:wayzentech@gmail.com'}
-                className="flex items-center justify-center md:justify-start gap-3 text-gray-300 hover:text-cyan-400 cursor-pointer transition-colors"
-              >
-                <Mail size={18} /> wayzentech@gmail.com
-              </li>
-              <li 
-                onClick={contactWhatsApp}
-                className="flex items-center justify-center md:justify-start gap-3 text-gray-300 hover:text-cyan-400 cursor-pointer transition-colors font-bold"
-              >
-                <Phone size={18} /> +91 9398724704
-              </li>
-            </ul>
-          </div>
-
-          <div className="text-center md:text-left">
-            <h5 className="font-mono text-cyan-500 text-[10px] mb-8 uppercase tracking-[0.3em]">Social Core</h5>
-            <div className="flex justify-center md:justify-start gap-4">
-              <a 
-                href="https://instagram.com/way_zentech" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="p-4 bg-zinc-900 rounded-2xl hover:text-cyan-400 hover:bg-zinc-800 transition-all"
-              >
-                <Instagram size={24} />
-              </a>
-              <div 
-                 onClick={contactWhatsApp}
-                 className="p-4 bg-zinc-900 rounded-2xl hover:text-cyan-400 hover:bg-zinc-800 transition-all cursor-pointer font-black text-sm px-6"
-              >
-                WA
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto mt-20 pt-8 border-t border-white/5 text-center">
-          <p className="text-[9px] text-gray-600 font-mono tracking-[0.4em] uppercase">
-            © 2024 WayZenTech Digital Foundry // India HQ
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };
