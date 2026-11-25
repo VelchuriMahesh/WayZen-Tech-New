@@ -111,7 +111,7 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
-      {/* --- PIVOTROOTS ORBITAL SVG MOTIF --- */}
+      {/* --- PIVOTROOTS ORBITAL SVG MOTIF & BACKGROUND LOGO EMBLEM --- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute -top-40 -right-40 w-[600px] h-[600px] md:w-[900px] md:h-[900px] opacity-20" viewBox="0 0 800 800" fill="none">
           <circle cx="400" cy="400" r="350" stroke="#cdd32c" strokeWidth="1" strokeDasharray="8 8" className="animate-make-line" />
@@ -119,6 +119,18 @@ export default function ServicesPage() {
           <circle cx="400" cy="400" r="120" stroke="#cdd32c" strokeWidth="1" strokeDasharray="4 4" />
         </svg>
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[140px]" />
+
+        {/* PROMINENT BACKGROUND LOGO - VISIBLE IN MOBILE & WEB */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+          <div className="relative w-[300px] sm:w-[500px] md:w-[750px] aspect-[1024/847] flex items-center justify-center">
+            <div className="absolute inset-0 bg-[#cdd32c]/10 rounded-full blur-[90px] pointer-events-none scale-75" />
+            <img 
+              src="/logo-watermark.png" 
+              alt="WayZenTech Background Logo" 
+              className="w-full h-full object-contain opacity-22 sm:opacity-18 md:opacity-20 filter drop-shadow-[0_0_40px_rgba(205,211,44,0.18)] select-none"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">

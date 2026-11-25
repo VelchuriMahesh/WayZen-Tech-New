@@ -72,8 +72,8 @@ export const Navbar = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden border border-white/15 shadow-sm flex-shrink-0 bg-[#141419] p-1 group-hover:border-[#cdd32c] transition-colors">
-              <img src="/logo.png" alt="WayZenTech" className="w-full h-full object-contain" />
+            <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden border border-white/15 shadow-sm flex-shrink-0 bg-[#141419] p-1.5 group-hover:border-[#cdd32c] transition-colors">
+              <img src="/logo-watermark.png" alt="WayZenTech" className="w-full h-full object-contain" />
             </div>
             <span className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase italic">
               WAYZEN<span className="text-[#cdd32c] drop-shadow-sm">TECH</span>

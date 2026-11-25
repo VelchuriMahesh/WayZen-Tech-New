@@ -162,6 +162,25 @@ const PivotHero = () => {
         <ellipse cx="720" cy="450" rx="380" ry="200" stroke="#ffffff" strokeWidth="1" strokeDasharray="8 8" opacity="0.4" />
       </svg>
 
+      {/* PROMINENT BACKGROUND LOGO EMBLEM - VISIBLE ON MOBILE & WEB */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="relative w-[300px] sm:w-[480px] md:w-[680px] lg:w-[840px] aspect-[1024/847] flex items-center justify-center"
+        >
+          {/* Ambient Glow behind the logo */}
+          <div className="absolute inset-0 bg-[#cdd32c]/10 rounded-full blur-[70px] md:blur-[130px] pointer-events-none scale-75" />
+          
+          <img 
+            src="/logo-watermark.png" 
+            alt="WayZenTech Background Logo" 
+            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 filter drop-shadow-[0_0_35px_rgba(205,211,44,0.18)] select-none pointer-events-none"
+          />
+        </motion.div>
+      </div>
+
       {/* TOP PILL BADGE */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
@@ -449,7 +468,18 @@ function AppContent() {
   const location = useLocation();
 
   return (
-    <div className="antialiased font-sans bg-white relative overflow-x-hidden pb-20 md:pb-0">
+    <div className="antialiased font-sans bg-[#0a0101] text-white relative overflow-x-hidden pb-20 md:pb-0">
+      {/* GLOBAL SCREEN BACKGROUND LOGO WATERMARK - VISIBLE ACROSS ALL PAGES */}
+      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
+        <div className="relative w-[340px] sm:w-[540px] md:w-[740px] lg:w-[900px] aspect-[1024/847]">
+          <img 
+            src="/logo-watermark.png" 
+            alt="" 
+            className="w-full h-full object-contain opacity-[0.07] select-none pointer-events-none filter drop-shadow-[0_0_60px_rgba(205,211,44,0.12)]"
+          />
+        </div>
+      </div>
+
       {/* PIVOTROOTS MIX-BLEND DIFFERENCE CUSTOM CURSOR */}
       <CustomCursor />
 
