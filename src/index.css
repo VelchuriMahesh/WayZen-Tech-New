@@ -1,3 +1,59 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-[#0a0101] bg-[#ffffff] selection:bg-[#cdd32c] selection:text-[#0a0101];
+  }
+}
+
+/* PivotRoots SVG Stroke Orbital Arc Animation */
+@keyframes makeLine {
+  0% {
+    stroke-dashoffset: 2000;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -2000;
+  }
+}
+
+.animate-make-line {
+  stroke-dasharray: 600;
+  animation: makeLine 18s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+/* PivotRoots 3D Flip Scroll Prompt */
+@keyframes scrolly {
+  0% {
+    transform: rotateX(90deg) scale(0.6) skewX(2deg);
+    opacity: 0;
+  }
+  50% {
+    transform: rotateX(0deg) scale(1) skewX(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(-90deg) scale(0.6) skewX(-2deg);
+    opacity: 0;
+  }
+}
+
+.animate-scrolly {
+  animation: scrolly 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Hide native cursor when custom cursor is active on non-touch screens */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active {
+    cursor: none !important;
+  }
+  .custom-cursor-active a,
+  .custom-cursor-active button,
+  .custom-cursor-active [role="button"] {
+    cursor: none !important;
+  }
+}

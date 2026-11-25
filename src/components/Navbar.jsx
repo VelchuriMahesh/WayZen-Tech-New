@@ -1,25 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Home, Users, Cpu, Info, MessageSquare, Zap, ArrowRight, Phone 
-} from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { 
+  Phone, Mail, MessageSquare, Instagram, ArrowUpRight, 
+  MapPin, Zap 
+} from 'lucide-react';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [socialToggle, setSocialToggle] = useState(0); // 0 = WhatsApp, 1 = Instagram
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Rotate top-right social pill every 4 seconds (like PivotRoots)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSocialToggle((prev) => (prev === 0 ? 1 : 0));
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Lock body scroll when full-screen menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
   const navLinks = [
-    { id: 'home', label: 'Home', subtitle: 'Main portal & showcase', path: '/', icon: <Home size={18} /> },
-    { id: 'services', label: 'Services', subtitle: 'Web, AI & Software solutions', path: '/services', icon: <Cpu size={18} /> },
-    { id: 'about', label: 'About', subtitle: 'Our story & technology vision', path: '/about', icon: <Info size={18} /> },
-    { id: 'team', label: 'Our Team', subtitle: 'Engineers & architects', path: '/team', icon: <Users size={18} /> },
+    { num: '01', label: 'Home', subtitle: 'The Strategic Launchpad', path: '/' },
+    { num: '02', label: 'Services', subtitle: 'Web, AI & Software Solutions', path: '/services' },
+    { num: '03', label: 'About', subtitle: 'Our Origin & Engineering Philosophy', path: '/about' },
+    { num: '04', label: 'Our Team', subtitle: 'Systems Architects & Developers', path: '/team' },
+    { num: '05', label: 'What is WayZenTech?', subtitle: 'Meaning & Three Pillars', path: '/what-is-wayzentech' },
   ];
 
-  const isActive = (path) => location.pathname === path;
-
-  const handleNavigation = (path) => {
+  const handleNav = (path) => {
     navigate(path);
     setIsOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -27,8 +48,9 @@ export const Navbar = () => {
 
   const handleStartProject = () => {
     setIsOpen(false);
-    if (location.pathname === '/') {
-      document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' });
+    const req = document.getElementById('request');
+    if (req) {
+      req.scrollIntoView({ behavior: 'smooth' });
     } else {
       navigate('/');
       setTimeout(() => {
@@ -38,176 +60,235 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-2xl border-b border-slate-200/60 shadow-sm transition-all duration-300">
-      
-      {/* Sleek Animated Top Accent Gradient */}
-      <div className="h-[2.5px] w-full bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-400 opacity-90 animate-gradient" />
-
-      <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
-        
-        {/* BRAND LOGO */}
-        <motion.div 
-          onClick={() => handleNavigation('/')}
-          className="cursor-pointer flex items-center gap-2.5 md:gap-3 group"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <div className="relative w-9 h-9 md:w-10 md:h-10 rounded-xl overflow-hidden border border-slate-200 shadow-sm flex-shrink-0 bg-white p-0.5 group-hover:border-blue-400 transition-colors">
-            <img src="/logo.png" alt="WayZenTech Logo" className="w-full h-full object-contain" />
-            <span className="absolute inset-0 rounded-xl ring-2 ring-blue-500/20 group-hover:ring-blue-500/40 transition-all" />
-          </div>
-          <span className="text-xl md:text-2xl font-black tracking-tight text-slate-900 uppercase italic">
-            WayZen<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Tech</span>
-          </span>
-        </motion.div>
-
-        {/* DESKTOP LINKS */}
-        <div className="hidden md:flex items-center gap-1.5">
-          {navLinks.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => handleNavigation(link.path)}
-              className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest transition-all ${
-                isActive(link.path) 
-                ? "text-blue-600 bg-blue-50 shadow-sm" 
-                : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
-
-          <button
-            onClick={handleStartProject}
-            className="ml-3 bg-slate-950 text-white hover:bg-blue-600 px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all shadow-md active:scale-95 flex items-center gap-2"
-          >
-            <Zap size={13} className="text-yellow-400 fill-yellow-400" />
-            <span>Start Project</span>
-          </button>
-        </div>
-
-        {/* MOBILE TOP BAR ACTIONS */}
-        <div className="flex md:hidden items-center gap-2">
+    <>
+      {/* FIXED TOP HEADER */}
+      <header className="fixed top-0 left-0 w-full z-[999] transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200/70">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 h-18 md:h-22 flex items-center justify-between">
           
-          {/* Animated WhatsApp Live Pill */}
-          <motion.button
-            whileTap={{ scale: 0.92 }}
-            onClick={() => window.open('https://wa.me/919398724704', '_blank')}
-            className="relative px-3 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-700 text-[10px] font-black uppercase tracking-wider flex items-center gap-1.5 shadow-sm active:bg-emerald-100 transition-colors"
+          {/* BRAND LOGO */}
+          <motion.div 
+            onClick={() => handleNav('/')}
+            className="cursor-pointer flex items-center gap-3 group select-none"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden border border-slate-200 shadow-sm flex-shrink-0 bg-white p-0.5 group-hover:border-[#cdd32c] transition-colors">
+              <img src="/logo.png" alt="WayZenTech" className="w-full h-full object-contain" />
+            </div>
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-[#0a0101] uppercase italic">
+              WAYZEN<span className="text-[#cdd32c] drop-shadow-sm">TECH</span>
             </span>
-            <MessageSquare size={12} className="text-emerald-600" />
-            <span>WhatsApp</span>
-          </motion.button>
+          </motion.div>
 
-          {/* Morphing Animated Hamburger Button */}
-          <motion.button 
-            whileTap={{ scale: 0.88 }}
-            onClick={() => setIsOpen(!isOpen)} 
-            className="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200/80 flex flex-col items-center justify-center gap-1.5 transition-colors border border-slate-200/60"
-            aria-label="Toggle navigation menu"
-          >
-            <motion.span 
-              animate={isOpen ? { rotate: 45, y: 7.5 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.25 }}
-              className="w-5 h-0.5 bg-slate-800 rounded-full origin-center"
-            />
-            <motion.span 
-              animate={isOpen ? { opacity: 0, scale: 0 } : { opacity: 1, scale: 1 }}
-              transition={{ duration: 0.2 }}
-              className="w-5 h-0.5 bg-slate-800 rounded-full"
-            />
-            <motion.span 
-              animate={isOpen ? { rotate: -45, y: -7.5 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.25 }}
-              className="w-5 h-0.5 bg-slate-800 rounded-full origin-center"
-            />
-          </motion.button>
+          {/* RIGHT ACTIONS: ROTATING SOCIAL PILL + PIVOTROOTS 4-LINE ASYMMETRICAL HAMBURGER */}
+          <div className="flex items-center gap-3 sm:gap-6">
+            
+            {/* PIVOTROOTS ROTATING SOCIAL PILL */}
+            <div className="relative h-9 overflow-hidden">
+              <AnimatePresence mode="wait">
+                {socialToggle === 0 ? (
+                  <motion.button
+                    key="whatsapp"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={() => window.open('https://wa.me/919398724704', '_blank')}
+                    className="h-9 px-3.5 sm:px-4 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 text-[#075e54] text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-[#25D366] hover:text-white transition-all shadow-sm"
+                  >
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#25D366]" />
+                    </span>
+                    <MessageSquare size={13} />
+                    <span className="hidden sm:inline">WhatsApp Live</span>
+                    <span className="sm:hidden">WhatsApp</span>
+                  </motion.button>
+                ) : (
+                  <motion.button
+                    key="instagram"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -20, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={() => window.open('https://instagram.com/way_zentech', '_blank')}
+                    className="h-9 px-3.5 sm:px-4 rounded-full bg-gradient-to-r from-orange-500/10 via-pink-500/10 to-purple-500/10 border border-pink-500/30 text-pink-700 text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-600 hover:text-white transition-all shadow-sm"
+                  >
+                    <Instagram size={13} />
+                    <span>@way_zentech</span>
+                  </motion.button>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* PIVOTROOTS ASYMMETRICAL 4-LINE HAMBURGER BUTTON */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative w-12 h-10 flex flex-col justify-between py-1 items-end cursor-pointer group focus:outline-none z-[1001]"
+              aria-label="Toggle Navigation Drawer"
+            >
+              {/* Line 1: 40px width -> rotates 45deg */}
+              <motion.span
+                animate={isOpen ? { rotate: 45, y: 12, width: 36, backgroundColor: '#0a0101' } : { rotate: 0, y: 0, width: 40, backgroundColor: '#0a0101' }}
+                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                className="h-[2.5px] rounded-full origin-center"
+              />
+
+              {/* Line 2: 22px width -> slides off-canvas left */}
+              <motion.span
+                animate={isOpen ? { x: -50, opacity: 0 } : { x: 0, opacity: 1, width: 22, backgroundColor: '#0a0101' }}
+                transition={{ duration: 0.25 }}
+                className="h-[2.5px] rounded-full"
+              />
+
+              {/* Line 3: 40px width -> rotates -45deg */}
+              <motion.span
+                animate={isOpen ? { rotate: -45, y: -12, width: 36, backgroundColor: '#0a0101' } : { rotate: 0, y: 0, width: 40, backgroundColor: '#0a0101' }}
+                transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+                className="h-[2.5px] rounded-full origin-center"
+              />
+
+              {/* Line 4: 18px width -> slides off-canvas left */}
+              <motion.span
+                animate={isOpen ? { x: -50, opacity: 0 } : { x: 0, opacity: 1, width: 18, backgroundColor: '#0a0101' }}
+                transition={{ duration: 0.25 }}
+                className="h-[2.5px] rounded-full"
+              />
+            </button>
+
+          </div>
+
         </div>
-      </div>
+      </header>
 
-      {/* ANIMATED MOBILE MENU OVERLAY / DRAWER */}
+      {/* FULL-SCREEN PIVOTROOTS-INSPIRED NAVIGATION DRAWER */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="md:hidden bg-white/95 backdrop-blur-2xl border-b border-slate-200 shadow-2xl overflow-hidden"
+          <motion.div
+            initial={{ opacity: 0, clipPath: "circle(0% at 95% 40px)" }}
+            animate={{ opacity: 1, clipPath: "circle(150% at 95% 40px)" }}
+            exit={{ opacity: 0, clipPath: "circle(0% at 95% 40px)" }}
+            transition={{ duration: 0.6, ease: [0.645, 0.045, 0.355, 1] }}
+            className="fixed inset-0 z-[998] bg-[#cdd32c] text-[#0a0101] flex flex-col justify-between p-6 sm:p-12 md:p-16 overflow-y-auto select-none pt-24 md:pt-32"
           >
-            <div className="p-5 space-y-2.5">
+            {/* Background Dotted Orbital Contour */}
+            <svg className="absolute -left-20 -top-20 w-[500px] h-[500px] pointer-events-none opacity-20" viewBox="0 0 500 500">
+              <circle cx="250" cy="250" r="230" fill="none" stroke="#0a0101" strokeWidth="2" strokeDasharray="10 10" className="animate-make-line" />
+            </svg>
+
+            <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-start relative z-10">
               
-              {/* Menu Links with Staggered Entrance */}
-              {navLinks.map((link, idx) => {
-                const active = isActive(link.path);
-                return (
-                  <motion.button
-                    key={link.id}
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05, duration: 0.25 }}
-                    onClick={() => handleNavigation(link.path)}
-                    className={`w-full text-left flex items-center justify-between p-3.5 rounded-2xl transition-all ${
-                      active 
-                      ? "bg-blue-50/90 text-blue-600 border border-blue-200/80 shadow-sm" 
-                      : "bg-slate-50 hover:bg-slate-100 text-slate-800 border border-slate-100"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <div className={`p-2 rounded-xl ${active ? "bg-blue-600 text-white shadow-sm" : "bg-white text-slate-600 border border-slate-200/60"}`}>
-                        {link.icon}
-                      </div>
-                      <div>
-                        <div className="font-bold text-sm tracking-tight">{link.label}</div>
-                        <div className="text-[10px] text-slate-400 font-normal">{link.subtitle}</div>
-                      </div>
-                    </div>
-                    <ArrowRight size={16} className={`transition-transform ${active ? "text-blue-600 translate-x-0.5" : "text-slate-400"}`} />
-                  </motion.button>
-                );
-              })}
+              {/* LEFT COLUMN: PIVOTROOTS-STYLE STACKED 900-WEIGHT NAVIGATION LINKS */}
+              <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+                <div className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.3em] text-[#0a0101]/60 mb-6">
+                  WayZenTech Navigation // Index
+                </div>
 
-              {/* Action Buttons in Drawer */}
-              <div className="pt-3 grid grid-cols-2 gap-2.5 border-t border-slate-100 mt-2">
-                <button
-                  onClick={handleStartProject}
-                  className="w-full bg-slate-950 active:bg-blue-600 text-white py-3.5 px-3 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-colors"
-                >
-                  <Zap size={14} className="text-yellow-400 fill-yellow-400" />
-                  <span>Start Project</span>
-                </button>
+                {navLinks.map((link, idx) => {
+                  const isActive = location.pathname === link.path;
+                  return (
+                    <motion.div
+                      key={link.num}
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + idx * 0.06, duration: 0.4 }}
+                      onClick={() => handleNav(link.path)}
+                      className="group cursor-pointer block border-b border-[#0a0101]/15 pb-3 sm:pb-4"
+                    >
+                      <div className="flex items-baseline gap-3 sm:gap-6">
+                        <span className="text-xs sm:text-sm font-mono font-black text-[#0a0101]/40">
+                          {link.num}
+                        </span>
+                        
+                        <div className="flex-1">
+                          <div className={`text-2xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight transition-all duration-300 ${
+                            isActive 
+                              ? "text-[#0a0101] underline decoration-[#0a0101] decoration-4" 
+                              : "text-[#0a0101]/85 group-hover:text-[#0a0101] group-hover:translate-x-2"
+                          }`}>
+                            {link.label}
+                          </div>
 
-                <button
-                  onClick={() => {
-                    setIsOpen(false);
-                    window.open('https://wa.me/919398724704', '_blank');
-                  }}
-                  className="w-full bg-emerald-500 active:bg-emerald-600 text-white py-3.5 px-3 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-colors"
-                >
-                  <MessageSquare size={14} />
-                  <span>Chat Direct</span>
-                </button>
+                          {/* PIVOTROOTS TRACKING-COLLAPSE BRACKETED SUBTITLE ON HOVER */}
+                          <div className="text-[10px] sm:text-xs font-mono text-[#0a0101]/60 uppercase tracking-[6px] group-hover:tracking-normal transition-all duration-300 mt-1 font-bold">
+                            [ {link.subtitle} ]
+                          </div>
+                        </div>
+
+                        <ArrowUpRight size={22} className="text-[#0a0101]/30 group-hover:text-[#0a0101] group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
-              {/* Contact Footer in Drawer */}
-              <div className="pt-2 text-center">
-                <a 
-                  href="tel:+919398724704" 
-                  className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-blue-600 py-1"
-                >
-                  <Phone size={12} className="text-blue-500" /> Direct Sync: +91 9398724704
-                </a>
+              {/* RIGHT COLUMN: REGIONAL HUBS + DIRECT SYNC */}
+              <div className="lg:col-span-5 space-y-8 bg-[#0a0101] text-white p-6 sm:p-8 rounded-3xl shadow-2xl">
+                
+                <div>
+                  <div className="inline-flex items-center gap-2 text-[10px] font-mono font-black uppercase tracking-[0.25em] text-[#cdd32c] mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c] animate-ping" />
+                    Engineering HQ & Hubs
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-black tracking-tight uppercase">
+                    Connect Directly with Engineers
+                  </h3>
+                  <p className="text-xs text-slate-400 mt-2 leading-relaxed">
+                    Zero bureaucracy. Talk with core full-stack architects and AI engineers ready to build your vision.
+                  </p>
+                </div>
+
+                <div className="space-y-3 text-xs">
+                  <div className="flex items-center gap-3 text-slate-300">
+                    <MapPin size={15} className="text-[#cdd32c]" />
+                    <span>Hyderabad (HQ) • Vijayawada • Bangalore • Global Remote</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-300 font-bold">
+                    <Phone size={15} className="text-[#cdd32c]" />
+                    <span>+91 9398724704</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-slate-300 italic">
+                    <Mail size={15} className="text-[#cdd32c]" />
+                    <span>wayzentech@gmail.com</span>
+                  </div>
+                </div>
+
+                {/* ACTION BUTTONS IN DRAWER */}
+                <div className="pt-2 flex flex-col gap-2.5">
+                  <button
+                    onClick={handleStartProject}
+                    className="w-full py-4 rounded-xl bg-[#cdd32c] text-[#0a0101] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-white transition-all shadow-lg"
+                  >
+                    <Zap size={14} className="fill-[#0a0101]" />
+                    <span>Start Project Request</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setIsOpen(false);
+                      window.open('https://wa.me/919398724704', '_blank');
+                    }}
+                    className="w-full py-4 rounded-xl bg-white/10 hover:bg-[#25D366] hover:text-black border border-white/20 text-white font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all"
+                  >
+                    <MessageSquare size={14} />
+                    <span>WhatsApp Direct Desk</span>
+                  </button>
+                </div>
+
               </div>
 
             </div>
+
+            {/* DRAWER FOOTER QUOTE */}
+            <div className="max-w-6xl mx-auto w-full pt-8 border-t border-[#0a0101]/20 flex flex-col sm:flex-row items-center justify-between text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider text-[#0a0101]/70">
+              <span>“The Way to the Next Generation of Technology.”</span>
+              <span>© {new Date().getFullYear()} WayZenTech Collective</span>
+            </div>
+
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 

@@ -115,13 +115,13 @@ const WhatIsWayZenTech = () => {
           transition={{ duration: 0.8 }}
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-blue-400">Premium Tech Lab // v5.0</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c] animate-ping" />
+            <span className="text-[8px] md:text-[10px] font-black uppercase tracking-[0.3em] text-[#cdd32c]">WayZenTech Architecture // Manifesto</span>
           </div>
 
           <h1 className="text-5xl sm:text-7xl md:text-[130px] font-black italic uppercase leading-[0.9] md:leading-[0.75] tracking-tighter mb-8 text-left">
             ELITE <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 text-left">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cdd32c] via-white to-slate-400 text-left">
               FOUNDRY.
             </span>
           </h1>
@@ -130,28 +130,28 @@ const WhatIsWayZenTech = () => {
             WayZenTech is an India-based engineering engine architecting <span className="text-white font-medium">supreme digital assets</span> for global founders.
           </p>
 
-          {/* OFFICIAL BRAND MEANING & 3 PILLARS */}
+          {/* OFFICIAL BRAND MEANING & 3 PILLARS (PIVOTROOTS STYLE) */}
           <div className="max-w-2xl p-5 md:p-6 rounded-3xl bg-white/[0.04] border border-white/10 mb-8 backdrop-blur-xl text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[9px] font-mono font-black uppercase tracking-widest mb-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#cdd32c]/10 border border-[#cdd32c]/30 text-[#cdd32c] text-[9px] font-mono font-black uppercase tracking-widest mb-2.5">
               Meaning of WayZenTech
             </div>
-            <h3 className="text-lg md:text-2xl font-black italic text-white mb-4">
-              “The <span className="text-blue-400">Way</span> to the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">Next Generation</span> of Technology.”
+            <h3 className="text-lg md:text-2xl font-black uppercase tracking-tight text-white mb-4">
+              “The <span className="text-[#cdd32c]">Way</span> to the <span className="text-[#cdd32c] underline">Next Generation</span> of Technology.”
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <div className="p-3.5 rounded-2xl bg-blue-500/10 border border-blue-500/25">
-                <span className="text-xs font-mono font-black text-blue-400 tracking-wider">WAY</span>
-                <div className="text-sm font-black text-white mt-0.5">The Path</div>
+              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-[#cdd32c]/40 transition-colors">
+                <span className="text-xs font-mono font-black text-[#cdd32c] tracking-wider">WAY</span>
+                <div className="text-sm font-black text-white mt-0.5 uppercase">The Path</div>
                 <div className="text-[11px] text-slate-400 mt-1">Strategic Vision & Trajectory</div>
               </div>
-              <div className="p-3.5 rounded-2xl bg-indigo-500/10 border border-indigo-500/25">
-                <span className="text-xs font-mono font-black text-indigo-400 tracking-wider">ZEN</span>
-                <div className="text-sm font-black text-white mt-0.5">Mastery</div>
+              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-[#cdd32c]/40 transition-colors">
+                <span className="text-xs font-mono font-black text-[#cdd32c] tracking-wider">ZEN</span>
+                <div className="text-sm font-black text-white mt-0.5 uppercase">Mastery</div>
                 <div className="text-[11px] text-slate-400 mt-1">Architectural Precision</div>
               </div>
-              <div className="p-3.5 rounded-2xl bg-cyan-500/10 border border-cyan-500/25">
-                <span className="text-xs font-mono font-black text-cyan-400 tracking-wider">TECH</span>
-                <div className="text-sm font-black text-white mt-0.5">Next-Gen</div>
+              <div className="p-3.5 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-[#cdd32c]/40 transition-colors">
+                <span className="text-xs font-mono font-black text-[#cdd32c] tracking-wider">TECH</span>
+                <div className="text-sm font-black text-white mt-0.5 uppercase">Next-Gen</div>
                 <div className="text-[11px] text-slate-400 mt-1">AI & Scalable Systems</div>
               </div>
             </div>

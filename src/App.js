@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Mail, Phone, Instagram, Zap, ArrowRight, 
-  MessageCircle, Send, Info, Cpu, Globe, Rocket, Code2, Database,
+  Zap, ArrowRight, MessageCircle, Info, Cpu, 
   ShieldCheck, Sparkles, Compass, CheckCircle2
 } from 'lucide-react';
 
@@ -23,6 +22,10 @@ import { AdminDashboard } from './components/AdminDashboard';
 import { SeoPageTemplate } from './components/SeoPageTemplate';
 import { InnovativeServicesShowcase } from './components/InnovativeServicesShowcase';
 import { JourneyConnector } from './components/JourneyConnector';
+import { CustomCursor } from './components/CustomCursor';
+import { MetricsMarquee } from './components/MetricsMarquee';
+import { PivotPreFooter } from './components/PivotPreFooter';
+import { PivotFooter } from './components/PivotFooter';
 
 // SEO Manager (Background execution only - Zero UI change)
 import { SEOHandler } from './seo/SEOHandler';
@@ -51,60 +54,6 @@ const SeoRoutePage = () => {
   return <ServicesPage />;
 };
 
-// --- BACKGROUND: TECH GRID ---
-const TechGrid = () => (
-  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-    <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:20px_20px] md:bg-[size:40px_40px]" />
-    <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
-  </div>
-);
-
-// --- 3D FLOATING ELEMENTS (Responsive Icons) ---
-const Floating3DSpace = () => {
-  const elements = [
-    { icon: <Cpu className="w-5 h-5 md:w-8 md:h-8" />, color: "text-blue-500", top: "15%", left: "5%", delay: 0 },
-    { icon: <Globe className="w-5 h-5 md:w-6 md:h-6" />, color: "text-indigo-500", top: "10%", right: "8%", delay: 1 },
-    { icon: <Rocket className="w-6 h-6 md:w-10 md:h-10" />, color: "text-purple-500", bottom: "20%", left: "5%", delay: 2 },
-    { icon: <Code2 className="w-6 h-6 md:w-8 md:h-8" />, color: "text-emerald-500", bottom: "25%", right: "5%", delay: 3 },
-    { icon: <Database className="w-5 h-5 md:w-6 md:h-6" />, color: "text-pink-500", top: "40%", left: "2%", delay: 1.5, hideMobile: true },
-  ];
-
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden z-10">
-      {elements.map((el, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ 
-            opacity: [0.2, 0.4, 0.2],
-            scale: [0.8, 1, 0.8],
-            rotateY: 360,
-            y: [0, -20, 0],
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity, 
-            delay: el.delay,
-            ease: "easeInOut" 
-          }}
-          style={{ 
-            position: 'absolute', 
-            top: el.top, 
-            left: el.left, 
-            right: el.right, 
-            bottom: el.bottom,
-          }}
-          className={`${el.color} ${el.hideMobile ? 'hidden md:block' : 'block'} filter blur-[0.5px] md:blur-0`}
-        >
-          <div className="bg-white/40 backdrop-blur-sm p-2 md:p-4 rounded-xl md:rounded-2xl shadow-xl border border-white/20">
-            {el.icon}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
-
 // --- COMPONENT: ABOUT COMPANY HIGHLIGHT ON HOMEPAGE ---
 const AboutCompanyHighlight = () => {
   const navigate = useNavigate();
@@ -117,31 +66,31 @@ const AboutCompanyHighlight = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-6 bg-slate-950 text-white relative overflow-hidden">
+    <section className="py-16 md:py-28 px-4 md:px-6 bg-[#0a0101] text-white relative overflow-hidden border-t border-white/10">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center">
           
           {/* Left Column: Story & Vision */}
           <div className="lg:col-span-6 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#cdd32c]/10 border border-[#cdd32c]/30 text-[#cdd32c] text-[10px] font-mono font-black uppercase tracking-widest">
               <ShieldCheck size={12} /> Technology Foundry
             </div>
             
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight">
-              Engineering the Next Generation of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Digital Solutions</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase leading-tight text-white">
+              Engineering the Next Generation of <span className="text-[#cdd32c] italic">Digital Assets</span>
             </h2>
 
-            <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-              WayZenTech is a premier software engineering and AI collective based in India. We combine deep technical rigor with commercial focus — building high-speed business websites, reactive web applications, automated AI pipelines, and custom software systems designed to scale.
+            <p className="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              WayZenTech is an India-based engineering foundry combining deep algorithmic rigor with commercial focus — architecting high-speed business websites, reactive web applications, automated AI pipelines, and custom software systems designed to scale.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-                <h4 className="font-bold text-white text-sm mb-1">Direct Engineering Sync</h4>
+                <h4 className="font-bold text-white text-sm mb-1 uppercase tracking-wide">Direct Engineering Sync</h4>
                 <p className="text-xs text-slate-400">No account managers or middle layers. Talk directly to developers on WhatsApp.</p>
               </div>
               <div className="p-4 bg-white/5 rounded-2xl border border-white/10">
-                <h4 className="font-bold text-white text-sm mb-1">Scalable Clean Architecture</h4>
+                <h4 className="font-bold text-white text-sm mb-1 uppercase tracking-wide">Scalable Clean Architecture</h4>
                 <p className="text-xs text-slate-400">Built with modern tech stacks tested for speed, SEO, and robust reliability.</p>
               </div>
             </div>
@@ -149,14 +98,14 @@ const AboutCompanyHighlight = () => {
             <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <button
                 onClick={() => navigate('/about')}
-                className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-600/30"
+                className="bg-[#cdd32c] hover:bg-white text-[#0a0101] px-8 py-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#cdd32c]/20"
               >
                 <span>Read Full Company Story</span>
                 <ArrowRight size={16} />
               </button>
               <button
                 onClick={() => window.open('https://wa.me/919398724704', '_blank')}
-                className="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+                className="bg-white/10 hover:bg-[#25D366] hover:text-black text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
               >
                 <MessageCircle size={16} />
                 <span>Talk with Engineers</span>
@@ -173,13 +122,13 @@ const AboutCompanyHighlight = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-6 md:p-8 bg-gradient-to-b from-white/10 to-white/5 rounded-3xl border border-white/10 flex flex-col justify-between"
+                className="p-6 md:p-8 bg-white/[0.03] hover:bg-white/[0.06] rounded-3xl border border-white/10 hover:border-[#cdd32c]/40 transition-colors flex flex-col justify-between"
               >
-                <div className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300">
+                <div className="text-3xl md:text-5xl font-black text-[#cdd32c] font-sans">
                   {stat.value}
                 </div>
                 <div className="mt-4">
-                  <h4 className="text-sm md:text-base font-bold text-white">{stat.label}</h4>
+                  <h4 className="text-sm md:text-base font-bold text-white uppercase tracking-tight">{stat.label}</h4>
                   <p className="text-[11px] text-slate-400 mt-0.5">{stat.desc}</p>
                 </div>
               </motion.div>
@@ -192,235 +141,256 @@ const AboutCompanyHighlight = () => {
   );
 };
 
-// --- COMPONENT: KINETIC WAVE TITLE ---
-const KineticWaveTitle = () => {
-  const wayzenChars = ["W", "a", "y", "Z", "e", "n"];
-  const techChars = ["T", "e", "c", "h"];
+// --- PIVOTROOTS INSPIRED INTERACTIVE HERO ---
+const PivotHero = () => {
+  const navigate = useNavigate();
+  const [isBallExpanded, setIsBallExpanded] = useState(false);
 
   return (
-    <div className="relative inline-flex items-center justify-center select-none py-2 my-2 sm:my-4">
-      {/* Dynamic Multi-Color Ambient Plasma Glow */}
+    <header className="relative min-h-screen flex flex-col justify-between items-center px-5 md:px-12 pt-28 sm:pt-32 md:pt-36 pb-12 overflow-hidden bg-[#070a12] text-white select-none">
+      
+      {/* Background Liquid Smoke Media / Atmospheric Gradient */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] bg-[#cdd32c]/10 blur-[140px] rounded-full" />
+        <div className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] bg-blue-600/15 blur-[150px] rounded-full" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#070a12_75%)]" />
+      </div>
+
+      {/* SVG Dotted Orbital Lines (PivotRoots makeLine animation) */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-25" viewBox="0 0 1440 900" fill="none">
+        <ellipse cx="720" cy="450" rx="600" ry="320" stroke="#cdd32c" strokeWidth="1.5" strokeDasharray="12 12" className="animate-make-line" />
+        <ellipse cx="720" cy="450" rx="380" ry="200" stroke="#ffffff" strokeWidth="1" strokeDasharray="8 8" opacity="0.4" />
+      </svg>
+
+      {/* TOP PILL BADGE */}
       <motion.div 
-        animate={{
-          scale: [1, 1.18, 0.92, 1],
-          opacity: [0.3, 0.55, 0.3],
-          rotate: [0, 180, 360]
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute -inset-6 sm:-inset-16 bg-gradient-to-tr from-blue-500/25 via-indigo-500/25 to-cyan-400/25 blur-2xl sm:blur-[100px] rounded-full pointer-events-none -z-10"
-      />
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-[#cdd32c] text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.3em] backdrop-blur-md shadow-lg"
+      >
+        <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-ping" />
+        <span>WayZenTech // Next-Gen Digital Foundry</span>
+      </motion.div>
 
-      {/* Main Kinetic Wave Heading */}
-      <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-[130px] font-black tracking-tighter leading-[0.9] md:leading-[0.85] flex items-center justify-center flex-wrap">
-        {/* "WayZen" in Onyx Slate */}
-        <span className="inline-flex text-slate-950">
-          {wayzenChars.map((char, index) => (
-            <motion.span
-              key={`w-${index}`}
-              animate={{
-                y: [0, -10, 0, 7, 0],
-                rotateZ: [0, -1.2, 0, 1.2, 0]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: index * 0.12,
-                ease: "easeInOut"
-              }}
-              whileHover={{ 
-                scale: 1.16, 
-                color: "#2563eb",
-                transition: { duration: 0.15 } 
-              }}
-              className="inline-block transition-colors cursor-pointer transform-gpu"
-            >
-              {char}
-            </motion.span>
-          ))}
-        </span>
+      {/* CENTERPIECE: STACKED 900-WEIGHT H1 + INTERACTIVE EXPANDING CIRCLE (THE BALL) */}
+      <div className="relative z-10 max-w-5xl mx-auto text-center my-auto py-6 sm:py-8">
+        
+        {/* Main Stacked 900-Weight Headline (PivotRoots style) */}
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.88] text-white"
+        >
+          <span>THE WAY</span> <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-200 to-white/70">TO THE</span> <br />
+          <span className="text-[#cdd32c] drop-shadow-[0_0_40px_rgba(205,211,44,0.3)]">NEXT GENERATION</span> <br />
+          <span className="text-white">OF TECHNOLOGY.</span>
+        </motion.h1>
 
-        {/* "Tech" in Electric Vibrant Gradient with Neon Wave Motion */}
-        <span className="inline-flex italic ml-1.5 sm:ml-2">
-          {techChars.map((char, index) => (
-            <motion.span
-              key={`t-${index}`}
-              animate={{
-                y: [0, -12, 0, 9, 0],
-                rotateZ: [0, 2, 0, -2, 0]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: (wayzenChars.length + index) * 0.12,
-                ease: "easeInOut"
-              }}
-              whileHover={{ 
-                scale: 1.2, 
-                rotateZ: 6,
-                transition: { duration: 0.15 } 
-              }}
-              className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-blue-600 via-indigo-600 to-cyan-500 cursor-pointer transform-gpu drop-shadow-[0_4px_16px_rgba(37,99,235,0.25)]"
-            >
-              {char}
-            </motion.span>
-          ))}
-        </span>
-      </h1>
-    </div>
+        {/* PIVOTROOTS EXPANDING PORTAL CIRCLE (THE BALL) */}
+        <div className="mt-8 sm:mt-12 relative flex justify-center items-center">
+          
+          <motion.div
+            layout
+            onClick={() => setIsBallExpanded(!isBallExpanded)}
+            whileHover={{ scale: isBallExpanded ? 1 : 1.05 }}
+            className={`cursor-pointer transition-all duration-500 overflow-hidden relative shadow-2xl ${
+              isBallExpanded 
+                ? "w-full max-w-2xl rounded-3xl md:rounded-[40px] bg-[#cdd32c] text-[#0a0101] p-6 sm:p-8 border-2 border-white"
+                : "w-48 sm:w-60 h-14 sm:h-16 rounded-full bg-[#cdd32c] text-[#0a0101] flex items-center justify-center gap-2 border-2 border-[#cdd32c] hover:bg-white transition-colors"
+            }`}
+          >
+            {!isBallExpanded ? (
+              <div className="flex items-center gap-2 text-xs font-mono font-black uppercase tracking-widest">
+                <Sparkles size={14} className="animate-spin text-[#0a0101]" />
+                <span>Tap to Reveal Core</span>
+              </div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="space-y-4 text-center"
+              >
+                <div className="flex items-center justify-between border-b border-[#0a0101]/20 pb-2">
+                  <span className="text-[10px] font-mono font-black uppercase tracking-widest text-[#0a0101]/60">
+                    The Meaning of WayZenTech
+                  </span>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setIsBallExpanded(false); }}
+                    className="text-[10px] font-mono font-black uppercase tracking-widest bg-[#0a0101] text-white px-2.5 py-0.5 rounded-full"
+                  >
+                    Close ✕
+                  </button>
+                </div>
+
+                <p className="text-base sm:text-2xl font-black uppercase tracking-tight text-[#0a0101] leading-snug">
+                  “The Way to the Next Generation of Technology.”
+                </p>
+
+                <div className="grid grid-cols-3 gap-2 pt-2">
+                  <div className="p-2.5 rounded-xl bg-[#0a0101] text-white text-center">
+                    <span className="text-[#cdd32c] text-[10px] font-mono font-black block">WAY</span>
+                    <span className="text-xs font-bold">The Path</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-[#0a0101] text-white text-center">
+                    <span className="text-[#cdd32c] text-[10px] font-mono font-black block">ZEN</span>
+                    <span className="text-xs font-bold">Mastery</span>
+                  </div>
+                  <div className="p-2.5 rounded-xl bg-[#0a0101] text-white text-center">
+                    <span className="text-[#cdd32c] text-[10px] font-mono font-black block">TECH</span>
+                    <span className="text-xs font-bold">Next-Gen</span>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </motion.div>
+
+        </div>
+
+        {/* CTA BUTTONS ROW */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-3.5 sm:gap-5 pt-8 w-full sm:w-auto px-4">
+          <motion.button 
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => document.getElementById("request")?.scrollIntoView({ behavior: "smooth" })} 
+            className="w-full sm:w-auto px-8 sm:px-10 py-4 rounded-2xl bg-white text-[#0a0101] hover:bg-[#cdd32c] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2.5 shadow-2xl transition-all"
+          >
+            <Zap size={15} className="fill-[#0a0101]" />
+            <span>Start Your Project</span>
+            <ArrowRight size={15} />
+          </motion.button>
+
+          <motion.button 
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={() => navigate('/what-is-wayzentech')} 
+            className="w-full sm:w-auto px-8 sm:px-10 py-4 rounded-2xl bg-white/5 text-white border border-white/20 hover:border-[#cdd32c] hover:text-[#cdd32c] font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-sm transition-all backdrop-blur-md"
+          >
+            <Info size={15} />
+            <span>What is WayZenTech?</span>
+          </motion.button>
+        </div>
+
+      </div>
+
+      {/* PIVOTROOTS 3D FLIP SCROLL PROMPT */}
+      <div className="relative z-10 pt-6 text-center select-none">
+        <div className="inline-block animate-scrolly text-[10px] font-mono uppercase tracking-[0.3em] text-white/50">
+          Scroll to Explore ↓
+        </div>
+      </div>
+
+    </header>
   );
 };
 
-// --- COMPONENT: BRAND MEANING & THREE PILLARS (WAY / ZEN / TECH) ---
-const BrandPillarsSection = () => {
+// --- PIVOTROOTS STYLE BRAND PILLARS SECTION ---
+const PivotBrandPillars = () => {
   const pillars = [
     {
-      id: "way",
+      num: "01",
       letter: "WAY",
       title: "The Path",
       tagline: "Strategic Vision & Trajectory",
       description: "Every transformative product begins with clarity of direction. We engineer precise technological roadmaps that guide ideas from initial concept to high-scale digital reality.",
-      icon: <Compass className="w-6 h-6 md:w-7 md:h-7 text-blue-600" />,
+      icon: <Compass className="w-7 h-7 text-[#0a0101]" />,
       badges: ["Strategic Architecture", "Market Trajectory", "User Journey Blueprint"],
-      gradient: "from-blue-600 to-cyan-500",
-      accentBg: "bg-blue-50/80",
-      borderAccent: "border-blue-500/40 hover:border-blue-600",
-      glowColor: "rgba(37, 99, 235, 0.15)",
-      badgeColor: "bg-blue-100 text-blue-800 border-blue-200"
     },
     {
-      id: "zen",
+      num: "02",
       letter: "ZEN",
       title: "Mastery",
       tagline: "Architectural Precision & Purity",
       description: "True mastery is eliminating chaos and complexity. We engineer clean-code architectures with zero bloat, sub-second latency, rigorous security protocols, and 99.99% operational uptime.",
-      icon: <ShieldCheck className="w-6 h-6 md:w-7 md:h-7 text-indigo-600" />,
+      icon: <ShieldCheck className="w-7 h-7 text-[#0a0101]" />,
       badges: ["Architectural Purity", "Sub-Second Latency", "99.99% Reliability"],
-      gradient: "from-indigo-600 to-purple-600",
-      accentBg: "bg-indigo-50/80",
-      borderAccent: "border-indigo-500/40 hover:border-indigo-600",
-      glowColor: "rgba(99, 102, 241, 0.15)",
-      badgeColor: "bg-indigo-100 text-indigo-800 border-indigo-200"
     },
     {
-      id: "tech",
+      num: "03",
       letter: "TECH",
       title: "Next-Gen",
       tagline: "AI Systems & Future-Ready Tech",
       description: "Leveraging tomorrow's engineering today. Autonomous AI workflows, cloud-native microservices, reactive MERN web applications, and intelligent systems built for infinite scale.",
-      icon: <Cpu className="w-6 h-6 md:w-7 md:h-7 text-cyan-600" />,
+      icon: <Cpu className="w-7 h-7 text-[#0a0101]" />,
       badges: ["Generative AI Systems", "Scalable Cloud MERN", "Autonomous Agents"],
-      gradient: "from-cyan-500 to-emerald-500",
-      accentBg: "bg-cyan-50/80",
-      borderAccent: "border-cyan-500/40 hover:border-cyan-600",
-      glowColor: "rgba(6, 182, 212, 0.15)",
-      badgeColor: "bg-cyan-100 text-cyan-800 border-cyan-200"
     }
   ];
 
   return (
-    <section id="brand-meaning" className="relative py-14 sm:py-20 md:py-28 px-4 md:px-6 bg-slate-50/90 border-y border-slate-200/80 overflow-hidden">
-      {/* Background Decorative Rings & Ambient Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[450px] bg-gradient-to-r from-blue-400/10 via-indigo-400/10 to-cyan-400/10 blur-3xl pointer-events-none rounded-full" />
+    <section id="brand-meaning" className="relative py-16 sm:py-24 md:py-32 px-5 md:px-10 bg-[#ffffff] text-[#0a0101] overflow-hidden">
+      
+      {/* Background Subtle Circular Wireframe */}
+      <div className="absolute right-[-10%] top-[10%] w-[500px] h-[500px] rounded-full border border-slate-200/80 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 md:mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-blue-200/80 shadow-sm mb-4"
-          >
-            <Sparkles size={13} className="text-blue-600 animate-spin" />
-            <span className="text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.22em] text-blue-600">
-              The Meaning of WayZenTech
-            </span>
-          </motion.div>
+        {/* PIVOTROOTS TILTED OVERSIZED EDITORIAL QUOTE */}
+        <div className="mb-14 sm:mb-20 max-w-4xl">
+          <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.25em] text-[#0a0101]/60 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#cdd32c]" />
+            Brand Philosophy // Core Pillars
+          </div>
 
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-2xl sm:text-4xl md:text-5xl font-black text-slate-950 tracking-tight leading-snug md:leading-tight"
-          >
-            “The <span className="text-blue-600 underline decoration-blue-500/40">Way</span> to the{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500">
-              Next Generation
-            </span>{" "}
-            of Technology.”
-          </motion.h2>
-
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-3.5 text-xs sm:text-sm md:text-base text-slate-600 font-medium leading-relaxed max-w-2xl mx-auto"
-          >
-            Every system we engineer is anchored in three non-negotiable principles — clear strategic direction, uncompromising architectural mastery, and next-gen engineering.
-          </motion.p>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-[#0a0101] leading-[1.05]">
+            “A TRANSFORMATIONAL <span className="underline decoration-[#cdd32c] decoration-8">DIGITAL FOUNDRY</span>, POWERED BY CODE, FUELED BY INNOVATION.”
+          </h2>
+          
+          <p className="mt-4 text-sm sm:text-base md:text-lg text-slate-600 font-light leading-relaxed max-w-2xl">
+            Born to eliminate mediocrity in software development. We bridge visionary strategy, architectural perfection, and next-gen engineering under one unified standard.
+          </p>
         </div>
 
-        {/* 3 HIGH-CONTRAST HIGHLIGHTED PILLAR CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8">
-          {pillars.map((pillar, idx) => (
+        {/* 3 CIRCULAR ACCENTED PILLAR CARDS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {pillars.map((p, idx) => (
             <motion.div
-              key={pillar.id}
-              initial={{ opacity: 0, y: 25 }}
+              key={p.num}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.15, duration: 0.5 }}
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className={`group relative rounded-3xl md:rounded-[32px] p-6 sm:p-7 md:p-8 bg-white border-2 ${pillar.borderAccent} shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden`}
-              style={{ boxShadow: `0 12px 30px ${pillar.glowColor}` }}
+              transition={{ delay: idx * 0.15, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+              whileHover={{ y: -8, transition: { duration: 0.25 } }}
+              className="group relative rounded-3xl md:rounded-[36px] p-7 sm:p-9 bg-[#edf1f2] border border-slate-300/70 hover:border-[#cdd32c] hover:bg-white shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
             >
-              {/* Subtle Corner Gradient Glow */}
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${pillar.gradient} opacity-10 group-hover:opacity-20 blur-xl transition-opacity pointer-events-none rounded-bl-full`} />
+              {/* Oversized Watermark Numerals (PivotRoots 25em style) */}
+              <div className="absolute -right-4 -bottom-6 text-7xl sm:text-8xl md:text-9xl font-black text-[#cdd32c]/20 group-hover:text-[#cdd32c]/35 transition-colors select-none pointer-events-none">
+                {p.num}
+              </div>
 
               <div>
-                {/* Top Row: Icon + Letter Badge */}
-                <div className="flex items-center justify-between mb-5">
-                  <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl ${pillar.accentBg} flex items-center justify-center shadow-inner border border-white/60`}>
-                    {pillar.icon}
+                {/* Top Row: Circular Icon + Pillar Tag */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-14 h-14 rounded-full bg-white group-hover:bg-[#cdd32c] flex items-center justify-center shadow-md transition-colors">
+                    {p.icon}
                   </div>
-                  <span className={`text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-full border ${pillar.badgeColor}`}>
-                    0{idx + 1} • PILLAR
+                  <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/80 border border-slate-300 text-[#0a0101]">
+                    {p.letter}
                   </span>
                 </div>
 
-                {/* Pillar Identity */}
-                <div className="mb-3">
-                  <div className={`text-xs sm:text-sm font-mono font-black tracking-[0.25em] uppercase text-transparent bg-clip-text bg-gradient-to-r ${pillar.gradient}`}>
-                    {pillar.letter}
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-slate-950 tracking-tight mt-0.5">
-                    {pillar.title}
-                  </h3>
-                  <div className="text-xs font-bold text-slate-500 mt-1">
-                    {pillar.tagline}
-                  </div>
+                {/* Identity */}
+                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0a0101]">
+                  {p.title}
+                </h3>
+                <div className="text-xs font-bold text-slate-500 mt-1 uppercase tracking-wide">
+                  {p.tagline}
                 </div>
 
-                {/* Description */}
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mt-3">
-                  {pillar.description}
+                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mt-4">
+                  {p.description}
                 </p>
               </div>
 
-              {/* Bottom Feature Badges */}
-              <div className="pt-6 mt-6 border-t border-slate-100 flex flex-wrap gap-1.5">
-                {pillar.badges.map((b, i) => (
-                  <span 
-                    key={i} 
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100/90 text-slate-700 text-[10px] font-semibold"
+              {/* Badges */}
+              <div className="pt-6 mt-6 border-t border-slate-300/60 flex flex-wrap gap-1.5 relative z-10">
+                {p.badges.map((b, i) => (
+                  <span
+                    key={i}
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white text-slate-800 text-[10px] font-bold shadow-2xs"
                   >
-                    <CheckCircle2 size={11} className="text-emerald-500" />
+                    <CheckCircle2 size={11} className="text-[#0a0101]" />
                     {b}
                   </span>
                 ))}
@@ -436,8 +406,6 @@ const BrandPillarsSection = () => {
 
 // --- COMPONENT: HOME PAGE ---
 const HomePage = () => {
-  const navigate = useNavigate();
-
   return (
     <motion.div 
       initial={{ opacity: 0 }} 
@@ -445,152 +413,36 @@ const HomePage = () => {
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5 }}
     >
-      {/* 1. HERO SECTION */}
-      <header className="relative min-h-[92vh] md:min-h-screen flex flex-col justify-center items-center px-4 md:px-6 pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-white">
-        <TechGrid />
-        <Floating3DSpace />
-        
-        <div className="relative z-20 max-w-5xl mx-auto text-center flex flex-col items-center">
-          
-          {/* Animated Innovation Pill */}
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="mb-4 sm:mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-cyan-500/10 border border-blue-500/25 text-blue-600 text-[9px] sm:text-[11px] font-black uppercase tracking-[0.2em] shadow-sm backdrop-blur-md"
-          >
-            <Sparkles size={12} className="animate-spin text-blue-600" />
-            <span>The Way to the Next Generation of Technology</span>
-          </motion.div>
-          
-          {/* KINETIC WAVE ANIMATED TITLE */}
-          <KineticWaveTitle />
-          
-          {/* Subtitle */}
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-xs sm:text-sm md:text-base text-slate-600 max-w-lg mx-auto font-medium leading-relaxed px-2 mt-2"
-          >
-            Engineering <span className="text-slate-950 font-bold underline decoration-blue-500/40">AI Systems</span>, Scalable MERN Apps & Enterprise Software Solutions.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-5 pt-6 sm:pt-8 w-full sm:w-auto px-4">
-            <motion.button 
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => document.getElementById("request")?.scrollIntoView({ behavior: "smooth" })} 
-              className="w-full sm:w-auto group bg-slate-950 text-white px-7 md:px-10 py-3.5 md:py-4 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-xl hover:bg-blue-600 transition-all"
-            >
-              <Zap size={14} className="text-yellow-400 fill-yellow-400" />
-              <span>Start Request</span>
-              <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
-            </motion.button>
-
-            <motion.button 
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate('/what-is-wayzentech')} 
-              className="w-full sm:w-auto group bg-white text-slate-900 border-2 border-slate-200/90 hover:border-blue-500 px-7 md:px-10 py-3.5 md:py-4 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-sm transition-all"
-            >
-              <Info size={15} className="text-blue-500" />
-              <span>What is WayZenTech?</span>
-            </motion.button>
-          </div>
-
-          {/* QUICK HERO PILLARS BAR (Prominently visible directly inside the initial Hero viewport!) */}
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mt-8 sm:mt-10 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 text-xs z-10"
-          >
-            <span className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-400 font-bold mr-1">
-              Core Essence:
-            </span>
-            
-            <button 
-              onClick={() => document.getElementById("brand-meaning")?.scrollIntoView({ behavior: "smooth" })}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-blue-50/90 hover:bg-blue-100/90 border-2 border-blue-500/30 text-slate-900 font-bold shadow-sm transition-all group"
-            >
-              <span className="text-blue-600 font-black">WAY</span>
-              <span className="text-slate-300">/</span>
-              <span className="text-slate-800 text-[11px] group-hover:text-blue-700">The Path</span>
-            </button>
-
-            <button 
-              onClick={() => document.getElementById("brand-meaning")?.scrollIntoView({ behavior: "smooth" })}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-50/90 hover:bg-indigo-100/90 border-2 border-indigo-500/30 text-slate-900 font-bold shadow-sm transition-all group"
-            >
-              <span className="text-indigo-600 font-black">ZEN</span>
-              <span className="text-slate-300">/</span>
-              <span className="text-slate-800 text-[11px] group-hover:text-indigo-700">Mastery</span>
-            </button>
-
-            <button 
-              onClick={() => document.getElementById("brand-meaning")?.scrollIntoView({ behavior: "smooth" })}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-50/90 hover:bg-cyan-100/90 border-2 border-cyan-500/30 text-slate-900 font-bold shadow-sm transition-all group"
-            >
-              <span className="text-cyan-600 font-black">TECH</span>
-              <span className="text-slate-300">/</span>
-              <span className="text-slate-800 text-[11px] group-hover:text-cyan-700">Next-Gen</span>
-            </button>
-          </motion.div>
-
-        </div>
-      </header>
+      {/* 1. PIVOTROOTS INSPIRED INTERACTIVE HERO */}
+      <PivotHero />
       
-      {/* 1.5 BRAND PHILOSOPHY & THREE PILLARS SHOWCASE (WAY / ZEN / TECH) */}
-      <BrandPillarsSection />
+      {/* 2. PIVOTROOTS STYLE BRAND PILLARS (WAY / ZEN / TECH) */}
+      <PivotBrandPillars />
+
+      {/* 3. HORIZONTAL INFINITE KINETIC MARQUEE */}
+      <MetricsMarquee />
       
-      {/* 2. INNOVATIVE 5-STYLE INTERACTIVE SERVICES SHOWCASE */}
+      {/* 4. INNOVATIVE 5-STYLE INTERACTIVE SERVICES SHOWCASE */}
       <InnovativeServicesShowcase />
 
-      {/* 3. ABOUT COMPANY HIGHLIGHT */}
+      {/* 5. ABOUT COMPANY HIGHLIGHT */}
       <AboutCompanyHighlight />
 
-      {/* 4. FEATURED PROJECTS PORTFOLIO (2 Grids Mobile 1:1, 4 Grids Web 1:1) */}
+      {/* 6. FEATURED PROJECTS PORTFOLIO */}
       <Portfolio />
       
-      {/* 5. PROJECT INQUIRY FORM */}
+      {/* 7. PROJECT INQUIRY FORM */}
       <section id="request" className="py-16 md:py-32 px-4 bg-slate-50">
         <div className="max-w-7xl mx-auto bg-slate-900 rounded-[32px] md:rounded-[60px] overflow-hidden shadow-2xl">
           <ProjectForm />
         </div>
       </section>
 
-      {/* 6. WHATSAPP CONNECT BANNER */}
-      <WhatsAppFooterSection />
+      {/* 8. PIVOTROOTS SIGNATURE PRE-FOOTER BANNER */}
+      <PivotPreFooter />
     </motion.div>
   );
 };
-
-// --- COMPONENT: WHATSAPP SECTION ---
-const WhatsAppFooterSection = () => (
-  <section className="w-full bg-slate-50 py-10 md:py-16 px-4">
-    <div className="max-w-5xl mx-auto">
-      <motion.div 
-        whileHover={{ y: -5 }}
-        onClick={() => window.open('https://wa.me/919398724704', '_blank')}
-        className="group cursor-pointer bg-white border border-slate-200 rounded-[30px] md:rounded-[40px] p-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 hover:border-emerald-400 transition-all shadow-xl"
-      >
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-center md:text-left">
-          <div className="bg-[#25D366] p-4 md:p-6 rounded-2xl md:rounded-3xl text-white shadow-lg group-hover:rotate-12 transition-transform">
-            <MessageCircle className="w-7 h-7 md:w-8 md:h-8" fill="currentColor" />
-          </div>
-          <div>
-            <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">Got Questions?</h2>
-            <p className="text-sm md:text-base text-slate-500 font-bold">Chat directly with our Engineers on WhatsApp</p>
-          </div>
-        </div>
-        <button className="w-full md:w-auto bg-[#25D366] text-white px-8 md:px-10 py-4 md:py-5 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs flex items-center justify-center gap-3">
-          Instant Connect <Send size={16} />
-        </button>
-      </motion.div>
-    </div>
-  </section>
-);
 
 // --- MASTER CONTENT WRAPPER ---
 function AppContent() {
@@ -598,6 +450,9 @@ function AppContent() {
 
   return (
     <div className="antialiased font-sans bg-white relative overflow-x-hidden pb-20 md:pb-0">
+      {/* PIVOTROOTS MIX-BLEND DIFFERENCE CUSTOM CURSOR */}
+      <CustomCursor />
+
       <ScrollToTop />
       <SEOHandler />
       <Navbar />
@@ -652,41 +507,8 @@ function AppContent() {
       {/* MOBILE BOTTOM NAVIGATION BAR */}
       <MobileBottomNav />
 
-      {/* FOOTER */}
-      <footer className="pt-20 md:pt-40 pb-8 md:pb-12 bg-slate-950 text-white relative rounded-t-[40px] md:rounded-t-[60px]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-20 mb-16 md:mb-20">
-            <div className="space-y-4 md:space-y-6 text-center md:text-left">
-              <h3 className="text-2xl md:text-3xl font-black italic tracking-tighter uppercase">WayZen<span className="text-blue-500">Tech</span></h3>
-              <p className="text-slate-400 text-xs md:text-sm leading-relaxed max-w-xs mx-auto md:mx-0">Premium Digital Collective engineering the next generation of software and growth.</p>
-            </div>
-            
-            <div className="space-y-4 md:space-y-6 text-center md:text-left">
-              <p className="text-blue-500 font-black uppercase tracking-[0.3em] text-[10px]">Contact Sync</p>
-              <div className="space-y-3 md:space-y-4">
-                <p className="text-xs md:text-sm flex items-center justify-center md:justify-start gap-3 text-slate-300 italic"><Mail size={14} className="text-blue-500" /> wayzentech@gmail.com</p>
-                <p className="text-xs md:text-sm flex items-center justify-center md:justify-start gap-3 text-slate-300 font-bold"><Phone size={14} className="text-blue-500" /> +91 9398724704</p>
-              </div>
-            </div>
-
-            <div className="space-y-4 md:space-y-6 text-center md:text-left sm:col-span-2 lg:col-span-1">
-              <p className="text-blue-500 font-black uppercase tracking-[0.3em] text-[10px]">Social Core</p>
-              <div className="flex justify-center md:justify-start">
-                <a href="https://instagram.com/way_zentech" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 bg-white/5 px-5 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl border border-white/10 hover:border-pink-500 transition-all group">
-                  <Instagram size={20} className="text-pink-500 group-hover:scale-110 transition-transform" /> 
-                  <span className="font-black text-xs md:text-sm uppercase">@way_zentech</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          
-          <div className="pt-8 md:pt-12 border-t border-white/5 text-center">
-            <div className="text-[8px] md:text-[10px] text-slate-600 uppercase tracking-[0.4em] md:tracking-[0.6em] font-black">
-              © 2024 WayZenTech Foundry // India HQ
-            </div>
-          </div>
-        </div>
-      </footer>
+      {/* PIVOTROOTS STYLE DYNAMIC CITY / HUB SWITCHER FOOTER */}
+      <PivotFooter />
     </div>
   );
 }

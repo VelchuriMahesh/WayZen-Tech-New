@@ -121,15 +121,16 @@ export const InnovativeServicesShowcase = () => {
         
         {/* HEADER SECTION */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-14">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-[10px] font-black uppercase tracking-widest mb-3">
-              <Sparkles size={12} className="animate-spin" /> Interactive Capabilities
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/15 text-[#cdd32c] text-[10px] font-mono font-black uppercase tracking-[0.25em] mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c] animate-ping" />
+              Capabilities // Interactive Ecosystem
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight">
-              Our Core <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">Services</span>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white leading-tight">
+              CORE <span className="text-[#cdd32c] italic">SERVICES.</span>
             </h2>
-            <p className="text-xs sm:text-sm md:text-base text-slate-400 mt-2 max-w-xl font-medium leading-relaxed">
-              Explore our 5 distinct engineering styles. Swipe or click to experience the custom presentation architectures we craft.
+            <p className="text-xs sm:text-sm md:text-base text-slate-300 mt-2 font-light leading-relaxed">
+              “Ask not what technology can do for your business, ask what next-generation engineering can scale.” Swipe or tap through our 5 live presentation architectures.
             </p>
           </div>
 
@@ -137,17 +138,17 @@ export const InnovativeServicesShowcase = () => {
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={handlePrev}
-              className="w-12 h-12 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400 text-white flex items-center justify-center transition-all active:scale-90"
+              className="w-12 h-12 rounded-2xl bg-white/5 hover:bg-[#cdd32c] hover:text-[#0a0101] border border-white/10 hover:border-[#cdd32c] text-white flex items-center justify-center transition-all active:scale-90"
               aria-label="Previous Service"
             >
               <ChevronLeft size={20} />
             </button>
-            <span className="text-xs font-mono font-bold text-slate-400 px-2">
+            <span className="text-xs font-mono font-bold text-[#cdd32c] px-2">
               0{activeIdx + 1} / 0{services.length}
             </span>
             <button
               onClick={handleNext}
-              className="w-12 h-12 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-blue-400 text-white flex items-center justify-center transition-all active:scale-90"
+              className="w-12 h-12 rounded-2xl bg-white/5 hover:bg-[#cdd32c] hover:text-[#0a0101] border border-white/10 hover:border-[#cdd32c] text-white flex items-center justify-center transition-all active:scale-90"
               aria-label="Next Service"
             >
               <ChevronRight size={20} />
@@ -166,14 +167,14 @@ export const InnovativeServicesShowcase = () => {
                 onClick={() => setActiveIdx(idx)}
                 className={`flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold transition-all border ${
                   isSelected
-                    ? "bg-gradient-to-r from-blue-600 to-indigo-600 text-white border-blue-400 shadow-[0_0_20px_rgba(37,99,235,0.4)] scale-105"
+                    ? "bg-[#cdd32c] text-[#0a0101] font-black border-[#cdd32c] shadow-[0_0_20px_rgba(205,211,44,0.35)] scale-105"
                     : "bg-white/5 hover:bg-white/10 text-slate-400 border-white/10 hover:text-white"
                 }`}
               >
-                <Icon size={14} className={isSelected ? "text-cyan-300" : "text-slate-400"} />
+                <Icon size={14} className={isSelected ? "text-[#0a0101]" : "text-slate-400"} />
                 <span>{item.title.split(' ')[0]} {item.title.split(' ')[1] || ''}</span>
                 {isSelected && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-300 animate-ping" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0a0101] animate-ping" />
                 )}
               </button>
             );

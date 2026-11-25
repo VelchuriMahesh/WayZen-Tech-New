@@ -65,32 +65,27 @@ export const Portfolio = () => {
   }, []);
 
   return (
-    <section className="relative py-12 md:py-24 px-4 md:px-6 overflow-hidden min-h-screen bg-slate-50">
+    <section className="relative py-14 md:py-28 px-4 md:px-6 overflow-hidden min-h-screen bg-[#edf1f2] border-t border-slate-300/80">
       
       {/* --- BACKGROUND ACCENTS --- */}
-      <div className="absolute inset-0 -z-10 opacity-50 md:opacity-100 pointer-events-none">
-        <motion.div 
-          animate={{ scale: [1, 1.1, 1], x: [0, 50, 0] }}
-          transition={{ duration: 20, repeat: Infinity }}
-          className="absolute -top-[10%] -left-[10%] w-[70%] h-[50%] rounded-full bg-purple-100/40 blur-[80px] md:blur-[120px]"
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], x: [0, -50, 0] }}
-          transition={{ duration: 15, repeat: Infinity }}
-          className="absolute -bottom-[10%] -right-[10%] w-[70%] h-[50%] rounded-full bg-blue-100/40 blur-[80px] md:blur-[120px]"
-        />
+      <div className="absolute inset-0 -z-10 opacity-40 pointer-events-none">
+        <div className="absolute -top-[10%] -left-[10%] w-[60%] h-[50%] rounded-full bg-[#cdd32c]/10 blur-[100px]" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[60%] h-[50%] rounded-full bg-slate-300/30 blur-[100px]" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8 md:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-[10px] font-black uppercase tracking-widest mb-3">
-            Proof of Work & Portfolio
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-300 text-[#0a0101] text-[10px] font-mono font-black uppercase tracking-widest mb-3 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c]" />
+            Proof of Work // Live Deployments
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black tracking-tighter text-slate-900 leading-tight">
-            Featured <span className="text-blue-600">Projects</span>
+          <h2 className="text-3xl sm:text-5xl md:text-7xl font-black uppercase tracking-tight text-[#0a0101] leading-none">
+            FEATURED <span className="underline decoration-[#cdd32c] decoration-4 md:decoration-8">PROJECTS.</span>
           </h2>
-          <div className="h-1.5 w-16 md:w-24 bg-blue-600 rounded-full mt-3" />
+          <p className="text-xs sm:text-sm text-slate-600 font-light max-w-xl mt-3">
+            Real products built for real businesses. From high-converting e-commerce to automated POS engines and political portals.
+          </p>
         </motion.div>
 
         {/* --- GRID: 2 COLUMNS IN MOBILE (1:1 SIZE), 4 COLUMNS IN DESKTOP (1:1 SIZE) --- */}
@@ -108,7 +103,7 @@ export const Portfolio = () => {
                 transition={{ delay: index * 0.05 }}
                 onMouseEnter={() => setHoveredId(p.id)}
                 onMouseLeave={() => setHoveredId(null)}
-                className="group relative bg-white rounded-2xl md:rounded-[32px] p-2.5 md:p-3.5 shadow-lg shadow-slate-200/50 border border-slate-100 hover:border-blue-300 transition-all flex flex-col justify-between"
+                className="group relative bg-white rounded-2xl md:rounded-[32px] p-2.5 md:p-3.5 shadow-lg shadow-slate-300/40 border border-slate-200/80 hover:border-[#cdd32c] hover:shadow-2xl transition-all flex flex-col justify-between"
               >
                 {/* 1:1 SQUARE ASPECT RATIO CONTAINER */}
                 <div 
@@ -128,12 +123,12 @@ export const Portfolio = () => {
 
                   {/* Badge & Quick Action */}
                   <div className="absolute top-2 left-2 md:top-3 md:left-3">
-                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-wider text-white bg-blue-600/90 backdrop-blur-md px-2 py-0.5 rounded-md shadow">
+                    <span className="text-[8px] md:text-[10px] font-black uppercase tracking-wider text-[#0a0101] bg-[#cdd32c] backdrop-blur-md px-2 py-0.5 rounded-md shadow">
                       {p.category || "Live"}
                     </span>
                   </div>
 
-                  <div className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-white/90 backdrop-blur-sm p-1.5 md:p-2 rounded-lg md:rounded-xl shadow-lg text-blue-600 opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                  <div className="absolute bottom-2 right-2 md:bottom-3 md:right-3 bg-white/95 backdrop-blur-sm p-1.5 md:p-2 rounded-lg md:rounded-xl shadow-lg text-[#0a0101] opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all">
                     <Plus size={14} className="md:w-4 md:h-4" />
                   </div>
                 </div>
@@ -143,7 +138,7 @@ export const Portfolio = () => {
                   <div>
                     <h3 
                       onClick={() => setSelectedProject(p)}
-                      className="text-xs sm:text-sm md:text-base font-black text-slate-900 tracking-tight group-hover:text-blue-600 transition-colors line-clamp-1 cursor-pointer"
+                      className="text-xs sm:text-sm md:text-base font-black text-slate-900 tracking-tight group-hover:text-[#0a0101] transition-colors line-clamp-1 cursor-pointer"
                     >
                       {p.title}
                     </h3>
@@ -158,7 +153,7 @@ export const Portfolio = () => {
                       href={liveLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 bg-slate-900 hover:bg-blue-600 text-white py-2.5 px-2 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all shadow-sm hover:shadow-md"
+                      className="inline-flex items-center justify-center gap-1.5 bg-[#0a0101] hover:bg-[#cdd32c] hover:text-[#0a0101] text-white py-2.5 px-2 rounded-xl text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all shadow-sm hover:shadow-md"
                       title="Open Live Website"
                     >
                       <Globe size={13} className="shrink-0" />
