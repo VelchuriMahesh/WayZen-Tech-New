@@ -333,7 +333,7 @@ export const Team = () => {
     fetchTeam();
   }, []);
 
-  // Isolate the real Founder (V.Mahesh) for the Hero Spotlight
+  // Isolate Founder (V.Mahesh) for the Hero Spotlight
   const founder = team.find(m => 
     m.name.toLowerCase().includes("mahesh") || 
     (m.role.toLowerCase().includes("founder") && !m.role.toLowerCase().includes("co"))
@@ -419,11 +419,10 @@ export const Team = () => {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative bg-gradient-to-br from-[#121217] via-[#0d0d12] to-[#08080a] border border-white/[0.08] hover:border-white/15 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 lg:p-14 overflow-hidden shadow-2xl transition-all duration-500"
+              className="relative bg-[#101015] border border-white/[0.08] hover:border-white/15 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 lg:p-14 overflow-hidden shadow-2xl transition-all duration-500"
             >
-              {/* Ambient background glow */}
+              {/* Subtle ambient lighting */}
               <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#cdd32c]/10 rounded-full blur-[100px] pointer-events-none" />
-              <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[100px] pointer-events-none" />
               
               {/* Watermark index */}
               <div className="absolute top-6 right-8 text-7xl sm:text-9xl font-black font-mono text-white/[0.03] select-none pointer-events-none">
@@ -432,13 +431,13 @@ export const Team = () => {
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
                 
-                {/* Left: Founder Portrait (Heroic, tall, frameless) */}
+                {/* Left: Founder Portrait (Natural, proportional portrait) */}
                 <div className="lg:col-span-5 flex justify-center">
-                  <div className="relative w-full max-w-[340px] sm:max-w-[380px] aspect-[3/4] rounded-[28px] overflow-hidden bg-[#0c0c10] shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/10 group">
+                  <div className="relative w-full max-w-[320px] sm:max-w-[350px] aspect-[4/5] rounded-[24px] overflow-hidden bg-[#16161e] shadow-2xl border border-white/10 group">
                     <img 
                       src={founder.img} 
                       alt={founder.name} 
-                      className="w-full h-full object-cover object-top filter brightness-[0.92] contrast-[1.05] group-hover:scale-105 group-hover:brightness-100 transition-transform duration-700 ease-out"
+                      className="w-full h-full object-cover object-top filter grayscale-[25%] contrast-[1.05] brightness-95 group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-105 transition-all duration-700 ease-out"
                       onError={(e) => { 
                         if (founder.fallbackImg && e.target.src !== founder.fallbackImg) {
                           e.target.src = founder.fallbackImg;
@@ -447,21 +446,21 @@ export const Team = () => {
                         }
                       }}
                     />
-                    {/* Silky bottom gradient */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0d] via-black/30 via-40% to-transparent opacity-90 pointer-events-none" />
+                    {/* Soft base gradient */}
+                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                     
-                    {/* Top Chip */}
+                    {/* Top Status */}
                     <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
                       <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
                       <span>HYDERABAD // HQ</span>
                     </div>
 
-                    {/* Bottom Floating Bar */}
+                    {/* Bottom Pill */}
                     <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                      <span className="text-[10px] font-mono font-black text-[#0a0101] tracking-widest uppercase bg-[#cdd32c] px-3.5 py-1 rounded-full shadow-lg">
+                      <span className="text-[10px] font-mono font-black text-[#0a0101] tracking-widest uppercase bg-[#cdd32c] px-3 py-1 rounded-md shadow-md">
                         FOUNDER
                       </span>
-                      <span className="text-xs font-mono font-black text-white/90 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
+                      <span className="text-xs font-mono font-bold text-white/90 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
                         01
                       </span>
                     </div>
@@ -584,98 +583,101 @@ export const Team = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.35, delay: idx * 0.03 }}
-                  className="relative min-h-[490px] sm:min-h-[520px] rounded-[30px] overflow-hidden bg-[#0e0e13] border border-white/[0.07] hover:border-[#cdd32c]/60 transition-all duration-500 shadow-xl group flex flex-col justify-between p-6 sm:p-7 text-left"
+                  className="rounded-[28px] bg-[#111116] border border-white/[0.08] hover:border-[#cdd32c]/50 p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(0,0,0,0.7)] group text-left"
                 >
-                  {/* Full-bleed Portrait Background Image */}
-                  <div className="absolute inset-0 z-0 overflow-hidden bg-[#09090c]">
-                    <img 
-                      src={member.img} 
-                      alt={member.name}
-                      className="w-full h-full object-cover object-top filter brightness-[0.85] contrast-[1.05] group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
-                      onError={(e) => { 
-                        if (member.fallbackImg && e.target.src !== member.fallbackImg) {
-                          e.target.src = member.fallbackImg;
-                        } else {
-                          e.target.src = "/logo-watermark.png";
-                        }
-                      }}
-                    />
-                    {/* Ambient gradients: subtle top shade and deep bottom fade */}
-                    <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/85 via-black/30 to-transparent pointer-events-none" />
-                    <div className="absolute inset-x-0 bottom-0 h-[76%] bg-gradient-to-t from-[#08080b] via-[#08080b]/95 via-55% to-transparent pointer-events-none" />
-                  </div>
-
-                  {/* Top Overlays */}
-                  <div className="relative z-10 flex items-center justify-between">
-                    <span className="text-xs font-mono font-black text-[#cdd32c] bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
-                      NODE_{member.num}
-                    </span>
-                    <div className="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[9px] font-mono uppercase tracking-wider text-slate-300">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c] animate-pulse" />
-                      <span>{member.category}</span>
-                    </div>
-                  </div>
-
-                  {/* Bottom Content Area */}
-                  <div className="relative z-10 pt-16 space-y-3">
-                    <div>
-                      <span className="text-[11px] font-mono font-black uppercase tracking-widest text-[#cdd32c] block mb-1">
-                        {member.role}
+                  <div>
+                    {/* Top Bar: Node Index & Category Badge */}
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="text-[11px] font-mono font-black text-[#cdd32c] tracking-wider">
+                        NODE_{member.num}
                       </span>
-                      <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-[#cdd32c] transition-colors leading-tight">
-                        {member.name}
-                      </h3>
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-[9px] font-mono uppercase text-slate-300 tracking-wider">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c] animate-pulse" />
+                        <span>{member.category}</span>
+                      </span>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed line-clamp-2">
-                      {member.bio}
-                    </p>
+                    {/* Proportional Studio Portrait Frame */}
+                    <div className="relative aspect-[4/4.2] w-full rounded-2xl overflow-hidden bg-[#181822] mb-5 border border-white/[0.06] group-hover:border-[#cdd32c]/30 transition-colors shadow-inner">
+                      <img 
+                        src={member.img} 
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top filter grayscale-[50%] contrast-[1.05] brightness-95 group-hover:grayscale-0 group-hover:scale-105 group-hover:brightness-105 transition-all duration-500 ease-out"
+                        onError={(e) => { 
+                          if (member.fallbackImg && e.target.src !== member.fallbackImg) {
+                            e.target.src = member.fallbackImg;
+                          } else {
+                            e.target.src = "/logo-watermark.png";
+                          }
+                        }}
+                      />
+                      {/* Gentle base gradient */}
+                      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#111116]/80 via-transparent to-transparent pointer-events-none" />
 
-                    {/* Competency Chips */}
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {member.stacks.slice(0, 3).map((stk, i) => (
-                        <span 
-                          key={i} 
-                          className="px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-200"
-                        >
-                          {stk}
+                      {/* Floating Role Tag over bottom of photo */}
+                      <div className="absolute bottom-3 left-3">
+                        <span className="text-[10px] font-mono font-black uppercase tracking-wider text-[#0a0101] bg-[#cdd32c] px-2.5 py-1 rounded-md shadow-md">
+                          {member.role}
                         </span>
-                      ))}
-                    </div>
-
-                    {/* Bottom Action Bar */}
-                    <div className="pt-3 border-t border-white/10 flex items-center justify-between">
-                      <button
-                        onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20connect%20with%20${encodeURIComponent(member.name)}%20(${encodeURIComponent(member.role)})`, '_blank')}
-                        className="text-xs font-mono font-bold uppercase tracking-wider text-[#cdd32c] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer py-1"
-                      >
-                        <MessageCircle size={14} />
-                        <span>DIRECT SYNC</span>
-                      </button>
-
-                      <div className="flex gap-1.5">
-                        <a 
-                          href={member.linkedin} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="w-8 h-8 rounded-lg bg-black/50 hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
-                          title="LinkedIn"
-                        >
-                          <Linkedin size={13} />
-                        </a>
-                        <a 
-                          href={member.instagram} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="w-8 h-8 rounded-lg bg-black/50 hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
-                          title="Instagram"
-                        >
-                          <Instagram size={13} />
-                        </a>
                       </div>
                     </div>
 
+                    {/* Member Information (Dedicated Space — ZERO overlap over face!) */}
+                    <div className="space-y-2">
+                      <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white group-hover:text-[#cdd32c] transition-colors leading-tight">
+                        {member.name}
+                      </h3>
+
+                      <p className="text-xs text-slate-400 font-light leading-relaxed line-clamp-2">
+                        {member.bio}
+                      </p>
+
+                      {/* Competency Chips */}
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {member.stacks.slice(0, 3).map((stk, i) => (
+                          <span 
+                            key={i} 
+                            className="px-2.5 py-1 rounded-lg bg-white/[0.04] border border-white/[0.06] text-[10px] font-mono text-slate-300 group-hover:border-white/15 transition-colors"
+                          >
+                            {stk}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
+
+                  {/* Bottom Action Bar */}
+                  <div className="pt-4 mt-5 border-t border-white/[0.08] flex items-center justify-between">
+                    <button
+                      onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20connect%20with%20${encodeURIComponent(member.name)}%20(${encodeURIComponent(member.role)})`, '_blank')}
+                      className="text-xs font-mono font-black uppercase tracking-wider text-[#cdd32c] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer py-1"
+                    >
+                      <MessageCircle size={14} />
+                      <span>DIRECT SYNC</span>
+                    </button>
+
+                    <div className="flex gap-1.5">
+                      <a 
+                        href={member.linkedin} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
+                        title="LinkedIn"
+                      >
+                        <Linkedin size={13} />
+                      </a>
+                      <a 
+                        href={member.instagram} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
+                        title="Instagram"
+                      >
+                        <Instagram size={13} />
+                      </a>
+                    </div>
+                  </div>
+
                 </motion.div>
               ))}
             </AnimatePresence>
