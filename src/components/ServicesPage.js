@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { 
-  Globe, TrendingUp, Instagram, Video, 
+  Globe, TrendingUp, Video, 
   CheckCircle2, ArrowRight, ChevronDown, 
-  Bot, Layers, MessageCircle, Sparkles
+  Bot, Layers, MessageCircle, Sparkles,
+  Rocket, Receipt
 } from 'lucide-react';
 
 const services = [
@@ -108,6 +109,148 @@ export default function ServicesPage() {
     }, 300);
   };
 
+  // Render the central PivotRoots circular animation composition for each service
+  const renderCircleVisual = (serviceId) => {
+    return (
+      <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 flex items-center justify-center mx-auto my-6">
+        {/* Outer Concentric Animated Orbit Rings */}
+        <div className="absolute -inset-4 sm:-inset-5 rounded-full border border-dashed border-[#cdd32c]/25 animate-spin-slow pointer-events-none" />
+        <div className="absolute -inset-7 rounded-full border border-white/5 pointer-events-none" />
+        
+        {/* Ambient Backlight Glow */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/20 to-transparent blur-xl opacity-60 pointer-events-none" />
+
+        {/* Main Portal Sphere */}
+        <motion.div
+          key={`circle-portal-${serviceId}`}
+          initial={{ scale: 0.85, rotate: -6, opacity: 0 }}
+          animate={{ scale: 1, rotate: 0, opacity: 1 }}
+          exit={{ scale: 0.85, rotate: 6, opacity: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#181824] via-[#111119] to-[#08080c] border-2 border-[#cdd32c]/40 shadow-[0_0_40px_rgba(205,211,44,0.18)] flex items-center justify-center p-5 text-center select-none"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(#cdd32c15_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none" />
+
+          {/* Web Architecture Visual */}
+          {serviceId === 'web' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="bg-[#09090d]/90 border border-white/15 rounded-xl p-3 max-w-[200px] mx-auto text-left shadow-xl">
+                <div className="flex items-center gap-1 pb-1.5 border-b border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c]" />
+                  <span className="ml-auto text-[7px] text-slate-400">wayzentech.app</span>
+                </div>
+                <div className="pt-1.5 space-y-1">
+                  <div className="flex justify-between text-[10px] font-bold text-white">
+                    <span>Speed Score</span>
+                    <span className="text-[#cdd32c]">99/100</span>
+                  </div>
+                  <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                    <div className="bg-[#cdd32c] h-full w-[99%]" />
+                  </div>
+                  <span className="text-[8px] text-emerald-400 block pt-0.5">Next.js 15 • 0.4s FCP</span>
+                </div>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-[#cdd32c]/20 border border-[#cdd32c]/30 text-[#cdd32c] font-black">
+                  Next.js 15
+                </span>
+                <span className="px-2 py-0.5 rounded-full bg-white/10 text-slate-200">
+                  React 19
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Performance Ads Visual */}
+          {serviceId === 'ads' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-amber-500/10 border-2 border-amber-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(251,191,36,0.3)]">
+                <Rocket size={28} className="text-amber-400 animate-bounce" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-amber-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>Growth Engine:</span>
+                  <span className="text-amber-400 font-bold">+250% ROAS</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">Algorithmic buyer targeting</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold">
+                  Meta & Google Ads
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Content & Media Visual */}
+          {serviceId === 'content' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-purple-500/10 border-2 border-purple-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(168,85,247,0.3)]">
+                <Video size={28} className="text-purple-400" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-purple-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>Viral Short-Form:</span>
+                  <span className="text-purple-400 font-bold">4K 60FPS</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">High-retention reel collateral</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-bold">
+                  Motion Graphics
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* AI Automation Visual */}
+          {serviceId === 'ai' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-emerald-500/10 border-2 border-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(52,211,153,0.3)] animate-pulse">
+                <Bot size={28} className="text-emerald-400" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-emerald-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>WhatsApp AI Agent:</span>
+                  <span className="text-emerald-400 font-bold">⚡ 320ms</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">Lead qualified & synced</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">
+                  GPT-4o Workflows
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* Custom Software & Billing Visual */}
+          {serviceId === 'software' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-[#cdd32c]/10 border-2 border-[#cdd32c] flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(205,211,44,0.3)]">
+                <Receipt size={28} className="text-[#cdd32c]" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-[#cdd32c]/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>GST Billing POS:</span>
+                  <span className="text-[#cdd32c] font-bold">3 Seconds</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">WhatsApp invoice dispatched</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-[#cdd32c]/20 text-[#cdd32c] font-bold">
+                  Flutter & MERN
+                </span>
+              </div>
+            </div>
+          )}
+        </motion.div>
+      </div>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
@@ -118,7 +261,17 @@ export default function ServicesPage() {
           <circle cx="400" cy="400" r="240" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.2" />
           <circle cx="400" cy="400" r="120" stroke="#cdd32c" strokeWidth="1" strokeDasharray="4 4" />
         </svg>
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[140px]" />
+
+        {/* Winding animated dotted spline path */}
+        <svg className="absolute inset-0 w-full h-full opacity-20 pointer-events-none" viewBox="0 0 1440 900" fill="none">
+          <path 
+            d="M -100 250 C 350 150, 700 600, 1000 350 C 1300 150, 1500 450, 1700 350" 
+            stroke="#cdd32c" 
+            strokeWidth="1.5" 
+            strokeDasharray="10 10"
+            className="animate-pulse" 
+          />
+        </svg>
 
         {/* PROMINENT BACKGROUND LOGO - VISIBLE ABOVE THE FOLD IN MOBILE & WEB */}
         <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-[300px] sm:w-[480px] md:w-[700px] aspect-[1024/847] pointer-events-none z-0 flex items-center justify-center">
@@ -134,7 +287,7 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* --- HEADER: PIVOTROOTS EDITORIAL CONTRAST --- */}
-        <header className="mb-12 md:mb-20">
+        <header className="mb-12 md:mb-20 text-left">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#cdd32c]/10 border border-[#cdd32c]/30 text-[#cdd32c] text-[10px] md:text-xs font-mono font-black uppercase tracking-widest mb-4">
             <Sparkles size={12} />
             <span>[ WAYZEN_CAPABILITIES / 05_VERTICALS ]</span>
@@ -159,8 +312,8 @@ export default function ServicesPage() {
           </div>
         </header>
 
-        {/* --- MOBILE VIEW: PIVOTROOTS ACCORDION CARDS --- */}
-        <div className="lg:hidden space-y-4">
+        {/* --- MOBILE VIEW: ACCORDION WITH ANIMATED CIRCULAR PORTALS --- */}
+        <div className="lg:hidden space-y-4 mb-20 text-left">
           {services.map((item) => {
             const isExpanded = expandedMobileId === item.id;
             const IconComponent = item.icon;
@@ -210,6 +363,9 @@ export default function ServicesPage() {
                       transition={{ duration: 0.3 }}
                       className="px-5 pb-6 border-t border-white/5 pt-4"
                     >
+                      {/* PivotRoots Animated Circular Portal in Mobile Accordion */}
+                      {renderCircleVisual(item.id)}
+
                       <p className="text-slate-300 text-xs sm:text-sm mb-4 leading-relaxed font-light border-l-2 border-[#cdd32c] pl-3.5">
                         {item.details}
                       </p>
@@ -249,25 +405,6 @@ export default function ServicesPage() {
               </div>
             );
           })}
-          
-          {/* INSTAGRAM SOCIAL BAR */}
-          <a 
-            href="https://instagram.com/way_zentech" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-between p-5 rounded-2xl bg-[#edf1f2] text-[#0a0101] border border-[#d5d5d5] mt-6 group transition-all"
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#0a0101] text-[#cdd32c] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Instagram size={20} />
-              </div>
-              <div>
-                <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 block">Behind The Scenes</span>
-                <span className="font-black text-sm uppercase tracking-wide">Follow @way_zentech</span>
-              </div>
-            </div>
-            <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
         </div>
 
         {/* --- DESKTOP VIEW: PIVOTROOTS SPLIT-SCREEN EDITORIAL SHOWCASE --- */}
@@ -326,30 +463,10 @@ export default function ServicesPage() {
                 </motion.div>
               );
             })}
-
-            {/* INSTAGRAM BANNER */}
-            <motion.a 
-              href="https://instagram.com/way_zentech"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.02 }}
-              className="flex items-center justify-between p-6 rounded-2xl bg-[#edf1f2] text-[#0a0101] border border-[#d5d5d5] group mt-6"
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-[#0a0101] text-[#cdd32c] flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Instagram size={22} />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500 block">Real-Time Updates</span>
-                  <span className="font-black text-sm uppercase tracking-wide">Connect @way_zentech</span>
-                </div>
-              </div>
-              <ArrowRight className="group-hover:translate-x-2 transition-transform text-[#0a0101]" />
-            </motion.a>
           </div>
 
-          {/* Right Column: Dynamic Architectural Service Detail */}
-          <div className="lg:col-span-7 bg-[#101014] rounded-[36px] p-10 md:p-12 border border-white/10 backdrop-blur-2xl relative overflow-hidden shadow-2xl">
+          {/* Right Column: Dynamic Architectural Service Detail with PivotRoots Circular Animation */}
+          <div className="lg:col-span-7 bg-[#101014] rounded-[36px] p-8 md:p-12 border border-white/10 backdrop-blur-2xl relative overflow-hidden shadow-2xl">
             
             {/* Top Right Decorative Watermark Numeral */}
             <div className="absolute top-6 right-8 text-7xl font-black font-mono text-white/5 select-none pointer-events-none">
@@ -365,7 +482,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.3 }}
                 className="text-left"
               >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-4">
                   <span className="px-3 py-1 rounded-full bg-[#cdd32c]/10 text-[#cdd32c] border border-[#cdd32c]/30 text-[10px] font-mono font-black uppercase tracking-widest">
                     Architectural Blueprint
                   </span>
@@ -374,26 +491,29 @@ export default function ServicesPage() {
                   </span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-6">
+                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
                   {activeTab.title}
                 </h2>
 
-                <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 border-l-2 border-[#cdd32c] pl-6 font-light">
+                <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-4 border-l-2 border-[#cdd32c] pl-6 font-light">
                   {activeTab.details}
                 </p>
+
+                {/* --- PIVOTROOTS CENTRAL ANIMATED CIRCULAR PORTAL --- */}
+                {renderCircleVisual(activeTab.id)}
 
                 <h4 className="text-xs font-mono uppercase tracking-widest text-[#cdd32c] font-black mb-4">
                   [ DELIVERABLE SCOPE & CAPABILITIES ]
                 </h4>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-8">
                   {activeTab.categories.map((feat, i) => (
                     <motion.div 
                       key={feat}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: i * 0.05 }}
-                      className="flex items-center gap-3.5 bg-white/5 p-4 rounded-xl border border-white/5 hover:border-[#cdd32c]/40 transition-all"
+                      className="flex items-center gap-3.5 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-[#cdd32c]/40 transition-all"
                     >
                       <CheckCircle2 className="w-4 h-4 text-[#cdd32c] shrink-0" />
                       <span className="text-slate-200 text-sm font-medium">{feat}</span>
@@ -405,14 +525,14 @@ export default function ServicesPage() {
                 <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-white/10">
                   <button
                     onClick={handleStartProject}
-                    className="w-full sm:w-auto bg-[#cdd32c] hover:bg-white text-[#0a0101] px-8 py-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#cdd32c]/20"
+                    className="w-full sm:w-auto bg-[#cdd32c] hover:bg-white text-[#0a0101] px-8 py-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#cdd32c]/20 cursor-pointer"
                   >
                     <span>Request Project Scope</span>
                     <ArrowRight size={16} />
                   </button>
                   <button
                     onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20discuss%20${encodeURIComponent(activeTab.title)}`, '_blank')}
-                    className="w-full sm:w-auto bg-white/10 hover:bg-[#25D366] hover:text-black text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+                    className="w-full sm:w-auto bg-white/10 hover:bg-[#25D366] hover:text-black text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     <MessageCircle size={16} />
                     <span>Talk Directly with Engineer</span>

@@ -63,28 +63,28 @@ export const Navbar = () => {
     <>
       {/* FIXED TOP HEADER - PIVOTROOTS OBSIDIAN GLASS */}
       <header className="fixed top-0 left-0 w-full z-[999] transition-all duration-300 bg-[#0a0101]/90 backdrop-blur-md border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-5 md:px-8 h-18 md:h-22 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3.5 sm:px-5 md:px-8 h-16 sm:h-18 md:h-22 flex items-center justify-between">
           
           {/* BRAND LOGO */}
           <motion.div 
             onClick={() => handleNav('/')}
-            className="cursor-pointer flex items-center gap-3 group select-none"
+            className="cursor-pointer flex items-center gap-2 sm:gap-3 group select-none"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden border border-white/15 shadow-sm flex-shrink-0 bg-[#141419] p-1.5 group-hover:border-[#cdd32c] transition-colors">
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 rounded-xl overflow-hidden border border-white/15 shadow-sm flex-shrink-0 bg-[#141419] p-1 sm:p-1.5 group-hover:border-[#cdd32c] transition-colors">
               <img src="/logo-watermark.png" alt="WayZenTech" className="w-full h-full object-contain" />
             </div>
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase italic">
+            <span className="text-base sm:text-xl md:text-2xl font-black tracking-tighter text-white uppercase italic">
               WAYZEN<span className="text-[#cdd32c] drop-shadow-sm">TECH</span>
             </span>
           </motion.div>
 
           {/* RIGHT ACTIONS: ROTATING SOCIAL PILL + PIVOTROOTS 4-LINE ASYMMETRICAL HAMBURGER */}
-          <div className="flex items-center gap-3 sm:gap-6">
+          <div className="flex items-center gap-2 sm:gap-6">
             
             {/* PIVOTROOTS ROTATING SOCIAL PILL */}
-            <div className="relative h-9 overflow-hidden">
+            <div className="relative h-8 sm:h-9 overflow-hidden">
               <AnimatePresence mode="wait">
                 {socialToggle === 0 ? (
                   <motion.button
@@ -94,7 +94,7 @@ export const Navbar = () => {
                     exit={{ y: -20, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => window.open('https://wa.me/919398724704', '_blank')}
-                    className="h-9 px-3.5 sm:px-4 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-[#25D366] hover:text-white transition-all shadow-sm cursor-pointer"
+                    className="h-8 sm:h-9 px-2.5 sm:px-4 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 hover:bg-[#25D366] hover:text-white transition-all shadow-sm cursor-pointer whitespace-nowrap"
                   >
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
@@ -112,7 +112,7 @@ export const Navbar = () => {
                     exit={{ y: -20, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => window.open('https://instagram.com/way_zentech', '_blank')}
-                    className="h-9 px-3.5 sm:px-4 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-300 text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-600 hover:text-white transition-all shadow-sm cursor-pointer"
+                    className="h-8 sm:h-9 px-2.5 sm:px-4 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-300 text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-1.5 sm:gap-2 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-600 hover:text-white transition-all shadow-sm cursor-pointer whitespace-nowrap"
                   >
                     <Instagram size={13} />
                     <span>@way_zentech</span>
