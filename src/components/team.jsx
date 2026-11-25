@@ -507,7 +507,7 @@ export const Team = () => {
         )}
 
         {/* --- INTERACTIVE CATEGORY FILTER PILLS --- */}
-        <div className="mb-10 flex items-center gap-2 overflow-x-auto no-scrollbar pb-2">
+        <div className="mb-10 flex items-center gap-2 md:gap-3 overflow-x-auto md:overflow-visible flex-nowrap md:flex-wrap no-scrollbar pb-2">
           {categories.map((cat) => {
             const isActive = activeFilter === cat.id;
             return (
