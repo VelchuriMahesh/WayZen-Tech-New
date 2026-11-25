@@ -8,71 +8,228 @@ import {
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+const rolePriority = {
+  founder: 1,
+  "co-founder": 2,
+  ceo: 3,
+  director: 4,
+  cmo: 5,
+  "project manager": 6,
+  "software developer": 7,
+  "digital marketing": 8,
+  hr: 9
+};
+
+const getRoleKey = (role = "") => {
+  const r = role.toLowerCase();
+  for (const key of Object.keys(rolePriority)) {
+    if (r.includes(key)) return key;
+  }
+  return "other";
+};
+
+const mapCategory = (role = "") => {
+  const r = role.toLowerCase();
+  if (r.includes("founder") || r.includes("ceo") || r.includes("director") || r.includes("cmo")) {
+    return "leadership";
+  }
+  if (r.includes("developer") || r.includes("engineer") || r.includes("project manager") || r.includes("tech")) {
+    return "engineering";
+  }
+  return "growth";
+};
+
+const getRoleSkills = (role = "") => {
+  const r = role.toLowerCase();
+  if (r.includes("founder") && !r.includes("co")) {
+    return ["Full-Stack Systems", "MERN Architecture", "Distributed Cloud", "Client Growth Strategy"];
+  }
+  if (r.includes("co-founder")) {
+    return ["Business Scaling", "Product Strategy", "Technical Operations", "Enterprise Partnerships"];
+  }
+  if (r.includes("ceo")) {
+    return ["Strategic Vision", "Executive Direction", "Technology Governance", "Capital Allocation"];
+  }
+  if (r.includes("director")) {
+    return ["Operational Excellence", "Delivery Management", "Client Engagement", "Resource Scaling"];
+  }
+  if (r.includes("cmo")) {
+    return ["Brand Strategy", "Commercial Positioning", "Global Outreach", "Campaign Performance"];
+  }
+  if (r.includes("developer") || r.includes("software")) {
+    return ["React & Next.js", "Node.js & Express", "MongoDB & SQL", "REST / GraphQL APIs"];
+  }
+  if (r.includes("project manager")) {
+    return ["Agile Delivery", "Sprint Architecture", "Client Sync & QA", "SLA Monitoring"];
+  }
+  if (r.includes("marketing")) {
+    return ["Meta Performance Ads", "Google Search Ads", "Technical SEO", "Conversion Funnels"];
+  }
+  if (r.includes("hr")) {
+    return ["Talent Acquisition", "Engineering Culture", "Operations Support", "People Growth"];
+  }
+  return ["Technical Rigor", "Commercial Execution", "Scalable Systems"];
+};
+
+const getRoleDescription = (name = "", role = "") => {
+  const r = role.toLowerCase();
+  if (r.includes("founder") && !r.includes("co")) {
+    return "Steering WayZenTech's technical vision, full-stack architectures, and zero-compromise engineering quality for global enterprises.";
+  }
+  if (r.includes("co-founder")) {
+    return "Spearheading strategic expansions, enterprise client alignments, and ensuring every product delivers measurable business ROI.";
+  }
+  if (r.includes("ceo")) {
+    return "Guiding high-level organizational execution, commercial operations, and executive leadership across technology hubs.";
+  }
+  if (r.includes("director")) {
+    return "Supervising operational integrity, client success benchmarks, and seamless coordination across technical squads.";
+  }
+  if (r.includes("cmo")) {
+    return "Architecting high-impact brand positioning, commercial go-to-market funnels, and global marketing execution.";
+  }
+  if (r.includes("developer") || r.includes("software")) {
+    return "Engineering clean, high-speed MERN and reactive frontends, resilient backend APIs, and scalable cloud databases.";
+  }
+  if (r.includes("project manager")) {
+    return "Orchestrating agile sprint schedules, 100% on-time deployment milestones, and direct daily WhatsApp client updates.";
+  }
+  if (r.includes("marketing")) {
+    return "Dominating search algorithms, precision Google & Meta ad funnels, and data-backed lead acquisition funnels.";
+  }
+  if (r.includes("hr")) {
+    return "Nurturing top-tier engineering talent, agile collaboration workflows, and an elite developer-first foundry culture.";
+  }
+  return "Dedicated core team member driving commercial results, engineering precision, and rapid client delivery.";
+};
+
 const defaultTeam = [
   {
-    id: "lead-01",
+    id: "POLGlTaZVopMFCuGWGww",
     num: "01",
-    name: "Mahesh Velchuri",
+    name: "V.Mahesh",
     role: "Founder & Lead Systems Architect",
-    category: "systems",
+    category: "leadership",
+    img: "https://i.ibb.co/bj9FxPPJ/IMG-20250808-WA0004.jpg",
     status: "ONLINE // HYDERABAD_HQ",
     headline: "Architecting high-throughput MERN systems, reactive frontends & distributed cloud backends.",
-    bio: "Pioneering commercial-grade software architectures that combine sub-second execution with rigorous SEO engineering. Direct engineer collaboration without bureaucratic intermediaries.",
-    stacks: ["React", "Node.js", "Python", "Next.js", "MongoDB", "Distributed Cloud"],
-    impact: "65+ Production Deployments • < 0.8s Latency",
+    bio: "Steering WayZenTech's technical vision, full-stack architectures, and zero-compromise engineering quality for global enterprises.",
+    stacks: ["Full-Stack Systems", "MERN Architecture", "Distributed Cloud", "Client Growth Strategy"],
     linkedin: "https://linkedin.com",
     instagram: "https://instagram.com/way_zentech"
   },
   {
-    id: "lead-02",
+    id: "UNHsyxGJqhbHKvGRFFGb",
     num: "02",
-    name: "AI & Neural Systems Desk",
-    role: "Lead AI & Automation Architect",
-    category: "ai",
-    status: "ACTIVE // BOT_ROUTING",
-    headline: "Custom LLMs, autonomous WhatsApp business agents & self-healing workflows.",
-    bio: "Specializing in OpenAI and Groq model pipelines, multi-step agentic workflows, and automated customer qualification engines that eliminate 70%+ manual operations.",
-    stacks: ["LLM Pipelines", "OpenAI / Groq", "WhatsApp Business API", "Vector DBs", "FastAPI"],
-    impact: "70% Manual Work Reduced • 24/7 Zero Latency",
+    name: "J.Gopi",
+    role: "Co-Founder",
+    category: "leadership",
+    img: "https://i.ibb.co/JwsJvKzG/Screenshot-2026-03-18-094752.png",
+    status: "ONLINE // EXECUTIVE_DESK",
+    headline: "Spearheading enterprise expansion & product strategy.",
+    bio: "Spearheading strategic expansions, enterprise client alignments, and ensuring every product delivers measurable business ROI.",
+    stacks: ["Business Scaling", "Product Strategy", "Technical Operations", "Enterprise Partnerships"],
     linkedin: "https://linkedin.com",
     instagram: "https://instagram.com/way_zentech"
   },
   {
-    id: "lead-03",
+    id: "ltgbijj3ebs4oGN2Cbpa",
     num: "03",
-    name: "Interface & Experience Lab",
-    role: "Principal Product & Interaction Designer",
-    category: "ux",
-    status: "ONLINE // DESIGN_FOUNDRY",
-    headline: "Sensory UI/UX, micro-interactions & conversion-optimized visual design systems.",
-    bio: "Designing interfaces that stop the scroll and drive commercial conversion. Harmonizing extreme typography contrast with silky smooth 60fps micro-animations.",
-    stacks: ["Figma Systems", "Framer Motion", "Tailwind CSS", "Micro-Interactions", "Design Systems"],
-    impact: "3.2x Higher Interaction • Native 60fps Fluidity",
+    name: "K. Shiva",
+    role: "CEO",
+    category: "leadership",
+    img: "https://i.ibb.co/5g0vxtN8/Screenshot-2026-03-18-094658.png",
+    status: "ONLINE // EXECUTIVE_DESK",
+    headline: "Guiding organizational scale & commercial governance.",
+    bio: "Guiding high-level organizational execution, commercial operations, and executive leadership across technology hubs.",
+    stacks: ["Strategic Vision", "Executive Direction", "Technology Governance", "Capital Allocation"],
     linkedin: "https://linkedin.com",
     instagram: "https://instagram.com/way_zentech"
   },
   {
-    id: "lead-04",
+    id: "gUzmxITcX3uNxZZicjO7",
     num: "04",
-    name: "Deployment & Operations Desk",
-    role: "Head of Engineering Operations & SLA",
-    category: "ops",
-    status: "ONLINE // 24/7_SUPPORT",
-    headline: "Guaranteed 100% on-time deployment, round-the-clock developer WhatsApp sync & SLA uptime.",
-    bio: "Ensuring zero-downtime migrations, automated CI/CD deployment pipelines, and continuous monitoring. You get a dedicated developer WhatsApp line from day one.",
-    stacks: ["CI/CD Pipelines", "Vercel / AWS", "Docker", "SLA Monitoring", "GitHub Actions"],
-    impact: "100% On-Time Delivery • 24/7 Instant Sync",
+    name: "Shiva",
+    role: "Director",
+    category: "leadership",
+    img: "https://i.ibb.co/1tt8vJw0/Whats-App-Image-2026-06-19-at-10-56-20-AM.jpg",
+    status: "ONLINE // FOUNDRY_OPERATIONS",
+    headline: "Supervising operational integrity & delivery standards.",
+    bio: "Supervising operational integrity, client success benchmarks, and seamless coordination across technical squads.",
+    stacks: ["Operational Excellence", "Delivery Management", "Client Engagement", "Resource Scaling"],
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com/way_zentech"
+  },
+  {
+    id: "DBxn6dVevnys8gP1Q4ky",
+    num: "05",
+    name: "V. Pravallika",
+    role: "CMO",
+    category: "leadership",
+    img: "https://i.ibb.co/hJYg3Kh6/akka.jpg",
+    status: "ONLINE // GROWTH_DESK",
+    headline: "Architecting commercial branding & global market presence.",
+    bio: "Architecting high-impact brand positioning, commercial go-to-market funnels, and global marketing execution.",
+    stacks: ["Brand Strategy", "Commercial Positioning", "Global Outreach", "Campaign Performance"],
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com/way_zentech"
+  },
+  {
+    id: "wog3YucLUovVHnAxLTct",
+    num: "06",
+    name: "Jyothi Prasad",
+    role: "Project Manager",
+    category: "engineering",
+    img: "https://i.ibb.co/35qz5m3X/jyothi.jpg",
+    status: "ACTIVE // SPRINT_SQUAD",
+    headline: "Ensuring 100% on-time sprint milestones & QA delivery.",
+    bio: "Orchestrating agile sprint schedules, 100% on-time deployment milestones, and direct daily WhatsApp client updates.",
+    stacks: ["Agile Delivery", "Sprint Architecture", "Client Sync & QA", "SLA Monitoring"],
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com/way_zentech"
+  },
+  {
+    id: "FhmaEkuT65vz87htWtXO",
+    num: "07",
+    name: "Anji",
+    role: "Software Developer",
+    category: "engineering",
+    img: "https://i.ibb.co/Jwt291d3/anji.jpg",
+    status: "ACTIVE // DEV_SQUAD",
+    headline: "Building high-speed MERN apps & scalable APIs.",
+    bio: "Engineering clean, high-speed MERN and reactive frontends, resilient backend APIs, and scalable cloud databases.",
+    stacks: ["React & Next.js", "Node.js & Express", "MongoDB & SQL", "REST / GraphQL APIs"],
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com/way_zentech"
+  },
+  {
+    id: "QKRoiOcpvawqbpB9CRX5",
+    num: "08",
+    name: "Geeta",
+    role: "Digital Marketing",
+    category: "growth",
+    img: "https://i.ibb.co/xtrhMM5m/PP.png",
+    status: "ACTIVE // CAMPAIGNS",
+    headline: "Scaling customer acquisition via Meta, Google & SEO.",
+    bio: "Dominating search algorithms, precision Google & Meta ad funnels, and data-backed lead acquisition funnels.",
+    stacks: ["Meta Performance Ads", "Google Search Ads", "Technical SEO", "Conversion Funnels"],
+    linkedin: "https://linkedin.com",
+    instagram: "https://instagram.com/way_zentech"
+  },
+  {
+    id: "0bBzNfilsvKFgk0uVk3H",
+    num: "09",
+    name: "Venkatesh",
+    role: "HR & People Ops",
+    category: "growth",
+    img: "https://i.ibb.co/Mkn71VVr/132098.jpg",
+    status: "ONLINE // PEOPLE_OPS",
+    headline: "Cultivating elite developer talent & culture.",
+    bio: "Nurturing top-tier engineering talent, agile collaboration workflows, and an elite developer-first foundry culture.",
+    stacks: ["Talent Acquisition", "Engineering Culture", "Operations Support", "People Growth"],
     linkedin: "https://linkedin.com",
     instagram: "https://instagram.com/way_zentech"
   }
-];
-
-const categories = [
-  { id: "all", label: "All Architects", count: "04" },
-  { id: "systems", label: "Systems & Cloud", count: "01" },
-  { id: "ai", label: "AI & Automation", count: "01" },
-  { id: "ux", label: "UI/UX & Product", count: "01" },
-  { id: "ops", label: "Operations & SLA", count: "01" }
 ];
 
 const principles = [
@@ -84,7 +241,7 @@ const principles = [
   {
     num: "02",
     title: "Commercial-First Architecture",
-    desc: "Every line of code is measured by tangible business outcomes: page load speeds, SEO domination, and conversion rates."
+    desc: "Every line of code is measured by tangible business outcomes: sub-second load speeds, SEO domination, and conversion rates."
   },
   {
     num: "03",
@@ -94,11 +251,11 @@ const principles = [
   {
     num: "04",
     title: "100% Code Sovereignty",
-    desc: "Full Git repository ownership, clean documentation, zero locked-in recurring maintenance traps."
+    desc: "Full Git repository ownership, clean documentation, and zero locked-in recurring maintenance fees."
   }
 ];
 
-const Team = () => {
+export const Team = () => {
   const navigate = useNavigate();
   const [team, setTeam] = useState(defaultTeam);
   const [activeFilter, setActiveFilter] = useState("all");
@@ -108,21 +265,39 @@ const Team = () => {
       try {
         const snap = await getDocs(collection(db, "team"));
         if (!snap.empty) {
-          const fetchedDocs = snap.docs.map((doc, idx) => ({
-            id: doc.id,
-            num: (idx + 1).toString().padStart(2, '0'),
-            name: doc.data().name || "Core Architect",
-            role: doc.data().role || "Systems Engineer",
-            category: doc.data().category || "systems",
-            status: "ONLINE // VERIFIED",
-            headline: doc.data().specialty || "High-performance systems engineering.",
-            bio: doc.data().bio || "Dedicated systems specialist driving commercial execution and client technical architecture.",
-            stacks: doc.data().stacks || ["React", "Node.js", "Cloud"],
-            impact: doc.data().impact || "Production Verified",
-            linkedin: doc.data().linkedin || "https://linkedin.com",
-            instagram: doc.data().instagram || "https://instagram.com/way_zentech"
+          const fetchedDocs = snap.docs.map(doc => {
+            const data = doc.data();
+            const role = data.role || "Core Engineer";
+            const name = data.name || "WayZen Engineer";
+            const img = data.img || "/logo-watermark.png";
+            const category = mapCategory(role);
+
+            return {
+              id: doc.id,
+              name: name.trim(),
+              role: role.trim(),
+              category,
+              img,
+              status: "ONLINE // VERIFIED",
+              headline: data.desc || getRoleDescription(name, role),
+              bio: data.desc || getRoleDescription(name, role),
+              stacks: getRoleSkills(role),
+              linkedin: data.link || "https://linkedin.com",
+              instagram: "https://instagram.com/way_zentech",
+              priority: rolePriority[getRoleKey(role)] || 99
+            };
+          });
+
+          // Sort team: Founder first, followed by Co-founder, CEO, Director, CMO, PM, Dev, Marketing, HR
+          fetchedDocs.sort((a, b) => a.priority - b.priority);
+
+          // Assign clean 2-digit numbers
+          const numberedDocs = fetchedDocs.map((m, idx) => ({
+            ...m,
+            num: (idx + 1).toString().padStart(2, '0')
           }));
-          setTeam(fetchedDocs);
+
+          setTeam(numberedDocs);
         }
       } catch (error) {
         console.warn("Using offline resilient team database:", error);
@@ -131,12 +306,30 @@ const Team = () => {
     fetchTeam();
   }, []);
 
+  // Isolate the real Founder (V.Mahesh) for the Hero Spotlight
+  const founder = team.find(m => 
+    m.name.toLowerCase().includes("mahesh") || 
+    (m.role.toLowerCase().includes("founder") && !m.role.toLowerCase().includes("co"))
+  ) || defaultTeam[0];
+
+  // Dynamic filter counts
+  const categoryCounts = {
+    all: team.length,
+    leadership: team.filter(m => m.category === 'leadership').length,
+    engineering: team.filter(m => m.category === 'engineering').length,
+    growth: team.filter(m => m.category === 'growth').length
+  };
+
+  const categories = [
+    { id: "all", label: "All Members", count: categoryCounts.all.toString().padStart(2, '0') },
+    { id: "leadership", label: "Executive Leadership", count: categoryCounts.leadership.toString().padStart(2, '0') },
+    { id: "engineering", label: "Engineering & Tech", count: categoryCounts.engineering.toString().padStart(2, '0') },
+    { id: "growth", label: "Marketing & People", count: categoryCounts.growth.toString().padStart(2, '0') }
+  ];
+
   const filteredTeam = activeFilter === "all" 
     ? team 
     : team.filter(m => m.category === activeFilter);
-
-  // Founder profile for the spotlight hero card
-  const founder = team.find(m => m.category === "systems") || team[0];
 
   return (
     <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
@@ -149,7 +342,7 @@ const Team = () => {
         </svg>
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[140px]" />
 
-        {/* PROMINENT BACKGROUND LOGO - VISIBLE IN MOBILE & WEB */}
+        {/* PROMINENT BACKGROUND LOGO - VISIBLE ABOVE THE FOLD IN MOBILE & WEB */}
         <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-[300px] sm:w-[480px] md:w-[700px] aspect-[1024/847] pointer-events-none z-0 flex items-center justify-center">
           <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-[70px] md:blur-[120px] pointer-events-none scale-75" />
           <img 
@@ -166,16 +359,16 @@ const Team = () => {
         <header className="mb-14 md:mb-20 text-left">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#cdd32c]/10 border border-[#cdd32c]/30 text-[#cdd32c] text-[10px] md:text-xs font-mono font-black uppercase tracking-widest mb-4">
             <Sparkles size={12} />
-            <span>[ THE_FOUNDRY / ARCHITECTS_&_ENGINEERS ]</span>
+            <span>[ THE_FOUNDRY / CORE_ENGINEERING_ROSTER ]</span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div>
               <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.92]">
-                THE CORE <span className="text-[#cdd32c]">MINDS.</span>
+                OUR <span className="text-[#cdd32c]">TEAM.</span>
               </h1>
               <p className="text-slate-400 mt-4 max-w-2xl font-light text-sm md:text-lg leading-relaxed">
-                Zero middle managers or sales proxies. You partner directly with principal full-stack engineers, AI model builders, and digital product architects.
+                Direct engineer-to-client collaboration. Meet the founders, systems architects, and product developers powering WayZenTech.
               </p>
             </div>
 
@@ -184,17 +377,17 @@ const Team = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-[#cdd32c] animate-ping" />
               <div>
                 <p className="text-[11px] font-mono uppercase tracking-wider text-white font-bold">
-                  Direct Engineer Desk Active
+                  Direct WhatsApp Engineering Desk
                 </p>
                 <p className="text-[9px] font-mono text-[#cdd32c]">
-                  WhatsApp Hotline: +91 9398724704
+                  +91 9398724704 • Instant Founder Connect
                 </p>
               </div>
             </div>
           </div>
         </header>
 
-        {/* --- FOUNDER & PRINCIPAL ARCHITECT SPOTLIGHT --- */}
+        {/* --- FOUNDER & PRINCIPAL ARCHITECT SPOTLIGHT (V. MAHESH) --- */}
         {founder && (
           <section className="mb-16 md:mb-24">
             <motion.div 
@@ -203,27 +396,31 @@ const Team = () => {
               viewport={{ once: true }}
               className="bg-[#101014] border-2 border-[#cdd32c]/40 rounded-[32px] md:rounded-[44px] p-6 sm:p-10 md:p-14 relative overflow-hidden shadow-[0_20px_50px_rgba(205,211,44,0.08)]"
             >
-              {/* Watermark Tag */}
+              {/* Decorative Watermark */}
               <div className="absolute top-6 right-8 text-6xl md:text-8xl font-black font-mono text-white/5 select-none pointer-events-none">
                 01
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
                 
-                {/* Left: Holographic Monogram / Avatar Frame */}
+                {/* Left: Founder Real Photo Frame */}
                 <div className="lg:col-span-4 flex flex-col items-center sm:items-start">
-                  <div className="relative w-44 h-44 sm:w-56 sm:h-56 rounded-3xl bg-gradient-to-br from-[#1c1c24] to-[#0a0101] border-2 border-[#cdd32c] p-2 flex items-center justify-center shadow-2xl group">
-                    
-                    {/* Inner Graphic / Logo Emblem */}
-                    <div className="w-full h-full rounded-2xl bg-[#0a0101] flex flex-col items-center justify-center relative overflow-hidden p-4">
+                  <div className="relative w-48 h-48 sm:w-60 sm:h-60 rounded-3xl overflow-hidden border-2 border-[#cdd32c] p-1.5 shadow-2xl group bg-[#0a0101]">
+                    <div className="relative w-full h-full rounded-2xl overflow-hidden">
                       <img 
-                        src="/logo-watermark.png" 
-                        alt="Mahesh Velchuri" 
-                        className="w-24 h-24 object-contain opacity-90 group-hover:scale-105 transition-transform"
+                        src={founder.img} 
+                        alt={founder.name} 
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        onError={(e) => { e.target.src = "/logo-watermark.png"; }}
                       />
-                      <span className="text-[9px] font-mono font-black text-[#cdd32c] tracking-widest uppercase mt-2">
-                        WAYZEN_FOUNDER
-                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+                      
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                        <span className="text-[9px] font-mono font-black text-[#cdd32c] tracking-widest uppercase bg-black/70 px-2 py-0.5 rounded-md backdrop-blur-sm">
+                          FOUNDER
+                        </span>
+                        <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
+                      </div>
                     </div>
 
                     {/* Corner Accent Pointers */}
@@ -233,7 +430,7 @@ const Team = () => {
 
                   <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
                     <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
-                    <span>{founder.status}</span>
+                    <span>ONLINE // HYDERABAD_HQ</span>
                   </div>
                 </div>
 
@@ -249,17 +446,17 @@ const Team = () => {
                   </h2>
 
                   <p className="text-sm sm:text-base md:text-lg text-slate-300 font-light leading-relaxed border-l-2 border-[#cdd32c] pl-4">
-                    {founder.headline}
+                    “We engineer software as high-velocity commercial assets, not digital shelf-ware. Every system is built to process real transactions, dominate search rankings, and scale seamlessly under load.”
                   </p>
 
                   <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed">
-                    {founder.bio}
+                    Leading WayZenTech's core engineering operations across full-stack MERN systems, custom AI workflows, and cloud deployments with direct, zero-broker client communication.
                   </p>
 
                   {/* Tech Stack Pills */}
                   <div className="pt-2">
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#cdd32c] block mb-2 font-bold">
-                      [ PRODUCTION TECH STACKS ]
+                      [ CORE ARCHITECTURAL DISCIPLINES ]
                     </span>
                     <div className="flex flex-wrap gap-2">
                       {founder.stacks.map((stk, i) => (
@@ -317,14 +514,14 @@ const Team = () => {
               <button
                 key={cat.id}
                 onClick={() => setActiveFilter(cat.id)}
-                className={`px-4 py-2 rounded-xl text-xs font-mono font-bold uppercase tracking-wider shrink-0 transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider shrink-0 transition-all cursor-pointer flex items-center gap-2 border ${
                   isActive 
                     ? "bg-[#cdd32c] text-[#0a0101] border-[#cdd32c] shadow-md shadow-[#cdd32c]/20" 
                     : "bg-white/5 text-slate-300 border-white/10 hover:border-white/25"
                 }`}
               >
                 <span>{cat.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.2 rounded-md ${
+                <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded-md ${
                   isActive ? "bg-[#0a0101] text-[#cdd32c]" : "bg-white/10 text-slate-400"
                 }`}>
                   {cat.count}
@@ -334,9 +531,9 @@ const Team = () => {
           })}
         </div>
 
-        {/* --- ARCHITECTURAL DOSSIER GRID (ALL CORE DISCIPLINES) --- */}
+        {/* --- ARCHITECTURAL DOSSIER GRID (REAL TEAM MEMBERS & PHOTOS) --- */}
         <section className="mb-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
             <AnimatePresence mode="popLayout">
               {filteredTeam.map((member, idx) => (
                 <motion.div
@@ -345,35 +542,47 @@ const Team = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3, delay: idx * 0.05 }}
-                  className="bg-[#141419] border border-white/10 rounded-[28px] p-6 sm:p-8 flex flex-col justify-between text-left hover:border-[#cdd32c]/60 transition-all duration-300 shadow-xl group"
+                  transition={{ duration: 0.3, delay: idx * 0.04 }}
+                  className="bg-[#141419] border border-white/10 rounded-[28px] p-5 sm:p-6 flex flex-col justify-between text-left hover:border-[#cdd32c]/60 transition-all duration-300 shadow-xl group"
                 >
                   <div>
-                    {/* Top Status & Node Bar */}
-                    <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
-                      <span className="text-[10px] font-mono font-black uppercase tracking-widest text-[#cdd32c]">
-                        NODE_{member.num} • {member.category.toUpperCase()}
-                      </span>
-                      <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
+                    {/* Member Photo Frame */}
+                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-[#0a0101] border border-white/10 group-hover:border-[#cdd32c]/40 transition-colors">
+                      <img 
+                        src={member.img} 
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        onError={(e) => { e.target.src = "/logo-watermark.png"; }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                      
+                      {/* Top Node Pill */}
+                      <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 text-[9px] font-mono text-[#cdd32c] uppercase font-bold">
+                        NODE_{member.num}
+                      </div>
+
+                      {/* Bottom Role Tag */}
+                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                        <span className="text-[10px] font-mono font-black uppercase tracking-wider text-white bg-[#0a0101]/80 px-2.5 py-1 rounded-md border border-white/10">
+                          {member.role}
+                        </span>
+                        <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
+                      </div>
                     </div>
 
-                    {/* Member Name & Role */}
-                    <h3 className="text-2xl font-black uppercase tracking-tight text-white group-hover:text-[#cdd32c] transition-colors mb-1">
+                    {/* Member Name */}
+                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white group-hover:text-[#cdd32c] transition-colors mb-2">
                       {member.name}
                     </h3>
-                    
-                    <p className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-4 font-bold">
-                      {member.role}
-                    </p>
 
-                    <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-6">
+                    <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-5 line-clamp-3">
                       {member.bio}
                     </p>
 
                     {/* Stacks */}
-                    <div className="mb-6 space-y-1.5">
+                    <div className="mb-5 space-y-1.5">
                       <span className="text-[9px] font-mono uppercase tracking-widest text-slate-500 block">
-                        Tech Stacks
+                        Focus Competencies
                       </span>
                       <div className="flex flex-wrap gap-1.5">
                         {member.stacks.map((stk, i) => (
@@ -388,7 +597,7 @@ const Team = () => {
                   {/* Card Bottom Sync Bar */}
                   <div className="pt-4 border-t border-white/10 flex items-center justify-between">
                     <button
-                      onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20connect%20with%20${encodeURIComponent(member.name)}`, '_blank')}
+                      onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20connect%20with%20${encodeURIComponent(member.name)}%20(${encodeURIComponent(member.role)})`, '_blank')}
                       className="text-xs font-black uppercase tracking-wider text-[#cdd32c] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
                     >
                       <MessageCircle size={14} />
@@ -429,7 +638,7 @@ const Team = () => {
               [ THE FOUNDRY STANDARD ]
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-white">
-              Why Our Model Outperforms Agencies.
+              Why Our Model Outperforms Traditional Agencies.
             </h2>
           </div>
 
@@ -465,7 +674,7 @@ const Team = () => {
               READY TO BUILD WITH <span className="text-[#cdd32c]">OUR CORE?</span>
             </h2>
             <p className="text-slate-400 text-sm md:text-lg font-light leading-relaxed">
-              No sales reps. Direct architectural review, transparent pricing, and rapid delivery.
+              No sales reps or middle layers. Get direct architectural review, transparent pricing, and rapid delivery.
             </p>
             <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
               <button
