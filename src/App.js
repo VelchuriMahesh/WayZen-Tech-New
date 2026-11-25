@@ -475,7 +475,7 @@ function AppContent() {
           <img 
             src="/logo-watermark.png" 
             alt="" 
-            className="w-full h-full object-contain opacity-[0.07] select-none pointer-events-none filter drop-shadow-[0_0_60px_rgba(205,211,44,0.12)]"
+            className="w-full h-full object-contain opacity-[0.15] sm:opacity-[0.12] select-none pointer-events-none filter drop-shadow-[0_0_60px_rgba(205,211,44,0.2)]"
           />
         </div>
       </div>

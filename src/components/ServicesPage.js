@@ -120,16 +120,14 @@ export default function ServicesPage() {
         </svg>
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[140px]" />
 
-        {/* PROMINENT BACKGROUND LOGO - VISIBLE IN MOBILE & WEB */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-          <div className="relative w-[300px] sm:w-[500px] md:w-[750px] aspect-[1024/847] flex items-center justify-center">
-            <div className="absolute inset-0 bg-[#cdd32c]/10 rounded-full blur-[90px] pointer-events-none scale-75" />
-            <img 
-              src="/logo-watermark.png" 
-              alt="WayZenTech Background Logo" 
-              className="w-full h-full object-contain opacity-22 sm:opacity-18 md:opacity-20 filter drop-shadow-[0_0_40px_rgba(205,211,44,0.18)] select-none"
-            />
-          </div>
+        {/* PROMINENT BACKGROUND LOGO - VISIBLE ABOVE THE FOLD IN MOBILE & WEB */}
+        <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-[300px] sm:w-[480px] md:w-[700px] aspect-[1024/847] pointer-events-none z-0 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-[70px] md:blur-[120px] pointer-events-none scale-75" />
+          <img 
+            src="/logo-watermark.png" 
+            alt="WayZenTech Background Logo" 
+            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 filter drop-shadow-[0_0_35px_rgba(205,211,44,0.2)] select-none"
+          />
         </div>
       </div>
 
