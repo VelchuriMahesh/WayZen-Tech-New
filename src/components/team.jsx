@@ -39,6 +39,21 @@ const mapCategory = (role = "") => {
   return "growth";
 };
 
+const getCleanPhoto = (name = "", role = "", fallbackImg = "") => {
+  const n = (name || "").toLowerCase();
+  const r = (role || "").toLowerCase();
+  if (n.includes("mahesh")) return "/team_photos/mahesh_clean.jpg";
+  if (n.includes("gopi")) return "/team_photos/gopi_clean.jpg";
+  if (n.includes("k. shiva") || n.includes("k shiva") || (n.includes("shiva") && r.includes("ceo"))) return "/team_photos/kshiva_clean.jpg";
+  if (n.includes("shiva") && r.includes("director")) return "/team_photos/shiva_clean.jpg";
+  if (n.includes("pravallika") || r.includes("cmo")) return "/team_photos/pravallika_clean.jpg";
+  if (n.includes("jyothi") || r.includes("project manager")) return "/team_photos/jyothi_clean.jpg";
+  if (n.includes("anji") || r.includes("developer")) return "/team_photos/anji_clean.jpg";
+  if (n.includes("geeta") || r.includes("digital marketing")) return "/team_photos/geeta_clean.jpg";
+  if (n.includes("venkatesh") || r.includes("hr")) return "/team_photos/venkatesh_clean.jpg";
+  return fallbackImg || "/logo-watermark.png";
+};
+
 const getRoleSkills = (role = "") => {
   const r = role.toLowerCase();
   if (r.includes("founder") && !r.includes("co")) {
@@ -110,7 +125,8 @@ const defaultTeam = [
     name: "V.Mahesh",
     role: "Founder & Lead Systems Architect",
     category: "leadership",
-    img: "https://i.ibb.co/bj9FxPPJ/IMG-20250808-WA0004.jpg",
+    img: "/team_photos/mahesh_clean.jpg",
+    fallbackImg: "https://i.ibb.co/bj9FxPPJ/IMG-20250808-WA0004.jpg",
     status: "ONLINE // HYDERABAD_HQ",
     headline: "Architecting high-throughput MERN systems, reactive frontends & distributed cloud backends.",
     bio: "Steering WayZenTech's technical vision, full-stack architectures, and zero-compromise engineering quality for global enterprises.",
@@ -124,7 +140,8 @@ const defaultTeam = [
     name: "J.Gopi",
     role: "Co-Founder",
     category: "leadership",
-    img: "https://i.ibb.co/JwsJvKzG/Screenshot-2026-03-18-094752.png",
+    img: "/team_photos/gopi_clean.jpg",
+    fallbackImg: "https://i.ibb.co/JwsJvKzG/Screenshot-2026-03-18-094752.png",
     status: "ONLINE // EXECUTIVE_DESK",
     headline: "Spearheading enterprise expansion & product strategy.",
     bio: "Spearheading strategic expansions, enterprise client alignments, and ensuring every product delivers measurable business ROI.",
@@ -138,7 +155,8 @@ const defaultTeam = [
     name: "K. Shiva",
     role: "CEO",
     category: "leadership",
-    img: "https://i.ibb.co/5g0vxtN8/Screenshot-2026-03-18-094658.png",
+    img: "/team_photos/kshiva_clean.jpg",
+    fallbackImg: "https://i.ibb.co/5g0vxtN8/Screenshot-2026-03-18-094658.png",
     status: "ONLINE // EXECUTIVE_DESK",
     headline: "Guiding organizational scale & commercial governance.",
     bio: "Guiding high-level organizational execution, commercial operations, and executive leadership across technology hubs.",
@@ -152,7 +170,8 @@ const defaultTeam = [
     name: "Shiva",
     role: "Director",
     category: "leadership",
-    img: "https://i.ibb.co/1tt8vJw0/Whats-App-Image-2026-06-19-at-10-56-20-AM.jpg",
+    img: "/team_photos/shiva_clean.jpg",
+    fallbackImg: "https://i.ibb.co/1tt8vJw0/Whats-App-Image-2026-06-19-at-10-56-20-AM.jpg",
     status: "ONLINE // FOUNDRY_OPERATIONS",
     headline: "Supervising operational integrity & delivery standards.",
     bio: "Supervising operational integrity, client success benchmarks, and seamless coordination across technical squads.",
@@ -166,7 +185,8 @@ const defaultTeam = [
     name: "V. Pravallika",
     role: "CMO",
     category: "leadership",
-    img: "https://i.ibb.co/hJYg3Kh6/akka.jpg",
+    img: "/team_photos/pravallika_clean.jpg",
+    fallbackImg: "https://i.ibb.co/hJYg3Kh6/akka.jpg",
     status: "ONLINE // GROWTH_DESK",
     headline: "Architecting commercial branding & global market presence.",
     bio: "Architecting high-impact brand positioning, commercial go-to-market funnels, and global marketing execution.",
@@ -180,7 +200,8 @@ const defaultTeam = [
     name: "Jyothi Prasad",
     role: "Project Manager",
     category: "engineering",
-    img: "https://i.ibb.co/35qz5m3X/jyothi.jpg",
+    img: "/team_photos/jyothi_clean.jpg",
+    fallbackImg: "https://i.ibb.co/35qz5m3X/jyothi.jpg",
     status: "ACTIVE // SPRINT_SQUAD",
     headline: "Ensuring 100% on-time sprint milestones & QA delivery.",
     bio: "Orchestrating agile sprint schedules, 100% on-time deployment milestones, and direct daily WhatsApp client updates.",
@@ -194,7 +215,8 @@ const defaultTeam = [
     name: "Anji",
     role: "Software Developer",
     category: "engineering",
-    img: "https://i.ibb.co/Jwt291d3/anji.jpg",
+    img: "/team_photos/anji_clean.jpg",
+    fallbackImg: "https://i.ibb.co/Jwt291d3/anji.jpg",
     status: "ACTIVE // DEV_SQUAD",
     headline: "Building high-speed MERN apps & scalable APIs.",
     bio: "Engineering clean, high-speed MERN and reactive frontends, resilient backend APIs, and scalable cloud databases.",
@@ -208,7 +230,8 @@ const defaultTeam = [
     name: "Geeta",
     role: "Digital Marketing",
     category: "growth",
-    img: "https://i.ibb.co/xtrhMM5m/PP.png",
+    img: "/team_photos/geeta_clean.jpg",
+    fallbackImg: "https://i.ibb.co/xtrhMM5m/PP.png",
     status: "ACTIVE // CAMPAIGNS",
     headline: "Scaling customer acquisition via Meta, Google & SEO.",
     bio: "Dominating search algorithms, precision Google & Meta ad funnels, and data-backed lead acquisition funnels.",
@@ -222,7 +245,8 @@ const defaultTeam = [
     name: "Venkatesh",
     role: "HR & People Ops",
     category: "growth",
-    img: "https://i.ibb.co/Mkn71VVr/132098.jpg",
+    img: "/team_photos/venkatesh_clean.jpg",
+    fallbackImg: "https://i.ibb.co/Mkn71VVr/132098.jpg",
     status: "ONLINE // PEOPLE_OPS",
     headline: "Cultivating elite developer talent & culture.",
     bio: "Nurturing top-tier engineering talent, agile collaboration workflows, and an elite developer-first foundry culture.",
@@ -250,8 +274,8 @@ const principles = [
   },
   {
     num: "04",
-    title: "100% Code Sovereignty",
-    desc: "Full Git repository ownership, clean documentation, and zero locked-in recurring maintenance fees."
+    title: "Zero Technical Debt",
+    desc: "Clean modular React/Next.js and resilient Node.js backends. Built to scale smoothly as user volume surges."
   }
 ];
 
@@ -263,21 +287,24 @@ export const Team = () => {
   useEffect(() => {
     const fetchTeam = async () => {
       try {
-        const snap = await getDocs(collection(db, "team"));
-        if (!snap.empty) {
-          const fetchedDocs = snap.docs.map(doc => {
+        const teamCollection = collection(db, "team");
+        const teamSnapshot = await getDocs(teamCollection);
+        if (!teamSnapshot.empty) {
+          const fetchedDocs = teamSnapshot.docs.map((doc) => {
             const data = doc.data();
-            const role = data.role || "Core Engineer";
-            const name = data.name || "WayZen Engineer";
-            const img = data.img || "/logo-watermark.png";
-            const category = mapCategory(role);
-
+            const name = data.name || "Core Architect";
+            const role = data.role || "Systems Engineer";
+            const category = data.category || mapCategory(role);
+            const rawImg = data.img || "/logo-watermark.png";
+            const img = getCleanPhoto(name, role, rawImg);
+            
             return {
               id: doc.id,
               name: name.trim(),
               role: role.trim(),
               category,
               img,
+              fallbackImg: rawImg,
               status: "ONLINE // VERIFIED",
               headline: data.desc || getRoleDescription(name, role),
               bio: data.desc || getRoleDescription(name, role),
@@ -332,19 +359,17 @@ export const Team = () => {
     : team.filter(m => m.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[#08080c] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
       {/* 1. BACKGROUND SVG ORBITAL MOTIFS & PROMINENT LOGO WATERMARK */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute -top-36 -right-36 w-[600px] h-[600px] md:w-[900px] md:h-[900px] opacity-20" viewBox="0 0 800 800" fill="none">
           <circle cx="400" cy="400" r="360" stroke="#cdd32c" strokeWidth="1" strokeDasharray="8 8" className="animate-make-line" />
-          <circle cx="400" cy="400" r="220" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.2" />
+          <circle cx="400" cy="400" r="240" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
         </svg>
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[140px]" />
 
-        {/* PROMINENT BACKGROUND LOGO - VISIBLE ABOVE THE FOLD IN MOBILE & WEB */}
-        <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-[300px] sm:w-[480px] md:w-[700px] aspect-[1024/847] pointer-events-none z-0 flex items-center justify-center">
-          <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-[70px] md:blur-[120px] pointer-events-none scale-75" />
+        {/* PROMINENT LOGO WATERMARK BEHIND HEADER */}
+        <div className="absolute top-14 sm:top-20 md:top-24 left-1/2 -translate-x-1/2 w-[340px] sm:w-[500px] md:w-[680px] aspect-square pointer-events-none z-0">
           <img 
             src="/logo-watermark.png" 
             alt="WayZenTech Background Logo" 
@@ -373,7 +398,7 @@ export const Team = () => {
             </div>
 
             {/* LIVE ENGINEER DESK BADGE */}
-            <div className="bg-[#141419] border border-white/10 px-5 py-3 rounded-2xl backdrop-blur-md self-start lg:self-auto flex items-center gap-3">
+            <div className="bg-[#121218] border border-white/10 px-5 py-3 rounded-2xl backdrop-blur-md self-start lg:self-auto flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[#cdd32c] animate-ping" />
               <div>
                 <p className="text-[11px] font-mono uppercase tracking-wider text-white font-bold">
@@ -389,100 +414,116 @@ export const Team = () => {
 
         {/* --- FOUNDER & PRINCIPAL ARCHITECT SPOTLIGHT (V. MAHESH) --- */}
         {founder && (
-          <section className="mb-16 md:mb-24">
+          <section className="mb-20 md:mb-28">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#101014] border-2 border-[#cdd32c]/40 rounded-[32px] md:rounded-[44px] p-6 sm:p-10 md:p-14 relative overflow-hidden shadow-[0_20px_50px_rgba(205,211,44,0.08)]"
+              className="relative bg-gradient-to-br from-[#121217] via-[#0d0d12] to-[#08080a] border border-white/[0.08] hover:border-white/15 rounded-[32px] sm:rounded-[40px] p-6 sm:p-10 lg:p-14 overflow-hidden shadow-2xl transition-all duration-500"
             >
-              {/* Decorative Watermark */}
-              <div className="absolute top-6 right-8 text-6xl md:text-8xl font-black font-mono text-white/5 select-none pointer-events-none">
+              {/* Ambient background glow */}
+              <div className="absolute -top-32 -left-32 w-96 h-96 bg-[#cdd32c]/10 rounded-full blur-[100px] pointer-events-none" />
+              <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[100px] pointer-events-none" />
+              
+              {/* Watermark index */}
+              <div className="absolute top-6 right-8 text-7xl sm:text-9xl font-black font-mono text-white/[0.03] select-none pointer-events-none">
                 01
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center relative z-10">
                 
-                {/* Left: Founder Real Photo Frame */}
-                <div className="lg:col-span-4 flex flex-col items-center sm:items-start">
-                  <div className="relative w-48 h-48 sm:w-60 sm:h-60 rounded-3xl overflow-hidden border-2 border-[#cdd32c] p-1.5 shadow-2xl group bg-[#0a0101]">
-                    <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                      <img 
-                        src={founder.img} 
-                        alt={founder.name} 
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                        onError={(e) => { e.target.src = "/logo-watermark.png"; }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
-                      
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                        <span className="text-[9px] font-mono font-black text-[#cdd32c] tracking-widest uppercase bg-black/70 px-2 py-0.5 rounded-md backdrop-blur-sm">
-                          FOUNDER
-                        </span>
-                        <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
-                      </div>
+                {/* Left: Founder Portrait (Heroic, tall, frameless) */}
+                <div className="lg:col-span-5 flex justify-center">
+                  <div className="relative w-full max-w-[340px] sm:max-w-[380px] aspect-[3/4] rounded-[28px] overflow-hidden bg-[#0c0c10] shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/10 group">
+                    <img 
+                      src={founder.img} 
+                      alt={founder.name} 
+                      className="w-full h-full object-cover object-top filter brightness-[0.92] contrast-[1.05] group-hover:scale-105 group-hover:brightness-100 transition-transform duration-700 ease-out"
+                      onError={(e) => { 
+                        if (founder.fallbackImg && e.target.src !== founder.fallbackImg) {
+                          e.target.src = founder.fallbackImg;
+                        } else {
+                          e.target.src = "/logo-watermark.png";
+                        }
+                      }}
+                    />
+                    {/* Silky bottom gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0d] via-black/30 via-40% to-transparent opacity-90 pointer-events-none" />
+                    
+                    {/* Top Chip */}
+                    <div className="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
+                      <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
+                      <span>HYDERABAD // HQ</span>
                     </div>
 
-                    {/* Corner Accent Pointers */}
-                    <span className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#cdd32c]" />
-                    <span className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[#cdd32c]" />
-                  </div>
-
-                  <div className="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
-                    <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
-                    <span>ONLINE // HYDERABAD_HQ</span>
+                    {/* Bottom Floating Bar */}
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                      <span className="text-[10px] font-mono font-black text-[#0a0101] tracking-widest uppercase bg-[#cdd32c] px-3.5 py-1 rounded-full shadow-lg">
+                        FOUNDER
+                      </span>
+                      <span className="text-xs font-mono font-black text-white/90 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
+                        01
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Right: Architectural Biography & Direct Sync */}
-                <div className="lg:col-span-8 text-left space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#cdd32c]/10 text-[#cdd32c] text-[10px] font-mono font-black uppercase tracking-widest">
-                    <ShieldCheck size={12} />
+                {/* Right: Editorial Profile */}
+                <div className="lg:col-span-7 text-left space-y-6">
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#cdd32c]/10 text-[#cdd32c] text-xs font-mono font-black uppercase tracking-widest border border-[#cdd32c]/20">
+                    <ShieldCheck size={13} />
                     <span>FOUNDER & PRINCIPAL SYSTEMS ARCHITECT</span>
                   </div>
 
-                  <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-white leading-tight">
-                    {founder.name}
-                  </h2>
+                  <div>
+                    <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-white leading-tight">
+                      {founder.name}
+                    </h2>
+                    <p className="text-sm sm:text-base text-slate-400 font-light mt-2 max-w-xl leading-relaxed">
+                      Leading WayZenTech's core engineering operations across full-stack MERN systems, custom AI workflows, and cloud deployments with direct, zero-broker client communication.
+                    </p>
+                  </div>
 
-                  <p className="text-sm sm:text-base md:text-lg text-slate-300 font-light leading-relaxed border-l-2 border-[#cdd32c] pl-4">
-                    “We engineer software as high-velocity commercial assets, not digital shelf-ware. Every system is built to process real transactions, dominate search rankings, and scale seamlessly under load.”
-                  </p>
+                  <div className="p-5 sm:p-6 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm">
+                    <p className="text-base sm:text-lg text-slate-200 font-light italic leading-relaxed">
+                      “We engineer software as high-velocity commercial assets, not digital shelf-ware. Every system is built to process real transactions, dominate search rankings, and scale seamlessly under load.”
+                    </p>
+                  </div>
 
-                  <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed">
-                    Leading WayZenTech's core engineering operations across full-stack MERN systems, custom AI workflows, and cloud deployments with direct, zero-broker client communication.
-                  </p>
-
-                  {/* Tech Stack Pills */}
-                  <div className="pt-2">
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#cdd32c] block mb-2 font-bold">
+                  {/* Core Architectural Disciplines */}
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-slate-400 block font-bold">
                       [ CORE ARCHITECTURAL DISCIPLINES ]
                     </span>
                     <div className="flex flex-wrap gap-2">
-                      {founder.stacks.map((stk, i) => (
-                        <span key={i} className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
-                          {stk}
+                      {founder.stacks.map((stack, idx) => (
+                        <span 
+                          key={idx}
+                          className="px-3.5 py-1.5 rounded-xl bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-slate-300 flex items-center gap-2"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c]" />
+                          <span>{stack}</span>
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  {/* Actions */}
-                  <div className="pt-4 flex flex-col sm:flex-row items-center gap-3">
+                  {/* Action Row */}
+                  <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">
                     <button
-                      onClick={() => window.open('https://wa.me/919398724704?text=Hi%20Mahesh,%20I%20want%20to%20discuss%20a%20project%20directly', '_blank')}
-                      className="w-full sm:w-auto bg-[#cdd32c] hover:bg-white text-[#0a0101] px-6 py-3.5 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#cdd32c]/20 cursor-pointer"
+                      onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20Mahesh,%20I%20want%20to%20discuss%20an%20engineering%20project%20with%20WayZenTech.`, '_blank')}
+                      className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-[#cdd32c] text-[#0a0101] font-mono font-black text-xs uppercase tracking-wider hover:bg-white hover:scale-[1.02] transition-all flex items-center justify-center gap-2.5 shadow-lg shadow-[#cdd32c]/20 cursor-pointer"
                     >
-                      <MessageCircle size={15} />
-                      <span>Talk with Founder on WhatsApp</span>
+                      <MessageCircle size={16} />
+                      <span>TALK WITH FOUNDER ON WHATSAPP</span>
                     </button>
-                    
-                    <div className="flex gap-2 w-full sm:w-auto justify-center">
+
+                    <div className="flex gap-2">
                       <a 
                         href={founder.linkedin} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="w-11 h-11 bg-white/5 hover:bg-[#cdd32c] hover:text-[#0a0101] rounded-xl flex items-center justify-center text-white transition-all border border-white/10"
+                        className="w-11 h-11 bg-white/[0.04] hover:bg-[#cdd32c] hover:text-[#0a0101] rounded-xl flex items-center justify-center text-white transition-all border border-white/10"
                         title="LinkedIn"
                       >
                         <Linkedin size={16} />
@@ -491,7 +532,7 @@ export const Team = () => {
                         href={founder.instagram} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="w-11 h-11 bg-white/5 hover:bg-[#cdd32c] hover:text-[#0a0101] rounded-xl flex items-center justify-center text-white transition-all border border-white/10"
+                        className="w-11 h-11 bg-white/[0.04] hover:bg-[#cdd32c] hover:text-[#0a0101] rounded-xl flex items-center justify-center text-white transition-all border border-white/10"
                         title="Instagram"
                       >
                         <Instagram size={16} />
@@ -533,97 +574,107 @@ export const Team = () => {
 
         {/* --- ARCHITECTURAL DOSSIER GRID (REAL TEAM MEMBERS & PHOTOS) --- */}
         <section className="mb-24">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <AnimatePresence mode="popLayout">
               {filteredTeam.map((member, idx) => (
                 <motion.div
                   key={member.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3, delay: idx * 0.04 }}
-                  className="bg-[#141419] border border-white/10 rounded-[28px] p-5 sm:p-6 flex flex-col justify-between text-left hover:border-[#cdd32c]/60 transition-all duration-300 shadow-xl group"
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35, delay: idx * 0.03 }}
+                  className="relative min-h-[490px] sm:min-h-[520px] rounded-[30px] overflow-hidden bg-[#0e0e13] border border-white/[0.07] hover:border-[#cdd32c]/60 transition-all duration-500 shadow-xl group flex flex-col justify-between p-6 sm:p-7 text-left"
                 >
-                  <div>
-                    {/* Member Photo Frame */}
-                    <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-5 bg-[#0a0101] border border-white/10 group-hover:border-[#cdd32c]/40 transition-colors">
-                      <img 
-                        src={member.img} 
-                        alt={member.name}
-                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                        onError={(e) => { e.target.src = "/logo-watermark.png"; }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                      
-                      {/* Top Node Pill */}
-                      <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10 text-[9px] font-mono text-[#cdd32c] uppercase font-bold">
-                        NODE_{member.num}
-                      </div>
+                  {/* Full-bleed Portrait Background Image */}
+                  <div className="absolute inset-0 z-0 overflow-hidden bg-[#09090c]">
+                    <img 
+                      src={member.img} 
+                      alt={member.name}
+                      className="w-full h-full object-cover object-top filter brightness-[0.85] contrast-[1.05] group-hover:scale-105 group-hover:brightness-100 transition-all duration-700 ease-out"
+                      onError={(e) => { 
+                        if (member.fallbackImg && e.target.src !== member.fallbackImg) {
+                          e.target.src = member.fallbackImg;
+                        } else {
+                          e.target.src = "/logo-watermark.png";
+                        }
+                      }}
+                    />
+                    {/* Ambient gradients: subtle top shade and deep bottom fade */}
+                    <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/85 via-black/30 to-transparent pointer-events-none" />
+                    <div className="absolute inset-x-0 bottom-0 h-[76%] bg-gradient-to-t from-[#08080b] via-[#08080b]/95 via-55% to-transparent pointer-events-none" />
+                  </div>
 
-                      {/* Bottom Role Tag */}
-                      <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                        <span className="text-[10px] font-mono font-black uppercase tracking-wider text-white bg-[#0a0101]/80 px-2.5 py-1 rounded-md border border-white/10">
-                          {member.role}
-                        </span>
-                        <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-pulse" />
-                      </div>
-                    </div>
-
-                    {/* Member Name */}
-                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-white group-hover:text-[#cdd32c] transition-colors mb-2">
-                      {member.name}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed mb-5 line-clamp-3">
-                      {member.bio}
-                    </p>
-
-                    {/* Stacks */}
-                    <div className="mb-5 space-y-1.5">
-                      <span className="text-[9px] font-mono uppercase tracking-widest text-slate-500 block">
-                        Focus Competencies
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {member.stacks.map((stk, i) => (
-                          <span key={i} className="px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] font-mono text-slate-300">
-                            {stk}
-                          </span>
-                        ))}
-                      </div>
+                  {/* Top Overlays */}
+                  <div className="relative z-10 flex items-center justify-between">
+                    <span className="text-xs font-mono font-black text-[#cdd32c] bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-lg border border-white/10">
+                      NODE_{member.num}
+                    </span>
+                    <div className="inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-[9px] font-mono uppercase tracking-wider text-slate-300">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c] animate-pulse" />
+                      <span>{member.category}</span>
                     </div>
                   </div>
 
-                  {/* Card Bottom Sync Bar */}
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                    <button
-                      onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20connect%20with%20${encodeURIComponent(member.name)}%20(${encodeURIComponent(member.role)})`, '_blank')}
-                      className="text-xs font-black uppercase tracking-wider text-[#cdd32c] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer"
-                    >
-                      <MessageCircle size={14} />
-                      <span>Direct Sync</span>
-                    </button>
-
-                    <div className="flex gap-1.5">
-                      <a 
-                        href={member.linkedin} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
-                        title="LinkedIn"
-                      >
-                        <Linkedin size={13} />
-                      </a>
-                      <a 
-                        href={member.instagram} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="w-8 h-8 rounded-lg bg-white/5 hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
-                        title="Instagram"
-                      >
-                        <Instagram size={13} />
-                      </a>
+                  {/* Bottom Content Area */}
+                  <div className="relative z-10 pt-16 space-y-3">
+                    <div>
+                      <span className="text-[11px] font-mono font-black uppercase tracking-widest text-[#cdd32c] block mb-1">
+                        {member.role}
+                      </span>
+                      <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white group-hover:text-[#cdd32c] transition-colors leading-tight">
+                        {member.name}
+                      </h3>
                     </div>
+
+                    <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed line-clamp-2">
+                      {member.bio}
+                    </p>
+
+                    {/* Competency Chips */}
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {member.stacks.slice(0, 3).map((stk, i) => (
+                        <span 
+                          key={i} 
+                          className="px-2.5 py-1 rounded-lg bg-black/50 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-200"
+                        >
+                          {stk}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Bottom Action Bar */}
+                    <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+                      <button
+                        onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20connect%20with%20${encodeURIComponent(member.name)}%20(${encodeURIComponent(member.role)})`, '_blank')}
+                        className="text-xs font-mono font-bold uppercase tracking-wider text-[#cdd32c] hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer py-1"
+                      >
+                        <MessageCircle size={14} />
+                        <span>DIRECT SYNC</span>
+                      </button>
+
+                      <div className="flex gap-1.5">
+                        <a 
+                          href={member.linkedin} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 rounded-lg bg-black/50 hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
+                          title="LinkedIn"
+                        >
+                          <Linkedin size={13} />
+                        </a>
+                        <a 
+                          href={member.instagram} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="w-8 h-8 rounded-lg bg-black/50 hover:bg-[#cdd32c] hover:text-[#0a0101] flex items-center justify-center text-white transition-all border border-white/10"
+                          title="Instagram"
+                        >
+                          <Instagram size={13} />
+                        </a>
+                      </div>
+                    </div>
+
                   </div>
                 </motion.div>
               ))}
@@ -646,7 +697,7 @@ export const Team = () => {
             {principles.map((pr, idx) => (
               <div 
                 key={idx} 
-                className="p-6 rounded-2xl bg-[#141419] border border-white/10 hover:border-[#cdd32c]/50 transition-all flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-[#121218] border border-white/[0.08] hover:border-[#cdd32c]/50 transition-all flex flex-col justify-between"
               >
                 <div>
                   <span className="text-2xl font-black font-mono text-[#cdd32c] block mb-3">
