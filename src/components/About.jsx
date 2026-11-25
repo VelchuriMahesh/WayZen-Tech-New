@@ -1,167 +1,268 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Added for navigation
+import { useNavigate } from 'react-router-dom';
 import { 
   Code2, Rocket, GraduationCap, Smartphone, 
-  Zap, ArrowRight 
+  ArrowRight, ShieldCheck, Sparkles, MessageCircle,
+  Compass, Cpu
 } from 'lucide-react';
 
 const WayZenAbout = () => {
   const navigate = useNavigate();
 
-  const stats = [
-    { label: "Global Projects", value: "65+" },
-    { label: "Frameworks", value: "12+" },
-    { label: "Academic Success", value: "100%" },
-    { label: "Support Sync", value: "24/7" },
-  ];
-
-  const services = [
+  const brandPillars = [
     {
-      title: "Enterprise Software",
-      icon: <Code2 className="text-cyan-400" />,
-      desc: "Scalable MERN architectures. High-traffic SaaS platforms and complex B2B ecosystems.",
-      tag: "Scalable"
+      word: "WAY",
+      title: "The Path",
+      icon: Compass,
+      desc: "Clear trajectory, direct engineer-to-client collaboration on WhatsApp, and transparent execution without agency bureaucracy."
     },
     {
-      title: "Hyper Growth",
-      icon: <Rocket className="text-purple-500" />,
-      desc: "Aggressive SEO and Performance Marketing to dominate the digital landscape.",
-      tag: "250% Growth"
+      word: "ZEN",
+      title: "Mastery & Focus",
+      icon: ShieldCheck,
+      desc: "Clutter-free codebases, sub-second loading speeds, and robust architectural calm under high production traffic."
     },
     {
-      title: "Academic Incubator",
-      icon: <GraduationCap className="text-amber-400" />,
-      desc: "Premium B.Tech/M.Tech R&D support with IEEE documentation.",
-      tag: "Research"
-    },
-    {
-      title: "Native Mobile",
-      icon: <Smartphone className="text-green-400" />,
-      desc: "High-performance iOS & Android apps using Flutter and React Native.",
-      tag: "Silk Smooth"
+      word: "TECH",
+      title: "Next-Gen Engineering",
+      icon: Cpu,
+      desc: "Future-proof frameworks: reactive MERN web systems, autonomous AI agents, and enterprise cloud deployments."
     }
   ];
 
+  const stats = [
+    { label: "Global Projects", value: "65+", desc: "Web, AI & Software Deployments" },
+    { label: "Production Frameworks", value: "12+", desc: "React, Next.js, Node, Python, Flutter" },
+    { label: "Academic Success", value: "100%", desc: "B.Tech & M.Tech IEEE R&D Support" },
+    { label: "Engineer Sync", value: "24/7", desc: "Direct WhatsApp Line & Fast Support" },
+  ];
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true }
-  };
+  const disciplines = [
+    {
+      title: "Enterprise Software",
+      icon: Code2,
+      desc: "Scalable MERN architectures, distributed cloud backends, and high-traffic SaaS ecosystems built to process millions of transactions.",
+      tag: "Architectural Scale"
+    },
+    {
+      title: "Hyper-Growth SEO & Ads",
+      icon: Rocket,
+      desc: "Dominating Google search results and precision Meta & Google ad funnels engineered for predictable customer acquisition cost (CAC).",
+      tag: "Measurable ROI"
+    },
+    {
+      title: "Academic Incubator",
+      icon: GraduationCap,
+      desc: "Premium B.Tech & M.Tech R&D support with end-to-end IEEE documentation, paper publications, source code, and 1-on-1 deployment guidance.",
+      tag: "Research & IEEE"
+    },
+    {
+      title: "Native Mobile Systems",
+      icon: Smartphone,
+      desc: "Ultra-responsive cross-platform iOS and Android applications engineered with Flutter and React Native for fluid 120Hz experiences.",
+      tag: "Native Fluidity"
+    }
+  ];
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-cyan-500/30 overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
-      {/* Hero Section */}
-      <section className="relative pt-24 md:pt-32 pb-24 md:pb-32 px-4 md:px-6 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[400px] bg-cyan-500/10 blur-[80px] md:blur-[120px] rounded-full" />
-        
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-block px-4 py-1 border border-white/20 rounded-full text-[10px] md:text-sm font-mono mb-6 tracking-widest text-cyan-400"
-          >
-            THE TECH FRONTIER
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-8xl font-black mb-8 leading-tight tracking-tighter"
-          >
-            WAYZEN <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">TECH.</span>
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg md:text-2xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
-          >
-            We don't just build software. We <span className="text-white font-semibold">engineer high-velocity digital assets</span> that dominate markets and accelerate growth.
-          </motion.p>
-        </div>
-      </section>
+      {/* 1. PIVOTROOTS ORBITAL SVG ACCENT */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <svg className="absolute -top-36 -right-36 w-[600px] h-[600px] md:w-[900px] md:h-[900px] opacity-20" viewBox="0 0 800 800" fill="none">
+          <circle cx="400" cy="400" r="350" stroke="#cdd32c" strokeWidth="1" strokeDasharray="8 8" className="animate-make-line" />
+          <circle cx="400" cy="400" r="240" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.2" />
+        </svg>
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-[#cdd32c]/5 rounded-full blur-[140px]" />
+      </div>
 
-      {/* Stats Grid */}
-      <section className="py-16 md:py-20 bg-white/5 border-y border-white/10">
-        <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto relative z-10">
+        
+        {/* HERO SECTION */}
+        <header className="text-center max-w-4xl mx-auto mb-20 md:mb-28">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#cdd32c]/10 border border-[#cdd32c]/30 text-[#cdd32c] text-[10px] md:text-xs font-mono font-black uppercase tracking-widest mb-6">
+            <Sparkles size={12} />
+            <span>[ COMPANY_IDENTITY / MANIFESTO ]</span>
+          </div>
+
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-black uppercase tracking-tighter leading-[0.95] text-white mb-6">
+            THE WAY TO <br />
+            <span className="text-[#cdd32c]">NEXT-GEN TECH.</span>
+          </h1>
+
+          <p className="text-slate-300 text-base md:text-2xl font-light leading-relaxed max-w-3xl mx-auto">
+            We don't build generic corporate websites. We <span className="text-white font-bold">engineer high-velocity digital assets</span> that dominate search rankings, automate daily workflows, and accelerate commercial growth.
+          </p>
+        </header>
+
+        {/* BRAND PILLARS: WAY • ZEN • TECH */}
+        <section className="mb-24 md:mb-32">
+          <div className="text-center mb-10">
+            <h2 className="text-xs font-mono uppercase tracking-widest text-[#cdd32c] font-black">
+              [ THE ARCHITECTURE OF OUR NAME ]
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {brandPillars.map((p, idx) => {
+              const IconComp = p.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-[#141419] border border-white/10 rounded-[28px] p-8 relative overflow-hidden group hover:border-[#cdd32c]/60 transition-all shadow-xl"
+                >
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="text-4xl font-black font-mono text-[#cdd32c]">
+                      {p.word}
+                    </span>
+                    <div className="w-12 h-12 rounded-2xl bg-white/5 group-hover:bg-[#cdd32c] group-hover:text-[#0a0101] text-white flex items-center justify-center transition-colors">
+                      <IconComp size={22} />
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl font-black uppercase tracking-tight text-white mb-3">
+                    {p.title}
+                  </h3>
+
+                  <p className="text-slate-300 text-xs md:text-sm leading-relaxed font-light">
+                    {p.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* EDITORIAL QUOTE BLOCK */}
+        <section className="mb-24 md:mb-32 bg-[#edf1f2] text-[#0a0101] rounded-[36px] p-8 md:p-16 border border-[#d5d5d5] relative overflow-hidden shadow-2xl">
+          <div className="max-w-4xl mx-auto space-y-6">
+            <span className="text-xs font-mono font-black uppercase tracking-widest text-slate-500 block">
+              EDITORIAL PERSPECTIVE
+            </span>
+            <blockquote className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight leading-snug">
+              “Most agencies deliver digital brochures that look pretty and convert nobody. We approach web and software development as <span className="bg-[#cdd32c] px-2 py-0.5">performance engineering</span> — every micro-interaction, line of code, and layout hierarchy is measured by its impact on user action.”
+            </blockquote>
+            <div className="pt-2 flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-[#0a0101]" />
+              <p className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold">
+                WayZenTech Engineering Principle • Narasaraopet HQ
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* STATS MATRIX */}
+        <section className="mb-24 md:mb-32 py-12 px-6 bg-white/5 border border-white/10 rounded-[32px] backdrop-blur-xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, idx) => (
-              <motion.div key={idx} variants={fadeIn} initial="initial" whileInView="whileInView" className="text-center">
-                <div className="text-3xl md:text-5xl font-black text-cyan-500 mb-2">{stat.value}</div>
-                <div className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">{stat.label}</div>
-              </motion.div>
+              <div key={idx} className="text-center space-y-2">
+                <div className="text-3xl md:text-6xl font-black text-[#cdd32c] font-mono tracking-tighter">
+                  {stat.value}
+                </div>
+                <div className="text-xs font-mono uppercase tracking-wider text-white font-bold">
+                  {stat.label}
+                </div>
+                <p className="text-[10px] text-slate-400 font-light hidden sm:block">
+                  {stat.desc}
+                </p>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Arsenal / Services Section */}
-      <section className="py-24 md:py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-6">
-            <div className="text-center md:text-left">
-              <h2 className="text-xs font-mono text-cyan-500 mb-2 uppercase tracking-widest">Our Arsenal</h2>
-              <h3 className="text-4xl md:text-6xl font-black leading-none">PREMIUM DIGITAL<br/>COLLECTIVE.</h3>
+        {/* THE ARSENAL: 4 PILLARS */}
+        <section className="mb-24 md:mb-32">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div>
+              <span className="text-xs font-mono uppercase tracking-widest text-[#cdd32c] font-black block mb-2">
+                [ THE ARSENAL ]
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white">
+                Core Disciplines.
+              </h2>
             </div>
-            <p className="text-gray-400 max-w-md text-center md:text-right text-sm md:text-base">
-              Innovation Hub & India-Based Engineering for the global market.
+            <p className="text-slate-400 text-xs md:text-sm font-light max-w-md">
+              Full-lifecycle digital product development from rapid architectural prototyping to high-scale commercial deployment.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {services.map((service, idx) => (
-              <motion.div 
-                key={idx}
-                variants={fadeIn}
-                initial="initial"
-                whileInView="whileInView"
-                onClick={() => navigate('/services')}
-                className="p-8 md:p-10 bg-zinc-900/50 border border-white/10 rounded-3xl hover:border-cyan-500/50 transition-all group cursor-pointer"
-              >
-                <div className="flex justify-between items-start mb-8">
-                  <div className="p-4 bg-black rounded-2xl border border-white/5 group-hover:bg-cyan-500 group-hover:text-black transition-colors">
-                    {React.cloneElement(service.icon, { size: 28, className: "group-hover:text-black" })}
+            {disciplines.map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -6 }}
+                  onClick={() => navigate('/services')}
+                  className="p-8 md:p-10 bg-[#141419] border border-white/10 rounded-[28px] hover:border-[#cdd32c]/60 transition-all group cursor-pointer shadow-xl text-left"
+                >
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-white/5 group-hover:bg-[#cdd32c] group-hover:text-[#0a0101] text-[#cdd32c] flex items-center justify-center transition-colors">
+                      <IconComp size={26} />
+                    </div>
+                    <span className="text-[10px] font-mono border border-white/20 px-3 py-1 rounded-full text-slate-300 uppercase tracking-widest">
+                      {item.tag}
+                    </span>
                   </div>
-                  <span className="text-[10px] font-mono border border-white/20 px-3 py-1 rounded-full text-gray-400 uppercase">
-                    {service.tag}
-                  </span>
-                </div>
-                <h4 className="text-2xl md:text-3xl font-bold mb-4">{service.title}</h4>
-                <p className="text-gray-400 leading-relaxed mb-8 text-sm md:text-base">
-                  {service.desc}
-                </p>
-                <div className="flex items-center text-xs font-black tracking-widest group-hover:text-cyan-400 transition-colors uppercase">
-                  EXPLORE LAB <ArrowRight size={16} className="ml-2 group-hover:translate-x-2 transition-transform" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-24 md:py-32 px-6">
-        <div className="max-w-5xl mx-auto text-center border border-white/10 p-10 md:p-20 rounded-[2.5rem] md:rounded-[4rem] relative overflow-hidden bg-gradient-to-b from-zinc-900 to-black">
-          <div className="absolute top-0 right-0 p-8 opacity-5">
-             <Zap size={150} />
+                  <h3 className="text-2xl font-black uppercase tracking-tight text-white mb-3">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-slate-300 text-xs md:text-sm leading-relaxed mb-6 font-light">
+                    {item.desc}
+                  </p>
+
+                  <div className="flex items-center text-xs font-black tracking-widest group-hover:text-[#cdd32c] transition-colors uppercase gap-2">
+                    <span>EXPLORE CAPABILITIES</span>
+                    <ArrowRight size={15} className="group-hover:translate-x-2 transition-transform" />
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
-          <h2 className="text-5xl md:text-8xl font-black mb-8 italic tracking-tighter">
-            FUTURE <br/>IS WAYZEN.
-          </h2>
-          <p className="text-lg md:text-2xl text-gray-400 mb-10 font-mono">+91 9398724704</p>
-          <button 
-            onClick={() => {
-              navigate('/');
-              setTimeout(() => document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' }), 300);
-            }}
-            className="w-full md:w-auto bg-cyan-500 text-black px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest hover:scale-105 transition-transform shadow-2xl shadow-cyan-500/20"
-          >
-            START YOUR PROJECT
-          </button>
-        </div>
-      </section>
+        </section>
+
+        {/* BOTTOM CTA: FULL-WIDTH PIVOTROOTS ACTION CARD */}
+        <section className="bg-[#101014] border border-white/10 rounded-[36px] p-8 md:p-16 text-center relative overflow-hidden shadow-2xl">
+          <div className="max-w-3xl mx-auto space-y-6">
+            <span className="text-xs font-mono uppercase tracking-widest text-[#cdd32c] font-black">
+              [ NEXT STEP ]
+            </span>
+            <h2 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-white">
+              FUTURE IS <span className="text-[#cdd32c]">WAYZEN.</span>
+            </h2>
+            <p className="text-slate-400 text-sm md:text-lg font-light leading-relaxed">
+              Have an ambitious vision for a website, software platform, or AI workflow? Let's bring it to life with precision.
+            </p>
+            <div className="pt-4 flex flex-col sm:flex-row justify-center gap-3">
+              <button
+                onClick={() => {
+                  navigate('/');
+                  setTimeout(() => document.getElementById('request')?.scrollIntoView({ behavior: 'smooth' }), 300);
+                }}
+                className="bg-[#cdd32c] hover:bg-white text-[#0a0101] px-10 py-5 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-xl shadow-[#cdd32c]/20"
+              >
+                <span>Start Your Project</span>
+                <ArrowRight size={16} />
+              </button>
+              <button
+                onClick={() => window.open('https://wa.me/919398724704', '_blank')}
+                className="bg-white/10 hover:bg-[#25D366] hover:text-black text-white border border-white/20 px-10 py-5 rounded-2xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all"
+              >
+                <MessageCircle size={16} />
+                <span>Chat on WhatsApp (+91 9398724704)</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
     </div>
   );
 };

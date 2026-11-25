@@ -61,8 +61,8 @@ export const Navbar = () => {
 
   return (
     <>
-      {/* FIXED TOP HEADER */}
-      <header className="fixed top-0 left-0 w-full z-[999] transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-slate-200/70">
+      {/* FIXED TOP HEADER - PIVOTROOTS OBSIDIAN GLASS */}
+      <header className="fixed top-0 left-0 w-full z-[999] transition-all duration-300 bg-[#0a0101]/90 backdrop-blur-md border-b border-white/10">
         <div className="max-w-7xl mx-auto px-5 md:px-8 h-18 md:h-22 flex items-center justify-between">
           
           {/* BRAND LOGO */}
@@ -72,10 +72,10 @@ export const Navbar = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden border border-slate-200 shadow-sm flex-shrink-0 bg-white p-0.5 group-hover:border-[#cdd32c] transition-colors">
+            <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden border border-white/15 shadow-sm flex-shrink-0 bg-[#141419] p-1 group-hover:border-[#cdd32c] transition-colors">
               <img src="/logo.png" alt="WayZenTech" className="w-full h-full object-contain" />
             </div>
-            <span className="text-xl md:text-2xl font-black tracking-tighter text-[#0a0101] uppercase italic">
+            <span className="text-xl md:text-2xl font-black tracking-tighter text-white uppercase italic">
               WAYZEN<span className="text-[#cdd32c] drop-shadow-sm">TECH</span>
             </span>
           </motion.div>
@@ -94,7 +94,7 @@ export const Navbar = () => {
                     exit={{ y: -20, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => window.open('https://wa.me/919398724704', '_blank')}
-                    className="h-9 px-3.5 sm:px-4 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 text-[#075e54] text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-[#25D366] hover:text-white transition-all shadow-sm"
+                    className="h-9 px-3.5 sm:px-4 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-[#25D366] hover:text-white transition-all shadow-sm cursor-pointer"
                   >
                     <span className="relative flex h-2 w-2">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75" />
@@ -112,7 +112,7 @@ export const Navbar = () => {
                     exit={{ y: -20, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => window.open('https://instagram.com/way_zentech', '_blank')}
-                    className="h-9 px-3.5 sm:px-4 rounded-full bg-gradient-to-r from-orange-500/10 via-pink-500/10 to-purple-500/10 border border-pink-500/30 text-pink-700 text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-600 hover:text-white transition-all shadow-sm"
+                    className="h-9 px-3.5 sm:px-4 rounded-full bg-pink-500/20 border border-pink-500/40 text-pink-300 text-[10px] sm:text-xs font-black uppercase tracking-wider flex items-center gap-2 hover:bg-gradient-to-r hover:from-orange-500 hover:to-pink-600 hover:text-white transition-all shadow-sm cursor-pointer"
                   >
                     <Instagram size={13} />
                     <span>@way_zentech</span>
@@ -129,28 +129,28 @@ export const Navbar = () => {
             >
               {/* Line 1: 40px width -> rotates 45deg */}
               <motion.span
-                animate={isOpen ? { rotate: 45, y: 12, width: 36, backgroundColor: '#0a0101' } : { rotate: 0, y: 0, width: 40, backgroundColor: '#0a0101' }}
+                animate={isOpen ? { rotate: 45, y: 12, width: 36, backgroundColor: '#0a0101' } : { rotate: 0, y: 0, width: 40, backgroundColor: '#ffffff' }}
                 transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
                 className="h-[2.5px] rounded-full origin-center"
               />
 
               {/* Line 2: 22px width -> slides off-canvas left */}
               <motion.span
-                animate={isOpen ? { x: -50, opacity: 0 } : { x: 0, opacity: 1, width: 22, backgroundColor: '#0a0101' }}
+                animate={isOpen ? { x: -50, opacity: 0 } : { x: 0, opacity: 1, width: 22, backgroundColor: '#ffffff' }}
                 transition={{ duration: 0.25 }}
                 className="h-[2.5px] rounded-full"
               />
 
               {/* Line 3: 40px width -> rotates -45deg */}
               <motion.span
-                animate={isOpen ? { rotate: -45, y: -12, width: 36, backgroundColor: '#0a0101' } : { rotate: 0, y: 0, width: 40, backgroundColor: '#0a0101' }}
+                animate={isOpen ? { rotate: -45, y: -12, width: 36, backgroundColor: '#0a0101' } : { rotate: 0, y: 0, width: 40, backgroundColor: '#ffffff' }}
                 transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
                 className="h-[2.5px] rounded-full origin-center"
               />
 
               {/* Line 4: 18px width -> slides off-canvas left */}
               <motion.span
-                animate={isOpen ? { x: -50, opacity: 0 } : { x: 0, opacity: 1, width: 18, backgroundColor: '#0a0101' }}
+                animate={isOpen ? { x: -50, opacity: 0 } : { x: 0, opacity: 1, width: 18, backgroundColor: '#ffffff' }}
                 transition={{ duration: 0.25 }}
                 className="h-[2.5px] rounded-full"
               />

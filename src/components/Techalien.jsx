@@ -109,7 +109,7 @@ export const Techalien = () => {
   };
 
   return (
-    <div className="fixed bottom-24 md:bottom-8 right-3 md:right-8 z-[90] flex flex-col items-end gap-2 md:gap-3 pointer-events-auto">
+    <div className="fixed bottom-20 md:bottom-8 right-3 md:right-8 z-[90] flex flex-col items-end gap-2 md:gap-3 pointer-events-auto">
       
       {/* 1. FLOATING CALL BUTTON (Desktop only - Mobile has direct access in top drawer and footer) */}
       <motion.a
@@ -117,9 +117,9 @@ export const Techalien = () => {
         whileTap={{ scale: 0.95 }}
         href="tel:+919398724704"
         title="Call WayZenTech (+91 9398724704)"
-        className="hidden md:flex w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full items-center justify-center shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer"
+        className="hidden md:flex w-14 h-14 bg-[#141419] hover:bg-[#cdd32c] text-white hover:text-[#0a0101] border border-white/15 rounded-full items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all cursor-pointer group"
       >
-        <Phone size={22} className="animate-pulse" />
+        <Phone size={20} className="group-hover:animate-bounce" />
       </motion.a>
 
       {/* 2. FLOATING WHATSAPP BUTTON (Desktop only - Mobile has direct WhatsApp in top pill and bottom dock) */}
@@ -128,9 +128,9 @@ export const Techalien = () => {
         whileTap={{ scale: 0.95 }}
         onClick={() => window.open('https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20inquire%20about%20your%20services', '_blank')}
         title="Chat on WhatsApp (+91 9398724704)"
-        className="hidden md:flex w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full items-center justify-center shadow-[0_4px_16px_rgba(37,211,102,0.4)] transition-all cursor-pointer"
+        className="hidden md:flex w-14 h-14 bg-[#25D366] hover:bg-[#20ba5a] text-white rounded-full items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-all cursor-pointer"
       >
-        <MessageCircle size={24} fill="currentColor" />
+        <MessageCircle size={22} fill="currentColor" />
       </motion.button>
 
       {/* 3. AI CHATBOT MODAL */}
@@ -140,18 +140,18 @@ export const Techalien = () => {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="mb-2 w-[92vw] max-w-[380px] h-[70vh] max-h-[520px] bg-slate-950/95 backdrop-blur-2xl rounded-[28px] border-2 border-emerald-500/40 shadow-[0_10px_40px_rgba(16,185,129,0.3)] flex flex-col overflow-hidden text-white"
+            className="mb-2 w-[92vw] max-w-[380px] h-[70vh] max-h-[520px] bg-[#0a0101]/95 backdrop-blur-2xl rounded-[28px] border-2 border-[#cdd32c]/50 shadow-[0_10px_40px_rgba(205,211,44,0.25)] flex flex-col overflow-hidden text-white"
           >
             {/* CHATBOT HEADER */}
-            <div className="p-4 bg-emerald-950/40 border-b border-emerald-500/20 flex justify-between items-center">
+            <div className="p-4 bg-white/5 border-b border-white/10 flex justify-between items-center">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+                <div className="w-8 h-8 rounded-full bg-[#cdd32c]/20 border border-[#cdd32c]/40 flex items-center justify-center text-[#cdd32c]">
                   <Bot size={18} />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-emerald-400 font-mono text-xs font-black tracking-widest uppercase">Techalien AI</span>
-                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    <span className="text-[#cdd32c] font-mono text-xs font-black tracking-widest uppercase">Techalien AI</span>
+                    <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-ping" />
                   </div>
                   <p className="text-[9px] text-slate-400 font-sans">WayZenTech Virtual Engineer</p>
                 </div>
@@ -170,15 +170,15 @@ export const Techalien = () => {
                 <div key={i} className={`flex ${msg.role === 'assistant' ? 'justify-start' : 'justify-end'}`}>
                   <div className={`max-w-[88%] p-3.5 rounded-2xl text-xs leading-relaxed ${
                     msg.role === 'assistant' 
-                    ? 'bg-emerald-950/40 text-emerald-300 border border-emerald-500/20 shadow-sm whitespace-pre-wrap font-mono' 
-                    : 'bg-emerald-600 text-slate-950 font-bold rounded-br-xs'
+                    ? 'bg-white/5 text-slate-200 border border-white/10 shadow-sm whitespace-pre-wrap font-mono' 
+                    : 'bg-[#cdd32c] text-[#0a0101] font-bold rounded-br-xs'
                   }`}>
                     {msg.text}
                   </div>
                 </div>
               ))}
               {isLoading && (
-                <div className="flex items-center gap-2 text-emerald-400 font-mono text-[10px] animate-pulse">
+                <div className="flex items-center gap-2 text-[#cdd32c] font-mono text-[10px] animate-pulse">
                   <Sparkles size={12} />
                   <span>⌬ COMPUTING RESPONSE...</span>
                 </div>
@@ -187,48 +187,48 @@ export const Techalien = () => {
             </div>
 
             {/* QUICK ACTIONS */}
-            <div className="px-3 py-2 flex gap-1.5 overflow-x-auto no-scrollbar bg-slate-900/80 border-t border-slate-800">
+            <div className="px-3 py-2 flex gap-1.5 overflow-x-auto no-scrollbar bg-black/60 border-t border-white/10">
               <button 
                 onClick={() => handleSendMessage("List your services")} 
-                className="flex-shrink-0 flex items-center gap-1 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 px-2.5 py-1 rounded-full text-[10px] text-emerald-400 font-bold uppercase transition-colors"
+                className="flex-shrink-0 flex items-center gap-1 bg-[#cdd32c]/10 hover:bg-[#cdd32c]/20 border border-[#cdd32c]/30 px-2.5 py-1 rounded-full text-[10px] text-[#cdd32c] font-bold uppercase transition-colors"
               >
                 <Briefcase size={11} /> Services
               </button>
               
               <button 
                 onClick={() => handleSendMessage("Give contact details and phone number")} 
-                className="flex-shrink-0 flex items-center gap-1 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 px-2.5 py-1 rounded-full text-[10px] text-emerald-400 font-bold uppercase transition-colors"
+                className="flex-shrink-0 flex items-center gap-1 bg-[#cdd32c]/10 hover:bg-[#cdd32c]/20 border border-[#cdd32c]/30 px-2.5 py-1 rounded-full text-[10px] text-[#cdd32c] font-bold uppercase transition-colors"
               >
                 <Phone size={11} /> Contact
               </button>
 
               <button 
                 onClick={() => window.open('https://wa.me/919398724704', '_blank')} 
-                className="flex-shrink-0 flex items-center gap-1 bg-emerald-600 hover:bg-emerald-500 px-2.5 py-1 rounded-full text-[10px] text-black font-black uppercase transition-colors shadow"
+                className="flex-shrink-0 flex items-center gap-1 bg-[#25D366] hover:bg-[#20ba5a] px-2.5 py-1 rounded-full text-[10px] text-white font-black uppercase transition-colors shadow"
               >
                 <MessageSquare size={11} /> WhatsApp
               </button>
             </div>
 
             {/* INPUT BOX */}
-            <div className="p-3 bg-slate-950 border-t border-emerald-500/20">
+            <div className="p-3 bg-[#0a0101] border-t border-white/10">
               <form 
                 onSubmit={(e) => {
                   e.preventDefault();
                   handleSendMessage();
                 }}
-                className="flex gap-2 items-center bg-slate-900 border border-emerald-500/30 px-3 py-1.5 rounded-2xl"
+                className="flex gap-2 items-center bg-white/5 border border-white/10 px-3 py-1.5 rounded-2xl"
               >
                 <input 
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask anything about our services..."
-                  className="flex-1 bg-transparent text-emerald-300 text-xs py-1 focus:outline-none placeholder:text-slate-500"
+                  className="flex-1 bg-transparent text-white text-xs py-1 focus:outline-none placeholder:text-slate-500"
                 />
                 <button 
                   type="submit"
                   disabled={!input.trim() || isLoading}
-                  className="p-1.5 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-30 text-slate-950 rounded-xl transition-all"
+                  className="p-1.5 bg-[#cdd32c] hover:bg-white disabled:opacity-30 text-[#0a0101] rounded-xl transition-all"
                 >
                   <Send size={14} />
                 </button>
@@ -243,13 +243,13 @@ export const Techalien = () => {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="w-10 h-10 md:w-14 md:h-14 bg-slate-950 text-emerald-400 rounded-full border-2 border-emerald-500 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.35)] cursor-pointer"
+        className="w-11 h-11 md:w-14 md:h-14 bg-[#0a0101] text-[#cdd32c] rounded-full border-2 border-[#cdd32c] flex items-center justify-center shadow-[0_0_25px_rgba(205,211,44,0.35)] cursor-pointer backdrop-blur-md"
         title="Open Techalien AI Chatbot"
       >
         {isOpen ? (
-          <X size={18} className="md:w-5 md:h-5 text-emerald-400" />
+          <X size={18} className="md:w-5 md:h-5 text-[#cdd32c]" />
         ) : (
-          <Dna size={18} className="md:w-6 md:h-6 text-emerald-400 animate-pulse" />
+          <Dna size={18} className="md:w-6 md:h-6 text-[#cdd32c] animate-pulse" />
         )}
       </motion.button>
     </div>
