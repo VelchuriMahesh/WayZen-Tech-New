@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { 
   Globe, 
   CheckCircle2, ArrowRight, ChevronDown, 
