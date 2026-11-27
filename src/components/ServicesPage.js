@@ -1,12 +1,10 @@
 "use client";
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { 
-  Globe, TrendingUp, Video, 
+  Globe, 
   CheckCircle2, ArrowRight, ChevronDown, 
   Bot, MessageCircle, Sparkles,
-  Rocket, Receipt, Smartphone, Search,
+  Receipt, Smartphone, Search,
   Share2, Server, Film
 } from 'lucide-react';
 
@@ -173,13 +171,14 @@ export default function ServicesPage() {
     }, 300);
   };
 
-  // Render the central PivotRoots circular animation composition for each service
+  // Render the central PivotRoots circular animation composition for each service (Full frame image, zero text/design overlays)
   const renderCircleVisual = (serviceId) => {
+    const currentItem = services.find(s => s.id === serviceId);
     return (
-      <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 flex items-center justify-center mx-auto my-6">
+      <div className="relative w-64 h-64 sm:w-76 sm:h-76 md:w-84 md:h-84 flex items-center justify-center mx-auto my-6">
         {/* Outer Concentric Animated Orbit Rings */}
-        <div className="absolute -inset-4 sm:-inset-5 rounded-full border border-dashed border-[#cdd32c]/25 animate-spin-slow pointer-events-none" />
-        <div className="absolute -inset-7 rounded-full border border-white/5 pointer-events-none" />
+        <div className="absolute -inset-4 sm:-inset-5 rounded-full border border-dashed border-[#cdd32c]/30 animate-spin-slow pointer-events-none" />
+        <div className="absolute -inset-7 rounded-full border border-white/10 pointer-events-none" />
         
         {/* Ambient Backlight Glow */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/20 to-transparent blur-xl opacity-60 pointer-events-none" />
@@ -187,216 +186,29 @@ export default function ServicesPage() {
         {/* Main Portal Sphere */}
         <motion.div
           key={`circle-portal-${serviceId}`}
-          initial={{ scale: 0.85, rotate: -6, opacity: 0 }}
+          initial={{ scale: 0.88, rotate: -4, opacity: 0 }}
           animate={{ scale: 1, rotate: 0, opacity: 1 }}
-          exit={{ scale: 0.85, rotate: 6, opacity: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
-          className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#181824] via-[#111119] to-[#08080c] border-2 border-[#cdd32c]/40 shadow-[0_0_40px_rgba(205,211,44,0.18)] flex items-center justify-center p-5 text-center select-none"
+          exit={{ scale: 0.88, rotate: 4, opacity: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#cdd32c]/50 shadow-[0_0_50px_rgba(205,211,44,0.25)] flex items-center justify-center select-none bg-[#101014] group"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(#cdd32c15_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none" />
-
-          {/* Rich 3D Visual Illustration Background (PivotRoots Lens Style) */}
-          {(() => {
-            const currentItem = services.find(s => s.id === serviceId);
-            if (!currentItem?.image) return null;
-            return (
-              <div className="absolute inset-0 z-0 overflow-hidden rounded-full pointer-events-none">
-                <img 
-                  src={currentItem.image} 
-                  alt="" 
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover opacity-45 scale-105 pointer-events-none transform-gpu"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#09090d] via-[#09090d]/65 to-[#09090d]/30 pointer-events-none" />
-              </div>
-            );
-          })()}
-
-          {/* 01: Web Architecture Visual */}
-          {serviceId === 'web' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="bg-[#09090d]/90 border border-white/15 rounded-xl p-3 max-w-[200px] mx-auto text-left shadow-xl">
-                <div className="flex items-center gap-1 pb-1.5 border-b border-white/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c]" />
-                  <span className="ml-auto text-[7px] text-slate-400">wayzentech.app</span>
-                </div>
-                <div className="pt-1.5 space-y-1">
-                  <div className="flex justify-between text-[10px] font-bold text-white">
-                    <span>Speed Score</span>
-                    <span className="text-[#cdd32c]">99/100</span>
-                  </div>
-                  <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-                    <div className="bg-[#cdd32c] h-full w-[99%]" />
-                  </div>
-                  <span className="text-[8px] text-emerald-400 block pt-0.5">Next.js 15 • 0.4s FCP</span>
-                </div>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-[#cdd32c]/20 border border-[#cdd32c]/30 text-[#cdd32c] font-black">
-                  Next.js 15
-                </span>
-                <span className="px-2 py-0.5 rounded-full bg-white/10 text-slate-200">
-                  React 19
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* 02: AI Automation Visual */}
-          {serviceId === 'ai' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-emerald-500/10 border-2 border-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(52,211,153,0.3)] animate-pulse">
-                <Bot size={28} className="text-emerald-400" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-emerald-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>WhatsApp AI Agent:</span>
-                  <span className="text-emerald-400 font-bold">⚡ 320ms</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">Lead qualified & synced</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">
-                  GPT-4o Workflows
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* 03: Mobile Development Visual */}
-          {serviceId === 'mobile' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-cyan-500/10 border-2 border-cyan-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(6,182,212,0.3)]">
-                <Smartphone size={28} className="text-cyan-400" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-cyan-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Live UPI Checkout:</span>
-                  <span className="text-cyan-400 font-bold">₹18,500</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">Flutter & React Native 60fps</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold">
-                  iOS & Android Native
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* 04: Digital Marketing & SEO Visual */}
-          {serviceId === 'seo' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-amber-500/10 border-2 border-amber-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(251,191,36,0.3)]">
-                <Rocket size={28} className="text-amber-400 animate-bounce" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-amber-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Growth Engine:</span>
-                  <span className="text-amber-400 font-bold">+250% ROAS</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">Google Top 3 & Map Pack</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold">
-                  Meta & Google Ads
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* 05: Custom Software & Billing POS Visual */}
-          {serviceId === 'billing' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-[#cdd32c]/10 border-2 border-[#cdd32c] flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(205,211,44,0.3)]">
-                <Receipt size={28} className="text-[#cdd32c]" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-[#cdd32c]/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>GST Billing POS:</span>
-                  <span className="text-[#cdd32c] font-bold">3 Seconds</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">WhatsApp invoice dispatched</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-[#cdd32c]/20 text-[#cdd32c] font-bold">
-                  Barcode & Offline Sync
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* 06: Social Media Management Visual */}
-          {serviceId === 'social' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-rose-500/10 border-2 border-rose-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(244,63,94,0.3)]">
-                <Share2 size={28} className="text-rose-400" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-rose-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Brand Influence:</span>
-                  <span className="text-rose-400 font-bold">+3x Lift</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">Instagram & LinkedIn Calendars</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-bold">
-                  Community & Posters
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* 07: Video Production Visual */}
-          {serviceId === 'video' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-purple-500/10 border-2 border-purple-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(168,85,247,0.3)]">
-                <Video size={28} className="text-purple-400" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-purple-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Cinematic 4K Reels:</span>
-                  <span className="text-purple-400 font-bold">60 FPS</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">High-retention commercial cuts</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-bold">
-                  Motion Graphics & VFX
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* 08: IT & Technical Infrastructure Visual */}
-          {serviceId === 'it' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-blue-500/10 border-2 border-blue-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(59,130,246,0.3)]">
-                <Server size={28} className="text-blue-400" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-blue-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Cloud Uptime:</span>
-                  <span className="text-blue-400 font-bold">99.99%</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">AWS, Docker & 24/7 Dev Desk</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold">
-                  DevOps & SSL Defense
-                </span>
-              </div>
-            </div>
+          {/* FULL FRAME 3D ILLUSTRATION IMAGE - ZERO OVERLAYS, NO TEXT, NO DESIGN */}
+          {currentItem?.image && (
+            <img 
+              src={currentItem.image} 
+              alt={currentItem.title} 
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover select-none transform-gpu transition-transform duration-700 group-hover:scale-105"
+            />
           )}
         </motion.div>
       </div>
     );
   };
 
-  return (
+
+    return (
     <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
       {/* --- PIVOTROOTS ORBITAL SVG MOTIF & BACKGROUND LOGO EMBLEM --- */}

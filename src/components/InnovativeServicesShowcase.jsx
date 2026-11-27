@@ -340,282 +340,36 @@ export const InnovativeServicesShowcase = () => {
                 </div>
               </div>
 
-              {/* CENTER COLUMN: THE PIVOTROOTS-STYLE ANIMATED CIRCULAR PORTAL */}
+              {/* CENTER COLUMN: FULL FRAME 3D ILLUSTRATION CIRCULAR PORTAL (NO TEXT/DESIGN ON IMAGE) */}
               <div className="lg:col-span-4 flex justify-center items-center py-4 transform-gpu">
-                <div className="relative w-64 h-64 sm:w-76 sm:h-76 md:w-84 md:h-84 flex items-center justify-center transform-gpu">
+                <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-92 md:h-92 flex items-center justify-center transform-gpu">
                   
                   {/* Outer Concentric Animated Orbit Rings (Hardware GPU Accelerated) */}
-                  <div className="absolute -inset-4 sm:-inset-6 rounded-full border border-dashed border-[#cdd32c]/25 animate-spin-slow pointer-events-none transform-gpu will-change-transform" />
-                  <div className="absolute -inset-8 sm:-inset-10 rounded-full border border-white/5 pointer-events-none" />
+                  <div className="absolute -inset-4 sm:-inset-6 rounded-full border border-dashed border-[#cdd32c]/30 animate-spin-slow pointer-events-none transform-gpu will-change-transform" />
+                  <div className="absolute -inset-8 sm:-inset-10 rounded-full border border-white/10 pointer-events-none" />
 
-                  {/* Halftone / Radial Pulse Backdrop behind Circle */}
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/20 to-transparent blur-2xl opacity-60 pointer-events-none transform-gpu" />
+                  {/* Ambient Radial Backlight behind Circle */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/25 to-transparent blur-2xl opacity-70 pointer-events-none transform-gpu" />
 
-                  {/* Main Circular Portal (Framer Motion Interactive Transition) */}
+                  {/* Main Circular Portal */}
                   <motion.div
                     key={`circle-${current.id}`}
-                    initial={{ scale: 0.82, rotate: -8, opacity: 0 }}
+                    initial={{ scale: 0.88, rotate: -4, opacity: 0 }}
                     animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                    exit={{ scale: 0.82, rotate: 8, opacity: 0 }}
+                    exit={{ scale: 0.88, rotate: 4, opacity: 0 }}
                     transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#181824] via-[#111119] to-[#08080c] border-2 border-[#cdd32c]/40 shadow-[0_0_40px_rgba(205,211,44,0.18)] flex items-center justify-center p-6 text-center select-none transform-gpu"
+                    className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#cdd32c]/50 shadow-[0_0_50px_rgba(205,211,44,0.25)] flex items-center justify-center select-none transform-gpu bg-[#101014] group"
                   >
-                    {/* Circle Background Radial Grid Pattern */}
-                    <div className="absolute inset-0 bg-[radial-gradient(#cdd32c15_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none" />
-                    
-                    {/* Rich 3D Visual Illustration Background (PivotRoots Lens Style) */}
+                    {/* FULL FRAME 3D ILLUSTRATION IMAGE - ZERO OVERLAYS, NO TEXT, NO DESIGN */}
                     {current.image && (
-                      <div className="absolute inset-0 z-0 overflow-hidden rounded-full pointer-events-none">
-                        <img 
-                          src={current.image} 
-                          alt="" 
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover opacity-50 scale-105 pointer-events-none transform-gpu"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#09090d] via-[#09090d]/65 to-[#09090d]/30 pointer-events-none" />
-                      </div>
+                      <img 
+                        src={current.image} 
+                        alt={current.title} 
+                        loading="eager"
+                        decoding="async"
+                        className="w-full h-full object-cover select-none transform-gpu transition-transform duration-700 group-hover:scale-105"
+                      />
                     )}
-                    
-                    {/* --- 1. WEB ARCHITECTURE CIRCLE VISUALS --- */}
-                    {current.id === 'web' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="bg-[#09090d]/90 border border-white/15 rounded-2xl p-4 shadow-2xl font-mono text-left max-w-[240px] mx-auto backdrop-blur-md">
-                          <div className="flex items-center gap-1.5 pb-2.5 border-b border-white/10">
-                            <span className="w-2 h-2 rounded-full bg-rose-500" />
-                            <span className="w-2 h-2 rounded-full bg-amber-500" />
-                            <span className="w-2 h-2 rounded-full bg-[#cdd32c]" />
-                            <span className="ml-auto text-[8px] text-slate-400">wayzentech.app</span>
-                          </div>
-                          <div className="pt-2.5 space-y-1.5">
-                            <div className="flex items-center justify-between text-[11px] font-bold text-white">
-                              <span>Core Web Vitals</span>
-                              <span className="text-[#cdd32c]">99 / 100</span>
-                            </div>
-                            <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
-                              <div className="bg-[#cdd32c] h-full w-[99%]" />
-                            </div>
-                            <div className="pt-1 flex items-center justify-between text-[9px] text-slate-400">
-                              <span>Next.js 15 SSR</span>
-                              <span className="text-emerald-400">0.4s FCP</span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 flex-wrap pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-[#cdd32c]/20 border border-[#cdd32c]/30 text-[9px] font-mono text-[#cdd32c] font-black">
-                            Static & Dynamic
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 border border-white/15 text-[9px] font-mono text-slate-200">
-                            React 19
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 border border-white/15 text-[9px] font-mono text-slate-200">
-                            MERN
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* --- 2. AI & NEURAL BOTS CIRCLE VISUALS --- */}
-                    {current.id === 'ai' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(52,211,153,0.3)] animate-pulse">
-                          <Bot size={36} className="text-emerald-400" />
-                        </div>
-
-                        <div className="bg-[#09090d]/90 border border-emerald-500/30 rounded-xl p-3 text-left max-w-[240px] mx-auto text-[10px] font-mono space-y-1 backdrop-blur-md">
-                          <div className="text-slate-400 flex items-center justify-between">
-                            <span>WhatsApp Lead:</span>
-                            <span className="text-emerald-400">⚡ 320ms</span>
-                          </div>
-                          <p className="text-white font-sans text-[11px] leading-tight">
-                            “Hospital ERP catalog dispatched.”
-                          </p>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[9px] font-mono text-emerald-300 font-bold">
-                            GPT-4o Agents
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-slate-200">
-                            24/7 Live
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* --- 3. MOBILE APPS CIRCLE VISUALS --- */}
-                    {current.id === 'mobile' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="w-44 bg-[#09090d]/90 border-2 border-purple-500/30 rounded-2xl p-3.5 mx-auto text-left shadow-2xl backdrop-blur-md font-mono">
-                          <div className="w-16 h-2.5 bg-black rounded-full mx-auto mb-2 flex items-center justify-center">
-                            <span className="w-1 h-1 rounded-full bg-purple-500" />
-                          </div>
-                          <div className="p-2 rounded-xl bg-purple-500/15 border border-purple-500/30 space-y-1">
-                            <span className="text-[8px] uppercase tracking-wider text-purple-300 font-bold block">
-                              Live Transaction
-                            </span>
-                            <p className="text-xs font-bold text-white">
-                              +₹18,500 via UPI
-                            </p>
-                          </div>
-                          <div className="pt-2 flex items-center justify-between text-[9px]">
-                            <span className="text-slate-400">Fluidity</span>
-                            <span className="text-purple-400 font-bold">60 FPS Native</span>
-                          </div>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-purple-500/20 border border-purple-500/30 text-[9px] font-mono text-purple-300 font-bold">
-                            Flutter
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-slate-200">
-                            React Native
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* --- 4. SEO & DIGITAL MARKETING CIRCLE VISUALS --- */}
-                    {current.id === 'seo' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-amber-500/10 border-2 border-amber-400 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(251,191,36,0.3)]">
-                          <Rocket size={34} className="text-amber-400 animate-bounce" />
-                        </div>
-
-                        <div className="bg-[#09090d]/90 border border-amber-500/30 rounded-xl p-3 text-left max-w-[240px] mx-auto text-[10px] font-mono space-y-1 backdrop-blur-md">
-                          <div className="text-slate-400 flex items-center justify-between">
-                            <span>Google Rank #1:</span>
-                            <span className="text-amber-400 font-bold">+250% ROAS</span>
-                          </div>
-                          <p className="text-white font-sans text-[11px] leading-tight">
-                            Algorithmic buyer acquisition active.
-                          </p>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 border border-amber-500/40 text-[9px] font-mono text-amber-300 font-bold">
-                            Technical SEO
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-slate-200">
-                            Meta Ads
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* --- 5. BILLING & POS SOFTWARE CIRCLE VISUALS --- */}
-                    {current.id === 'billing' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#cdd32c]/10 border-2 border-[#cdd32c] flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(205,211,44,0.3)]">
-                          <Receipt size={34} className="text-[#cdd32c]" />
-                        </div>
-
-                        <div className="bg-[#09090d]/90 border border-[#cdd32c]/30 rounded-xl p-3 text-left max-w-[240px] mx-auto text-[10px] font-mono space-y-1 backdrop-blur-md">
-                          <div className="text-slate-400 flex items-center justify-between">
-                            <span>GST POS Invoicing:</span>
-                            <span className="text-[#cdd32c] font-bold">3 Seconds</span>
-                          </div>
-                          <p className="text-white font-sans text-[11px] leading-tight">
-                            WhatsApp receipt auto-dispatched.
-                          </p>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-[#cdd32c]/20 border border-[#cdd32c]/40 text-[9px] font-mono text-[#cdd32c] font-bold">
-                            Barcode Sync
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-slate-200">
-                            Zero Monthly Fees
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* --- 6. SOCIAL MEDIA MANAGEMENT CIRCLE VISUALS --- */}
-                    {current.id === 'social' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-pink-500/10 border-2 border-pink-400 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(244,114,182,0.3)]">
-                          <Share2 size={34} className="text-pink-400" />
-                        </div>
-
-                        <div className="bg-[#09090d]/90 border border-pink-500/30 rounded-xl p-3 text-left max-w-[240px] mx-auto text-[10px] font-mono space-y-1 backdrop-blur-md">
-                          <div className="text-slate-400 flex items-center justify-between">
-                            <span>Social Reach:</span>
-                            <span className="text-pink-400 font-bold">+320% Growth</span>
-                          </div>
-                          <p className="text-white font-sans text-[11px] leading-tight">
-                            Daily viral content calendar active.
-                          </p>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-pink-500/20 border border-pink-500/40 text-[9px] font-mono text-pink-300 font-bold">
-                            Instagram & Meta
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-slate-200">
-                            LinkedIn B2B
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* --- 7. VIDEO SHOOTING & EDITING CIRCLE VISUALS --- */}
-                    {current.id === 'video' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-cyan-500/10 border-2 border-cyan-400 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(34,211,238,0.3)]">
-                          <Video size={34} className="text-cyan-400" />
-                        </div>
-
-                        <div className="bg-[#09090d]/90 border border-cyan-500/30 rounded-xl p-3 text-left max-w-[240px] mx-auto text-[10px] font-mono space-y-1 backdrop-blur-md">
-                          <div className="text-slate-400 flex items-center justify-between">
-                            <span>Video Production:</span>
-                            <span className="text-cyan-400 font-bold">4K 60FPS</span>
-                          </div>
-                          <p className="text-white font-sans text-[11px] leading-tight">
-                            Viral pacing & sound design synced.
-                          </p>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-[9px] font-mono text-cyan-300 font-bold">
-                            Reels & Shorts
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-slate-200">
-                            24h Delivery
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* --- 8. IT & TECHNICAL SERVICES CIRCLE VISUALS --- */}
-                    {current.id === 'it' && (
-                      <div className="relative z-10 space-y-3 w-full">
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-indigo-500/10 border-2 border-indigo-400 flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(99,102,241,0.3)]">
-                          <Server size={34} className="text-indigo-400" />
-                        </div>
-
-                        <div className="bg-[#09090d]/90 border border-indigo-500/30 rounded-xl p-3 text-left max-w-[240px] mx-auto text-[10px] font-mono space-y-1 backdrop-blur-md">
-                          <div className="text-slate-400 flex items-center justify-between">
-                            <span>Cloud Infrastructure:</span>
-                            <span className="text-indigo-400 font-bold">99.99% Uptime</span>
-                          </div>
-                          <p className="text-white font-sans text-[11px] leading-tight">
-                            Docker, Linux & SSL security active.
-                          </p>
-                        </div>
-
-                        <div className="flex justify-center gap-1.5 pt-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-indigo-500/20 border border-indigo-500/40 text-[9px] font-mono text-indigo-300 font-bold">
-                            Cloud DevOps
-                          </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-[9px] font-mono text-slate-200">
-                            24/7 Dev Desk
-                          </span>
-                        </div>
-                      </div>
-                    )}
-
                   </motion.div>
                 </div>
               </div>
