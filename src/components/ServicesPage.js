@@ -257,7 +257,7 @@ export default function ServicesPage() {
       {/* --- PIVOTROOTS ORBITAL SVG MOTIF & BACKGROUND LOGO EMBLEM --- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <svg className="absolute -top-40 -right-40 w-[600px] h-[600px] md:w-[900px] md:h-[900px] opacity-20" viewBox="0 0 800 800" fill="none">
-          <circle cx="400" cy="400" r="350" stroke="#cdd32c" strokeWidth="1" strokeDasharray="8 8" className="animate-make-line" />
+          <circle cx="400" cy="400" r="350" stroke="#cdd32c" strokeWidth="1" strokeDasharray="8 8" />
           <circle cx="400" cy="400" r="240" stroke="#ffffff" strokeWidth="0.5" strokeOpacity="0.2" />
           <circle cx="400" cy="400" r="120" stroke="#cdd32c" strokeWidth="1" strokeDasharray="4 4" />
         </svg>
@@ -268,18 +268,17 @@ export default function ServicesPage() {
             d="M -100 250 C 350 150, 700 600, 1000 350 C 1300 150, 1500 450, 1700 350" 
             stroke="#cdd32c" 
             strokeWidth="1.5" 
-            strokeDasharray="10 10"
-            className="animate-pulse" 
+            strokeDasharray="10 10" 
           />
         </svg>
 
-        {/* PROMINENT BACKGROUND LOGO - VISIBLE ABOVE THE FOLD IN MOBILE & WEB */}
-        <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-[300px] sm:w-[480px] md:w-[700px] aspect-[1024/847] pointer-events-none z-0 flex items-center justify-center">
-          <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-[70px] md:blur-[120px] pointer-events-none scale-75" />
+        {/* PROMINENT BACKGROUND LOGO - HARDWARE ACCELERATED */}
+        <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-[300px] sm:w-[480px] md:w-[700px] aspect-[1024/847] pointer-events-none z-0 flex items-center justify-center transform-gpu">
+          <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-3xl pointer-events-none scale-75 transform-gpu" />
           <img 
             src="/logo-watermark.png" 
             alt="WayZenTech Background Logo" 
-            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 filter drop-shadow-[0_0_35px_rgba(205,211,44,0.2)] select-none"
+            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 select-none transform-gpu"
           />
         </div>
       </div>

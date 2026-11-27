@@ -286,15 +286,15 @@ export const InnovativeServicesShowcase = () => {
               </div>
 
               {/* CENTER COLUMN: THE PIVOTROOTS-STYLE ANIMATED CIRCULAR PORTAL */}
-              <div className="lg:col-span-4 flex justify-center items-center py-4">
-                <div className="relative w-64 h-64 sm:w-76 sm:h-76 md:w-84 md:h-84 flex items-center justify-center">
+              <div className="lg:col-span-4 flex justify-center items-center py-4 transform-gpu">
+                <div className="relative w-64 h-64 sm:w-76 sm:h-76 md:w-84 md:h-84 flex items-center justify-center transform-gpu">
                   
-                  {/* Outer Concentric Animated Orbit Rings */}
-                  <div className="absolute -inset-4 sm:-inset-6 rounded-full border border-dashed border-[#cdd32c]/25 animate-spin-slow pointer-events-none" />
+                  {/* Outer Concentric Animated Orbit Rings (Hardware GPU Accelerated) */}
+                  <div className="absolute -inset-4 sm:-inset-6 rounded-full border border-dashed border-[#cdd32c]/25 animate-spin-slow pointer-events-none transform-gpu will-change-transform" />
                   <div className="absolute -inset-8 sm:-inset-10 rounded-full border border-white/5 pointer-events-none" />
 
                   {/* Halftone / Radial Pulse Backdrop behind Circle */}
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/20 to-transparent blur-2xl opacity-60 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/20 to-transparent blur-2xl opacity-60 pointer-events-none transform-gpu" />
 
                   {/* Main Circular Portal (Framer Motion Interactive Transition) */}
                   <motion.div
@@ -302,8 +302,8 @@ export const InnovativeServicesShowcase = () => {
                     initial={{ scale: 0.82, rotate: -8, opacity: 0 }}
                     animate={{ scale: 1, rotate: 0, opacity: 1 }}
                     exit={{ scale: 0.82, rotate: 8, opacity: 0 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#181824] via-[#111119] to-[#08080c] border-2 border-[#cdd32c]/40 shadow-[0_0_50px_rgba(205,211,44,0.18)] flex items-center justify-center p-6 text-center select-none"
+                    transition={{ duration: 0.4, ease: "easeOut" }}
+                    className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#181824] via-[#111119] to-[#08080c] border-2 border-[#cdd32c]/40 shadow-[0_0_40px_rgba(205,211,44,0.18)] flex items-center justify-center p-6 text-center select-none transform-gpu"
                   >
                     {/* Circle Background Radial Grid Pattern */}
                     <div className="absolute inset-0 bg-[radial-gradient(#cdd32c15_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none" />

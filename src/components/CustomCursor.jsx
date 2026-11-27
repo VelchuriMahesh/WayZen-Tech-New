@@ -1,101 +1,150 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
+/**
+ * High-Performance Hardware-Accelerated Ambient Cursor Follower
+ * - ZERO React state re-renders on mousemove
+ * - Never hides native OS cursor (instant 0ms hardware response)
+ * - Uses requestAnimationFrame with transform: translate3d() on dedicated GPU layer
+ * - No expensive mix-blend-mode calculations
+ */
 export const CustomCursor = () => {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [isHovered, setIsHovered] = useState(false);
-  const [isClicking, setIsClicking] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const ringRef = useRef(null);
+  const dotRef = useRef(null);
+  const pos = useRef({ x: -100, y: -100, targetX: -100, targetY: -100 });
+  const isHovered = useRef(false);
+  const isClicking = useRef(false);
+  const isVisible = useRef(false);
+  const rafId = useRef(null);
 
   useEffect(() => {
     // Only enable on desktop with fine mouse pointer
+    if (typeof window === 'undefined') return;
     const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouch) return;
 
-    document.body.classList.add('custom-cursor-active');
+    const ring = ringRef.current;
+    const dot = dotRef.current;
+    if (!ring || !dot) return;
 
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-      if (!isVisible) setIsVisible(true);
-    };
-
-    const handleMouseDown = () => setIsClicking(true);
-    const handleMouseUp = () => setIsClicking(false);
-    const handleMouseLeave = () => setIsVisible(false);
-    const handleMouseEnter = () => setIsVisible(true);
-
-    const handleElementHover = (e) => {
-      const target = e.target;
-      if (
-        target.closest('button') ||
-        target.closest('a') ||
-        target.closest('[role="button"]') ||
-        target.closest('.cursor-pointer') ||
-        target.closest('input') ||
-        target.closest('textarea')
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
+    const onMouseMove = (e) => {
+      pos.current.targetX = e.clientX;
+      pos.current.targetY = e.clientY;
+      if (!isVisible.current) {
+        isVisible.current = true;
+        ring.style.opacity = '1';
+        dot.style.opacity = '1';
       }
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mousedown', handleMouseDown);
-    window.addEventListener('mouseup', handleMouseUp);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
-    document.addEventListener('mouseover', handleElementHover);
+    const onMouseDown = () => {
+      isClicking.current = true;
+    };
+
+    const onMouseUp = () => {
+      isClicking.current = false;
+    };
+
+    const onMouseLeave = () => {
+      isVisible.current = false;
+      ring.style.opacity = '0';
+      dot.style.opacity = '0';
+    };
+
+    const onMouseEnter = () => {
+      isVisible.current = true;
+      ring.style.opacity = '1';
+      dot.style.opacity = '1';
+    };
+
+    // Passive listener for hover detection without deep DOM climbing
+    const onMouseOver = (e) => {
+      const el = e.target;
+      if (!el) return;
+      const tagName = el.tagName;
+      if (
+        tagName === 'BUTTON' ||
+        tagName === 'A' ||
+        tagName === 'INPUT' ||
+        tagName === 'TEXTAREA' ||
+        el.getAttribute?.('role') === 'button' ||
+        el.classList?.contains('cursor-pointer')
+      ) {
+        isHovered.current = true;
+      } else {
+        isHovered.current = false;
+      }
+    };
+
+    window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('mousedown', onMouseDown, { passive: true });
+    window.addEventListener('mouseup', onMouseUp, { passive: true });
+    document.addEventListener('mouseleave', onMouseLeave, { passive: true });
+    document.addEventListener('mouseenter', onMouseEnter, { passive: true });
+    document.addEventListener('mouseover', onMouseOver, { passive: true });
+
+    // Smooth Lerp loop on GPU via requestAnimationFrame
+    const loop = () => {
+      if (isVisible.current) {
+        // Linear interpolation for silky smooth ring following
+        pos.current.x += (pos.current.targetX - pos.current.x) * 0.22;
+        pos.current.y += (pos.current.targetY - pos.current.y) * 0.22;
+
+        const size = isHovered.current ? 48 : 30;
+        const scale = isClicking.current ? 0.8 : 1;
+        const ringX = pos.current.x - size / 2;
+        const ringY = pos.current.y - size / 2;
+
+        ring.style.transform = `translate3d(${ringX}px, ${ringY}px, 0) scale(${scale})`;
+        ring.style.width = `${size}px`;
+        ring.style.height = `${size}px`;
+        ring.style.backgroundColor = isHovered.current ? 'rgba(205, 211, 44, 0.2)' : 'rgba(205, 211, 44, 0.05)';
+        ring.style.borderColor = isHovered.current ? '#cdd32c' : 'rgba(205, 211, 44, 0.5)';
+
+        // Dot tracks target directly with 0 lag
+        const dotX = pos.current.targetX - 3;
+        const dotY = pos.current.targetY - 3;
+        dot.style.transform = `translate3d(${dotX}px, ${dotY}px, 0)`;
+      }
+
+      rafId.current = requestAnimationFrame(loop);
+    };
+
+    rafId.current = requestAnimationFrame(loop);
 
     return () => {
-      document.body.classList.remove('custom-cursor-active');
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
-      document.removeEventListener('mouseover', handleElementHover);
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener('mouseenter', onMouseEnter);
+      document.removeEventListener('mouseover', onMouseOver);
     };
-  }, [isVisible]);
-
-  if (!isVisible) return null;
+  }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[99999] overflow-hidden">
-      {/* Outer Glow Ring / Mix-blend Follower */}
-      <motion.div
-        className="fixed top-0 left-0 rounded-full border border-[#cdd32c] mix-blend-difference"
-        animate={{
-          x: mousePosition.x - (isHovered ? 28 : 16),
-          y: mousePosition.y - (isHovered ? 28 : 16),
-          width: isHovered ? 56 : 32,
-          height: isHovered ? 56 : 32,
-          scale: isClicking ? 0.8 : 1,
-          backgroundColor: isHovered ? '#cdd32c' : 'rgba(205, 211, 44, 0.15)',
-        }}
-        transition={{
-          type: 'spring',
-          damping: 24,
-          stiffness: 280,
-          mass: 0.5,
+    <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden">
+      {/* Smooth Ambient Follower Ring */}
+      <div
+        ref={ringRef}
+        className="fixed top-0 left-0 rounded-full border border-[#cdd32c]/50 bg-[#cdd32c]/5 pointer-events-none opacity-0 transition-opacity duration-300 will-change-transform shadow-[0_0_15px_rgba(205,211,44,0.25)]"
+        style={{
+          width: '30px',
+          height: '30px',
+          transform: 'translate3d(-100px, -100px, 0)',
         }}
       />
 
       {/* Center Precision Dot */}
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-white mix-blend-difference"
-        animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-          opacity: isHovered ? 0 : 1,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 35,
-          stiffness: 450,
-          mass: 0.1,
+      <div
+        ref={dotRef}
+        className="fixed top-0 left-0 w-1.5 h-1.5 rounded-full bg-[#cdd32c] pointer-events-none opacity-0 transition-opacity duration-200 will-change-transform shadow-[0_0_8px_#cdd32c]"
+        style={{
+          transform: 'translate3d(-100px, -100px, 0)',
         }}
       />
     </div>
   );
 };
+
+export default CustomCursor;

@@ -150,33 +150,33 @@ const PivotHero = () => {
     <header className="relative min-h-screen flex flex-col justify-between items-center px-5 md:px-12 pt-28 sm:pt-32 md:pt-36 pb-12 overflow-hidden bg-[#070a12] text-white select-none">
       
       {/* Background Liquid Smoke Media / Atmospheric Gradient */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] bg-[#cdd32c]/10 blur-[140px] rounded-full" />
-        <div className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] bg-blue-600/15 blur-[150px] rounded-full" />
+      <div className="absolute inset-0 pointer-events-none z-0 transform-gpu">
+        <div className="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] bg-[#cdd32c]/10 blur-[120px] rounded-full transform-gpu" />
+        <div className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] bg-blue-600/15 blur-[120px] rounded-full transform-gpu" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#070a12_75%)]" />
       </div>
 
-      {/* SVG Dotted Orbital Lines (PivotRoots makeLine animation) */}
+      {/* SVG Dotted Orbital Lines (Hardware Accelerated) */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-25" viewBox="0 0 1440 900" fill="none">
-        <ellipse cx="720" cy="450" rx="600" ry="320" stroke="#cdd32c" strokeWidth="1.5" strokeDasharray="12 12" className="animate-make-line" />
+        <ellipse cx="720" cy="450" rx="600" ry="320" stroke="#cdd32c" strokeWidth="1.5" strokeDasharray="12 12" />
         <ellipse cx="720" cy="450" rx="380" ry="200" stroke="#ffffff" strokeWidth="1" strokeDasharray="8 8" opacity="0.4" />
       </svg>
 
       {/* PROMINENT BACKGROUND LOGO EMBLEM - VISIBLE ON MOBILE & WEB */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden transform-gpu">
         <motion.div 
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="relative w-[300px] sm:w-[480px] md:w-[680px] lg:w-[840px] aspect-[1024/847] flex items-center justify-center"
         >
-          {/* Ambient Glow behind the logo */}
-          <div className="absolute inset-0 bg-[#cdd32c]/10 rounded-full blur-[70px] md:blur-[130px] pointer-events-none scale-75" />
+          {/* Hardware GPU Ambient Glow behind the logo */}
+          <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-3xl pointer-events-none scale-75 transform-gpu" />
           
           <img 
             src="/logo-watermark.png" 
             alt="WayZenTech Background Logo" 
-            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 filter drop-shadow-[0_0_35px_rgba(205,211,44,0.18)] select-none pointer-events-none"
+            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 select-none pointer-events-none transform-gpu"
           />
         </motion.div>
       </div>
@@ -469,13 +469,15 @@ function AppContent() {
 
   return (
     <div className="antialiased font-sans bg-[#0a0101] text-white relative overflow-x-hidden pb-20 md:pb-0">
-      {/* GLOBAL SCREEN BACKGROUND LOGO WATERMARK - VISIBLE ACROSS ALL PAGES */}
-      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
+      {/* GLOBAL SCREEN BACKGROUND LOGO WATERMARK - HARDWARE ACCELERATED (0ms SCROLL LATENCY) */}
+      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden transform-gpu will-change-transform">
         <div className="relative w-[340px] sm:w-[540px] md:w-[740px] lg:w-[900px] aspect-[1024/847]">
+          {/* Hardware-accelerated GPU ambient glow */}
+          <div className="absolute inset-0 bg-[#cdd32c]/10 rounded-full blur-3xl transform-gpu pointer-events-none scale-90" />
           <img 
             src="/logo-watermark.png" 
             alt="" 
-            className="w-full h-full object-contain opacity-[0.15] sm:opacity-[0.12] select-none pointer-events-none filter drop-shadow-[0_0_60px_rgba(205,211,44,0.2)]"
+            className="w-full h-full object-contain opacity-[0.14] sm:opacity-[0.11] select-none pointer-events-none transform-gpu"
           />
         </div>
       </div>

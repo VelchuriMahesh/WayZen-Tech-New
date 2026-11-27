@@ -2,10 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @layer base {
   body {
     @apply font-sans antialiased text-[#0a0101] bg-[#ffffff] selection:bg-[#cdd32c] selection:text-[#0a0101];
+    overflow-x: hidden;
   }
+}
+
+/* GPU Hardware Acceleration Utilities */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+/* Smooth 30s Orbit Rotation */
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 28s linear infinite;
+  transform-origin: center;
 }
 
 /* PivotRoots SVG Stroke Orbital Arc Animation */
@@ -46,17 +79,7 @@
   animation: scrolly 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-/* Hide native cursor when custom cursor is active on non-touch screens */
-@media (hover: hover) and (pointer: fine) {
-  .custom-cursor-active {
-    cursor: none !important;
-  }
-  .custom-cursor-active a,
-  .custom-cursor-active button,
-  .custom-cursor-active [role="button"] {
-    cursor: none !important;
-  }
-}
+/* Native cursor remains 100% active and instantaneous with 0ms hardware latency */
 
 /* Hide scrollbar for clean mobile horizontal pill carousels */
 .no-scrollbar::-webkit-scrollbar {
