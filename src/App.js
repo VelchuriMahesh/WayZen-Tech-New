@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Zap, ArrowRight, MessageCircle, Info, Cpu, 
-  ShieldCheck, Sparkles, Compass, CheckCircle2
+  Zap, ArrowRight, MessageCircle, Info, 
+  ShieldCheck, Sparkles
 } from 'lucide-react';
 
 // React Router
@@ -24,6 +24,7 @@ import { InnovativeServicesShowcase } from './components/InnovativeServicesShowc
 import { JourneyConnector } from './components/JourneyConnector';
 import { CustomCursor } from './components/CustomCursor';
 import { MetricsMarquee } from './components/MetricsMarquee';
+import { Global3DLogo } from './components/Global3DLogo';
 import { PivotPreFooter } from './components/PivotPreFooter';
 import { PivotFooter } from './components/PivotFooter';
 
@@ -162,25 +163,6 @@ const PivotHero = () => {
         <ellipse cx="720" cy="450" rx="380" ry="200" stroke="#ffffff" strokeWidth="1" strokeDasharray="8 8" opacity="0.4" />
       </svg>
 
-      {/* PROMINENT BACKGROUND LOGO EMBLEM - VISIBLE ON MOBILE & WEB */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 overflow-hidden transform-gpu">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="relative w-[300px] sm:w-[480px] md:w-[680px] lg:w-[840px] aspect-[1024/847] flex items-center justify-center"
-        >
-          {/* Hardware GPU Ambient Glow behind the logo */}
-          <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-3xl pointer-events-none scale-75 transform-gpu" />
-          
-          <img 
-            src="/logo-watermark.png" 
-            alt="WayZenTech Background Logo" 
-            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 select-none pointer-events-none transform-gpu"
-          />
-        </motion.div>
-      </div>
-
       {/* TOP PILL BADGE */}
       <motion.div 
         initial={{ opacity: 0, y: -20 }}
@@ -305,124 +287,6 @@ const PivotHero = () => {
   );
 };
 
-// --- PIVOTROOTS STYLE BRAND PILLARS SECTION ---
-const PivotBrandPillars = () => {
-  const pillars = [
-    {
-      num: "01",
-      letter: "WAY",
-      title: "The Path",
-      tagline: "Strategic Vision & Trajectory",
-      description: "Every transformative product begins with clarity of direction. We engineer precise technological roadmaps that guide ideas from initial concept to high-scale digital reality.",
-      icon: <Compass className="w-7 h-7 text-[#0a0101]" />,
-      badges: ["Strategic Architecture", "Market Trajectory", "User Journey Blueprint"],
-    },
-    {
-      num: "02",
-      letter: "ZEN",
-      title: "Mastery",
-      tagline: "Architectural Precision & Purity",
-      description: "True mastery is eliminating chaos and complexity. We engineer clean-code architectures with zero bloat, sub-second latency, rigorous security protocols, and 99.99% operational uptime.",
-      icon: <ShieldCheck className="w-7 h-7 text-[#0a0101]" />,
-      badges: ["Architectural Purity", "Sub-Second Latency", "99.99% Reliability"],
-    },
-    {
-      num: "03",
-      letter: "TECH",
-      title: "Next-Gen",
-      tagline: "AI Systems & Future-Ready Tech",
-      description: "Leveraging tomorrow's engineering today. Autonomous AI workflows, cloud-native microservices, reactive MERN web applications, and intelligent systems built for infinite scale.",
-      icon: <Cpu className="w-7 h-7 text-[#0a0101]" />,
-      badges: ["Generative AI Systems", "Scalable Cloud MERN", "Autonomous Agents"],
-    }
-  ];
-
-  return (
-    <section id="brand-meaning" className="relative py-16 sm:py-24 md:py-32 px-5 md:px-10 bg-[#ffffff] text-[#0a0101] overflow-hidden">
-      
-      {/* Background Subtle Circular Wireframe */}
-      <div className="absolute right-[-10%] top-[10%] w-[500px] h-[500px] rounded-full border border-slate-200/80 pointer-events-none" />
-
-      <div className="max-w-6xl mx-auto relative z-10">
-        
-        {/* PIVOTROOTS TILTED OVERSIZED EDITORIAL QUOTE */}
-        <div className="mb-14 sm:mb-20 max-w-4xl">
-          <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.25em] text-[#0a0101]/60 mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#cdd32c]" />
-            Brand Philosophy // Core Pillars
-          </div>
-
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black uppercase tracking-tight text-[#0a0101] leading-[1.05]">
-            “A TRANSFORMATIONAL <span className="underline decoration-[#cdd32c] decoration-8">DIGITAL FOUNDRY</span>, POWERED BY CODE, FUELED BY INNOVATION.”
-          </h2>
-          
-          <p className="mt-4 text-sm sm:text-base md:text-lg text-slate-600 font-light leading-relaxed max-w-2xl">
-            Born to eliminate mediocrity in software development. We bridge visionary strategy, architectural perfection, and next-gen engineering under one unified standard.
-          </p>
-        </div>
-
-        {/* 3 CIRCULAR ACCENTED PILLAR CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {pillars.map((p, idx) => (
-            <motion.div
-              key={p.num}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.15, duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
-              whileHover={{ y: -8, transition: { duration: 0.25 } }}
-              className="group relative rounded-3xl md:rounded-[36px] p-7 sm:p-9 bg-[#edf1f2] border border-slate-300/70 hover:border-[#cdd32c] hover:bg-white shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden"
-            >
-              {/* Oversized Watermark Numerals (PivotRoots 25em style) */}
-              <div className="absolute -right-4 -bottom-6 text-7xl sm:text-8xl md:text-9xl font-black text-[#cdd32c]/20 group-hover:text-[#cdd32c]/35 transition-colors select-none pointer-events-none">
-                {p.num}
-              </div>
-
-              <div>
-                {/* Top Row: Circular Icon + Pillar Tag */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-full bg-white group-hover:bg-[#cdd32c] flex items-center justify-center shadow-md transition-colors">
-                    {p.icon}
-                  </div>
-                  <span className="text-[10px] font-mono font-black uppercase tracking-widest px-3 py-1 rounded-full bg-white/80 border border-slate-300 text-[#0a0101]">
-                    {p.letter}
-                  </span>
-                </div>
-
-                {/* Identity */}
-                <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0a0101]">
-                  {p.title}
-                </h3>
-                <div className="text-xs font-bold text-slate-500 mt-1 uppercase tracking-wide">
-                  {p.tagline}
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal mt-4">
-                  {p.description}
-                </p>
-              </div>
-
-              {/* Badges */}
-              <div className="pt-6 mt-6 border-t border-slate-300/60 flex flex-wrap gap-1.5 relative z-10">
-                {p.badges.map((b, i) => (
-                  <span
-                    key={i}
-                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white text-slate-800 text-[10px] font-bold shadow-2xs"
-                  >
-                    <CheckCircle2 size={11} className="text-[#0a0101]" />
-                    {b}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-      </div>
-    </section>
-  );
-};
-
 // --- COMPONENT: HOME PAGE ---
 const HomePage = () => {
   return (
@@ -434,11 +298,8 @@ const HomePage = () => {
     >
       {/* 1. PIVOTROOTS INSPIRED INTERACTIVE HERO */}
       <PivotHero />
-      
-      {/* 2. PIVOTROOTS STYLE BRAND PILLARS (WAY / ZEN / TECH) */}
-      <PivotBrandPillars />
 
-      {/* 3. HORIZONTAL INFINITE KINETIC MARQUEE */}
+      {/* 2. HORIZONTAL INFINITE KINETIC MARQUEE */}
       <MetricsMarquee />
       
       {/* 4. INNOVATIVE 5-STYLE INTERACTIVE SERVICES SHOWCASE */}
@@ -469,18 +330,8 @@ function AppContent() {
 
   return (
     <div className="antialiased font-sans bg-[#0a0101] text-white relative overflow-x-hidden pb-20 md:pb-0">
-      {/* GLOBAL SCREEN BACKGROUND LOGO WATERMARK - HARDWARE ACCELERATED (0ms SCROLL LATENCY) */}
-      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden transform-gpu will-change-transform">
-        <div className="relative w-[340px] sm:w-[540px] md:w-[740px] lg:w-[900px] aspect-[1024/847]">
-          {/* Hardware-accelerated GPU ambient glow */}
-          <div className="absolute inset-0 bg-[#cdd32c]/10 rounded-full blur-3xl transform-gpu pointer-events-none scale-90" />
-          <img 
-            src="/logo-watermark.png" 
-            alt="" 
-            className="w-full h-full object-contain opacity-[0.14] sm:opacity-[0.11] select-none pointer-events-none transform-gpu"
-          />
-        </div>
-      </div>
+      {/* GLOBAL 3D 360-DEGREE ROTATING LOGO - VISIBLE IN ALL TABS & MOBILE VIEW */}
+      <Global3DLogo />
 
       {/* PIVOTROOTS MIX-BLEND DIFFERENCE CUSTOM CURSOR */}
       <CustomCursor />

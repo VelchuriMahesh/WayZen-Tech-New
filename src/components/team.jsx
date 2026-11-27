@@ -367,15 +367,6 @@ export const Team = () => {
           <circle cx="400" cy="400" r="360" stroke="#cdd32c" strokeWidth="1" strokeDasharray="8 8" className="animate-make-line" />
           <circle cx="400" cy="400" r="240" stroke="rgba(255,255,255,0.08)" strokeWidth="1" />
         </svg>
-
-        {/* PROMINENT LOGO WATERMARK BEHIND HEADER */}
-        <div className="absolute top-14 sm:top-20 md:top-24 left-1/2 -translate-x-1/2 w-[340px] sm:w-[500px] md:w-[680px] aspect-square pointer-events-none z-0">
-          <img 
-            src="/logo-watermark.png" 
-            alt="WayZenTech Background Logo" 
-            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 filter drop-shadow-[0_0_35px_rgba(205,211,44,0.2)] select-none"
-          />
-        </div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">

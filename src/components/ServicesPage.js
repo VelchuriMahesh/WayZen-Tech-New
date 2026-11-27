@@ -234,16 +234,6 @@ export default function ServicesPage() {
             strokeDasharray="10 10" 
           />
         </svg>
-
-        {/* PROMINENT BACKGROUND LOGO - HARDWARE ACCELERATED */}
-        <div className="absolute top-16 sm:top-24 md:top-28 left-1/2 -translate-x-1/2 w-[300px] sm:w-[480px] md:w-[700px] aspect-[1024/847] pointer-events-none z-0 flex items-center justify-center transform-gpu">
-          <div className="absolute inset-0 bg-[#cdd32c]/15 rounded-full blur-3xl pointer-events-none scale-75 transform-gpu" />
-          <img 
-            src="/logo-watermark.png" 
-            alt="WayZenTech Background Logo" 
-            className="w-full h-full object-contain opacity-25 sm:opacity-20 md:opacity-22 select-none transform-gpu"
-          />
-        </div>
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
