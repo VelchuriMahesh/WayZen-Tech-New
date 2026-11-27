@@ -186,10 +186,10 @@ const PivotHero = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative z-10 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-[#cdd32c] text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.3em] backdrop-blur-md shadow-lg"
+        className="relative z-10 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-[#cdd32c] text-[10px] sm:text-xs font-mono font-black uppercase tracking-[0.25em] backdrop-blur-md shadow-lg"
       >
         <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-ping" />
-        <span>WayZenTech // Next-Gen Digital Foundry</span>
+        <span>You Dream It, We Build It.</span>
       </motion.div>
 
       {/* CENTERPIECE: STACKED 900-WEIGHT H1 + INTERACTIVE EXPANDING CIRCLE (THE BALL) */}
