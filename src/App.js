@@ -148,13 +148,13 @@ const PivotHero = () => {
   const [isBallExpanded, setIsBallExpanded] = useState(false);
 
   return (
-    <header className="relative min-h-screen flex flex-col justify-between items-center px-5 md:px-12 pt-28 sm:pt-32 md:pt-36 pb-12 overflow-hidden bg-[#070a12] text-white select-none">
+    <header className="relative min-h-screen flex flex-col justify-between items-center px-5 md:px-12 pt-28 sm:pt-32 md:pt-36 pb-12 overflow-hidden bg-transparent text-white select-none">
       
       {/* Background Liquid Smoke Media / Atmospheric Gradient */}
       <div className="absolute inset-0 pointer-events-none z-0 transform-gpu">
         <div className="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] bg-[#cdd32c]/10 blur-[120px] rounded-full transform-gpu" />
         <div className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] bg-blue-600/15 blur-[120px] rounded-full transform-gpu" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#070a12_75%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(7,10,18,0.5)_75%)]" />
       </div>
 
       {/* SVG Dotted Orbital Lines (Hardware Accelerated) */}

@@ -215,7 +215,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-transparent text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
       {/* --- PIVOTROOTS ORBITAL SVG MOTIF & BACKGROUND LOGO EMBLEM --- */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

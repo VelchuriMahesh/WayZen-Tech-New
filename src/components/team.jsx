@@ -359,7 +359,7 @@ export const Team = () => {
     : team.filter(m => m.category === activeFilter);
 
   return (
-    <div className="min-h-screen bg-[#08080c] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-transparent text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
       {/* 1. BACKGROUND SVG ORBITAL MOTIFS & PROMINENT LOGO WATERMARK */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

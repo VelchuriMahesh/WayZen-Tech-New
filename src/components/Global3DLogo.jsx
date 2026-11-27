@@ -4,42 +4,44 @@ import { motion } from 'framer-motion';
 export const Global3DLogo = () => {
   return (
     <div 
-      className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden transform-gpu select-none"
+      className="fixed inset-0 pointer-events-none z-[1] flex items-center justify-center overflow-hidden transform-gpu select-none"
       style={{ perspective: 1200 }}
     >
-      {/* Dynamic Ambient Glow Field */}
-      <div className="absolute w-[320px] sm:w-[500px] md:w-[700px] aspect-square rounded-full bg-[#cdd32c]/15 blur-3xl pointer-events-none scale-75 transform-gpu" />
-      <div className="absolute w-[240px] sm:w-[380px] md:w-[520px] aspect-square rounded-full bg-blue-500/10 blur-[100px] pointer-events-none transform-gpu" />
+      {/* High-Tech Amber/Lime & Cyan Ambient Glow Field */}
+      <div className="absolute w-[300px] sm:w-[480px] md:w-[650px] aspect-square rounded-full bg-[#cdd32c]/20 blur-[90px] sm:blur-[120px] pointer-events-none scale-90 transform-gpu" />
+      <div className="absolute w-[220px] sm:w-[360px] md:w-[500px] aspect-square rounded-full bg-blue-500/15 blur-[100px] pointer-events-none transform-gpu" />
 
-      {/* 3D Rotating Logo Container with Continuous 360° Rotation */}
+      {/* 3D Rotating Logo Container with Continuous 360° Y-Axis Rotation */}
       <motion.div
         animate={{ 
           rotateY: [0, 360],
         }}
         transition={{ 
           repeat: Infinity, 
-          duration: 16, 
+          duration: 14, 
           ease: "linear" 
         }}
         style={{ 
           transformStyle: "preserve-3d",
-          transformOrigin: "center center"
+          transformOrigin: "center center",
+          rotateX: 10,
+          rotateZ: -4
         }}
-        className="relative w-[300px] sm:w-[460px] md:w-[640px] lg:w-[780px] aspect-[1024/847] flex items-center justify-center transform-gpu"
+        className="relative w-[280px] sm:w-[420px] md:w-[580px] lg:w-[700px] aspect-[1024/847] flex items-center justify-center transform-gpu"
       >
-        {/* Front Face of the 3D Logo */}
+        {/* Front Face: Crisp White Glowing 3D Logo Mark */}
         <div 
           className="absolute inset-0 flex items-center justify-center"
           style={{ backfaceVisibility: "visible" }}
         >
           <img 
-            src="/logo-watermark.png" 
+            src="/logo-white.png" 
             alt="WayZenTech 3D Logo" 
-            className="w-full h-full object-contain opacity-45 sm:opacity-35 md:opacity-28 select-none pointer-events-none transform-gpu drop-shadow-[0_0_35px_rgba(205,211,44,0.35)]"
+            className="w-full h-full object-contain opacity-60 sm:opacity-45 md:opacity-35 select-none pointer-events-none transform-gpu drop-shadow-[0_0_35px_rgba(205,211,44,0.45)]"
           />
         </div>
 
-        {/* Back Face for realistic 3D depth when rotating through 180 degrees */}
+        {/* Reverse Face: 3D Depth Layer for Seamless 360° Full Revolution */}
         <div 
           className="absolute inset-0 flex items-center justify-center"
           style={{ 
@@ -48,9 +50,9 @@ export const Global3DLogo = () => {
           }}
         >
           <img 
-            src="/logo-watermark.png" 
+            src="/logo-white.png" 
             alt="WayZenTech 3D Logo Reverse" 
-            className="w-full h-full object-contain opacity-40 sm:opacity-30 md:opacity-24 select-none pointer-events-none transform-gpu drop-shadow-[0_0_35px_rgba(205,211,44,0.3)]"
+            className="w-full h-full object-contain opacity-55 sm:opacity-40 md:opacity-30 select-none pointer-events-none transform-gpu drop-shadow-[0_0_30px_rgba(205,211,44,0.4)]"
           />
         </div>
       </motion.div>

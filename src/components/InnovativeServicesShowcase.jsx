@@ -205,7 +205,7 @@ export const InnovativeServicesShowcase = () => {
   };
 
   return (
-    <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-[#0a0101] text-white overflow-hidden select-none">
+    <section className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 lg:px-8 bg-transparent text-white overflow-hidden select-none">
       
       {/* Background Organic Winding Spline Path (PivotRoots signature) */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20 z-0" viewBox="0 0 1440 900" fill="none">
