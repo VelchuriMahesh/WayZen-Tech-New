@@ -25,6 +25,7 @@ import { JourneyConnector } from './components/JourneyConnector';
 import { CustomCursor } from './components/CustomCursor';
 import { MetricsMarquee } from './components/MetricsMarquee';
 import { Global3DLogo } from './components/Global3DLogo';
+import { SitePreloader } from './components/SitePreloader';
 import { PivotPreFooter } from './components/PivotPreFooter';
 import { PivotFooter } from './components/PivotFooter';
 
@@ -327,9 +328,13 @@ const HomePage = () => {
 // --- MASTER CONTENT WRAPPER ---
 function AppContent() {
   const location = useLocation();
+  const [siteLoading, setSiteLoading] = useState(true);
 
   return (
     <div className="antialiased font-sans bg-[#0a0101] text-white relative overflow-x-hidden pb-20 md:pb-0">
+      {/* HIGH-TECH SITE PRELOADER WITH 3D ROTATING LOGO ANIMATION */}
+      {siteLoading && <SitePreloader onComplete={() => setSiteLoading(false)} />}
+
       {/* GLOBAL 3D 360-DEGREE ROTATING LOGO - VISIBLE IN ALL TABS & MOBILE VIEW */}
       <Global3DLogo />
 
