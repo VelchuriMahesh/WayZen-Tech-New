@@ -26,6 +26,7 @@ export const InnovativeServicesShowcase = () => {
       tagline: 'High-speed conversion engines built with Next.js 15 & MERN.',
       route: '/web-development',
       icon: Globe,
+      image: '/services/web-showcase.png',
       badge: '99/100 Core Web Vitals',
       metrics: '< 0.8s FCP • 99/100 Speed • SEO Native',
       description: 'We discard generic templates. Every web application is custom-architected for sub-second load times, fluid micro-interactions, responsive precision, and Google Core Web Vitals dominance.',
@@ -45,6 +46,7 @@ export const InnovativeServicesShowcase = () => {
       tagline: 'Autonomous chatbots, OpenAI workflows & zero-touch pipelines.',
       route: '/ai-automation',
       icon: Bot,
+      image: '/services/ai-showcase.png',
       badge: '24/7 Autonomous',
       metrics: '70% Manual Time Saved • 320ms Latency • API Connected',
       description: 'Replace repetitive manual operations with custom AI agents. From conversational WhatsApp bots that qualify leads to automated invoice extraction and autonomous CRM lead routing.',
@@ -64,6 +66,7 @@ export const InnovativeServicesShowcase = () => {
       tagline: 'Silk-smooth 60fps native apps with Flutter & React Native.',
       route: '/mobile-app-development',
       icon: Smartphone,
+      image: '/services/mobile-showcase.png',
       badge: '60 FPS Native',
       metrics: 'iOS 18 Ready • Android 15 • Offline SQLite Sync',
       description: 'Reach mobile users on both platforms with a unified, high-performance codebase. Engineered with native device hardware access, real-time push alerts, and offline caching.',
@@ -83,6 +86,7 @@ export const InnovativeServicesShowcase = () => {
       tagline: 'Algorithm-proof organic search visibility that captures buyers.',
       route: '/seo',
       icon: Search,
+      image: '/services/seo-showcase.png',
       badge: 'Google Rank #1 Ready',
       metrics: '250% Avg. ROAS • Zero Ad Wastage • Daily Audit',
       description: 'We don’t chase vanity traffic. We optimize your technical architecture, local Google Map Pack signals, and structured JSON-LD schemas so ready-to-buy customers discover your business first.',
@@ -102,6 +106,7 @@ export const InnovativeServicesShowcase = () => {
       tagline: 'Tailor-made POS, GST invoicing, barcode sync & WhatsApp receipts.',
       route: '/billing-software',
       icon: Receipt,
+      image: '/services/billing-showcase.png',
       badge: 'Instant WhatsApp Bills',
       metrics: '3-Sec Invoice • Thermal Ready • Zero Monthly Fees',
       description: 'Rigid commercial billing software slows businesses down. We engineer bespoke POS systems, inventory management engines, and automated WhatsApp invoice dispatchers built around your exact daily workflow.',
@@ -307,6 +312,20 @@ export const InnovativeServicesShowcase = () => {
                   >
                     {/* Circle Background Radial Grid Pattern */}
                     <div className="absolute inset-0 bg-[radial-gradient(#cdd32c15_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none" />
+                    
+                    {/* Rich 3D Visual Illustration Background (PivotRoots Lens Style) */}
+                    {current.image && (
+                      <div className="absolute inset-0 z-0 overflow-hidden rounded-full pointer-events-none">
+                        <img 
+                          src={current.image} 
+                          alt="" 
+                          loading="lazy"
+                          decoding="async"
+                          className="w-full h-full object-cover opacity-45 scale-105 pointer-events-none transform-gpu"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#09090d] via-[#09090d]/65 to-[#09090d]/30 pointer-events-none" />
+                      </div>
+                    )}
                     
                     {/* --- 1. WEB ARCHITECTURE CIRCLE VISUALS --- */}
                     {current.id === 'web' && (

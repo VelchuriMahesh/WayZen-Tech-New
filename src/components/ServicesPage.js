@@ -15,6 +15,7 @@ const services = [
     num: "01",
     title: "Website Development",
     icon: Globe,
+    image: "/services/web-showcase.png",
     tagline: "High-performance digital architecture & conversion engines.",
     categories: [
       "Real Estate Portals", 
@@ -32,6 +33,7 @@ const services = [
     num: "02",
     title: "Performance Ads",
     icon: TrendingUp,
+    image: "/services/seo-showcase.png",
     tagline: "Engineered for qualified lead generation & customer acquisition.",
     categories: [
       "End-to-End Meta & Google Ads Setup",
@@ -48,6 +50,7 @@ const services = [
     num: "03",
     title: "Content & Media Editing",
     icon: Video,
+    image: "/services/video-showcase.png",
     tagline: "Visual storytelling that commands attention and stops the scroll.",
     categories: [
       "Professional Reel & Short-Form Video Editing",
@@ -64,6 +67,7 @@ const services = [
     num: "04",
     title: "AI & Business Automation",
     icon: Bot,
+    image: "/services/ai-showcase.png",
     tagline: "Autonomous workflows and intelligent conversational pipelines.",
     categories: [
       "Custom OpenAI / LLM Model Integration",
@@ -80,6 +84,7 @@ const services = [
     num: "05",
     title: "Custom Software & Mobile",
     icon: Layers,
+    image: "/services/billing-showcase.png",
     tagline: "Scalable MERN architectures, native apps & business tools.",
     categories: [
       "Cross-Platform iOS & Android (Flutter / React Native)",
@@ -130,6 +135,24 @@ export default function ServicesPage() {
           className="relative w-full h-full rounded-full overflow-hidden bg-gradient-to-b from-[#181824] via-[#111119] to-[#08080c] border-2 border-[#cdd32c]/40 shadow-[0_0_40px_rgba(205,211,44,0.18)] flex items-center justify-center p-5 text-center select-none"
         >
           <div className="absolute inset-0 bg-[radial-gradient(#cdd32c15_1px,transparent_1px)] [background-size:16px_16px] opacity-40 pointer-events-none" />
+
+          {/* Rich 3D Visual Illustration Background (PivotRoots Lens Style) */}
+          {(() => {
+            const currentItem = services.find(s => s.id === serviceId);
+            if (!currentItem?.image) return null;
+            return (
+              <div className="absolute inset-0 z-0 overflow-hidden rounded-full pointer-events-none">
+                <img 
+                  src={currentItem.image} 
+                  alt="" 
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover opacity-45 scale-105 pointer-events-none transform-gpu"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#09090d] via-[#09090d]/65 to-[#09090d]/30 pointer-events-none" />
+              </div>
+            );
+          })()}
 
           {/* Web Architecture Visual */}
           {serviceId === 'web' && (
