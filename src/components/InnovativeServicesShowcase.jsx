@@ -340,34 +340,39 @@ export const InnovativeServicesShowcase = () => {
                 </div>
               </div>
 
-              {/* CENTER COLUMN: FULL FRAME 3D ILLUSTRATION CIRCULAR PORTAL (NO TEXT/DESIGN ON IMAGE) */}
+              {/* CENTER COLUMN: SQUARE FRAME (FULL IMAGE, ZERO TEXT/DESIGN ON IMAGE) */}
               <div className="lg:col-span-4 flex justify-center items-center py-4 transform-gpu">
-                <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-92 md:h-92 flex items-center justify-center transform-gpu">
+                <div className="relative w-full max-w-[340px] sm:max-w-[380px] md:max-w-[420px] aspect-square flex items-center justify-center transform-gpu">
                   
-                  {/* Outer Concentric Animated Orbit Rings (Hardware GPU Accelerated) */}
-                  <div className="absolute -inset-4 sm:-inset-6 rounded-full border border-dashed border-[#cdd32c]/30 animate-spin-slow pointer-events-none transform-gpu will-change-transform" />
-                  <div className="absolute -inset-8 sm:-inset-10 rounded-full border border-white/10 pointer-events-none" />
+                  {/* Ambient Glow behind Square Frame */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#cdd32c]/20 via-[#cdd32c]/5 to-transparent blur-2xl opacity-60 pointer-events-none transform-gpu" />
 
-                  {/* Ambient Radial Backlight behind Circle */}
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/25 to-transparent blur-2xl opacity-70 pointer-events-none transform-gpu" />
+                  {/* Subtle Decorative Outer Dashed Border Line */}
+                  <div className="absolute -inset-3 rounded-[28px] border border-dashed border-[#cdd32c]/25 pointer-events-none" />
 
-                  {/* Main Circular Portal */}
+                  {/* Main Square Portal Frame */}
                   <motion.div
-                    key={`circle-${current.id}`}
-                    initial={{ scale: 0.88, rotate: -4, opacity: 0 }}
-                    animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                    exit={{ scale: 0.88, rotate: 4, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                    className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#cdd32c]/50 shadow-[0_0_50px_rgba(205,211,44,0.25)] flex items-center justify-center select-none transform-gpu bg-[#101014] group"
+                    key={`square-${current.id}`}
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    exit={{ scale: 0.9, opacity: 0 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                    className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-[#cdd32c]/40 bg-gradient-to-b from-[#161620] via-[#0f0f16] to-[#08080c] shadow-[0_0_50px_rgba(205,211,44,0.2)] flex items-center justify-center p-3 sm:p-4 select-none transform-gpu group"
                   >
-                    {/* FULL FRAME 3D ILLUSTRATION IMAGE - ZERO OVERLAYS, NO TEXT, NO DESIGN */}
+                    {/* Corner Bracket Tech Accents */}
+                    <span className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-[#cdd32c]/70 pointer-events-none" />
+                    <span className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-[#cdd32c]/70 pointer-events-none" />
+                    <span className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-[#cdd32c]/70 pointer-events-none" />
+                    <span className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-[#cdd32c]/70 pointer-events-none" />
+
+                    {/* FULL 3D ILLUSTRATION IMAGE - 100% UNCLIPPED, NO TEXT, NO DESIGN */}
                     {current.image && (
                       <img 
                         src={current.image} 
                         alt={current.title} 
                         loading="eager"
                         decoding="async"
-                        className="w-full h-full object-cover select-none transform-gpu transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain select-none transform-gpu transition-transform duration-500 group-hover:scale-105"
                       />
                     )}
                   </motion.div>

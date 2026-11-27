@@ -173,35 +173,40 @@ export default function ServicesPage() {
     }, 300);
   };
 
-  // Render the central PivotRoots circular animation composition for each service (Full frame image, zero text/design overlays)
+  // Render the central square frame visual for each service (Full image, zero text/design overlays)
   const renderCircleVisual = (serviceId) => {
     const currentItem = services.find(s => s.id === serviceId);
     return (
-      <div className="relative w-64 h-64 sm:w-76 sm:h-76 md:w-84 md:h-84 flex items-center justify-center mx-auto my-6">
-        {/* Outer Concentric Animated Orbit Rings */}
-        <div className="absolute -inset-4 sm:-inset-5 rounded-full border border-dashed border-[#cdd32c]/30 animate-spin-slow pointer-events-none" />
-        <div className="absolute -inset-7 rounded-full border border-white/10 pointer-events-none" />
-        
+      <div className="relative w-full max-w-[320px] sm:max-w-[360px] md:max-w-[400px] aspect-square flex items-center justify-center mx-auto my-6">
         {/* Ambient Backlight Glow */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#cdd32c]/20 to-transparent blur-xl opacity-60 pointer-events-none" />
+        <div className="absolute inset-0 rounded-3xl bg-gradient-to-tr from-[#cdd32c]/20 via-[#cdd32c]/5 to-transparent blur-2xl opacity-60 pointer-events-none" />
+        
+        {/* Outer Dashed Tech Border */}
+        <div className="absolute -inset-3 rounded-[28px] border border-dashed border-[#cdd32c]/25 pointer-events-none" />
 
-        {/* Main Portal Sphere */}
+        {/* Main Square Portal Frame */}
         <motion.div
-          key={`circle-portal-${serviceId}`}
-          initial={{ scale: 0.88, rotate: -4, opacity: 0 }}
-          animate={{ scale: 1, rotate: 0, opacity: 1 }}
-          exit={{ scale: 0.88, rotate: 4, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeOut" }}
-          className="relative w-full h-full rounded-full overflow-hidden border-2 border-[#cdd32c]/50 shadow-[0_0_50px_rgba(205,211,44,0.25)] flex items-center justify-center select-none bg-[#101014] group"
+          key={`square-portal-${serviceId}`}
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.9, opacity: 0 }}
+          transition={{ duration: 0.35, ease: "easeOut" }}
+          className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-[#cdd32c]/40 bg-gradient-to-b from-[#161620] via-[#0f0f16] to-[#08080c] shadow-[0_0_50px_rgba(205,211,44,0.2)] flex items-center justify-center p-3 sm:p-4 select-none group"
         >
-          {/* FULL FRAME 3D ILLUSTRATION IMAGE - ZERO OVERLAYS, NO TEXT, NO DESIGN */}
+          {/* Corner Bracket Tech Accents */}
+          <span className="absolute top-2.5 left-2.5 w-3 h-3 border-t-2 border-l-2 border-[#cdd32c]/70 pointer-events-none" />
+          <span className="absolute top-2.5 right-2.5 w-3 h-3 border-t-2 border-r-2 border-[#cdd32c]/70 pointer-events-none" />
+          <span className="absolute bottom-2.5 left-2.5 w-3 h-3 border-b-2 border-l-2 border-[#cdd32c]/70 pointer-events-none" />
+          <span className="absolute bottom-2.5 right-2.5 w-3 h-3 border-b-2 border-r-2 border-[#cdd32c]/70 pointer-events-none" />
+
+          {/* FULL 3D ILLUSTRATION IMAGE - 100% UNCLIPPED, NO TEXT, NO DESIGN */}
           {currentItem?.image && (
             <img 
               src={currentItem.image} 
               alt={currentItem.title} 
               loading="lazy"
               decoding="async"
-              className="w-full h-full object-cover select-none transform-gpu transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-contain select-none transform-gpu transition-transform duration-500 group-hover:scale-105"
             />
           )}
         </motion.div>
@@ -209,8 +214,7 @@ export default function ServicesPage() {
     );
   };
 
-
-    return (
+  return (
     <div className="min-h-screen bg-[#0a0101] text-white pt-28 md:pt-36 pb-32 md:pb-28 px-4 md:px-8 relative overflow-hidden font-sans">
       
       {/* --- PIVOTROOTS ORBITAL SVG MOTIF & BACKGROUND LOGO EMBLEM --- */}
