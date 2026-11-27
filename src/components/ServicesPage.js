@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { 
   Globe, TrendingUp, Video, 
   CheckCircle2, ArrowRight, ChevronDown, 
-  Bot, Layers, MessageCircle, Sparkles,
-  Rocket, Receipt
+  Bot, MessageCircle, Sparkles,
+  Rocket, Receipt, Smartphone, Search,
+  Share2, Server, Film
 } from 'lucide-react';
 
 const services = [
@@ -18,82 +19,140 @@ const services = [
     image: "/services/web-showcase.png",
     tagline: "High-performance digital architecture & conversion engines.",
     categories: [
-      "Real Estate Portals", 
-      "E-commerce Ecosystems", 
-      "Corporate Branding & SaaS", 
-      "LMS & Education Platforms", 
-      "High-Converting Portfolios"
+      "Static High-Speed Landing Pages (0.4s FCP)",
+      "Dynamic Database Web Apps & Portals",
+      "Corporate Branding & Enterprise SaaS",
+      "LMS & Real Estate Interactive Portals",
+      "Google Core Web Vitals 99/100 Guarantee"
     ],
-    details: "We don't build generic template sites; we engineer high-velocity digital assets. Optimized for sub-second load times, technical SEO domination, and consumer psychological conversion.",
+    details: "We discard generic templates. Every website is custom-architected for sub-second load times, fluid micro-interactions, responsive precision across mobile and desktop, and Google Core Web Vitals dominance.",
     metrics: "< 0.8s FCP • 99/100 Lighthouse • SEO Native",
     color: "#cdd32c"
   },
   {
-    id: "ads",
+    id: "ai",
     num: "02",
-    title: "Performance Ads",
-    icon: TrendingUp,
-    image: "/services/seo-showcase.png",
-    tagline: "Engineered for qualified lead generation & customer acquisition.",
+    title: "AI & Business Automation",
+    icon: Bot,
+    image: "/services/ai-showcase.png",
+    tagline: "Autonomous workflows & intelligent conversational pipelines.",
     categories: [
-      "End-to-End Meta & Google Ads Setup",
-      "6–7 High-Impact Creative Formats",
-      "Algorithmic Audience Retargeting",
-      "Real-Time Conversion Tracking & Attribution"
+      "24/7 WhatsApp AI Sales & Support Bots",
+      "Document & Invoice OCR Data Extraction",
+      "Zero-Touch CRM & Lead Routing Pipelines",
+      "Custom OpenAI / LLM Fine-Tuning",
+      "Automated Follow-Ups & Notifications"
     ],
-    details: "Stop burning marketing budgets on vanity metrics. We construct precision paid media funnels designed to deliver predictable customer acquisition cost (CAC) and maximum return on ad spend (ROAS).",
-    metrics: "250% Avg. ROAS • Zero Ad Wastage • Daily Audit",
+    details: "Replace repetitive manual operations with custom AI agents. From conversational WhatsApp bots that qualify leads around the clock to automated invoice extraction and autonomous CRM lead routing.",
+    metrics: "70% Manual Time Saved • 320ms Latency • API Connected",
     color: "#cdd32c"
   },
   {
-    id: "content",
+    id: "mobile",
     num: "03",
-    title: "Content & Media Editing",
-    icon: Video,
-    image: "/services/video-showcase.png",
-    tagline: "Visual storytelling that commands attention and stops the scroll.",
+    title: "iOS & Android App Development",
+    icon: Smartphone,
+    image: "/services/mobile-showcase.png",
+    tagline: "Silk-smooth 60fps native apps with Flutter & React Native.",
     categories: [
-      "Professional Reel & Short-Form Video Editing",
-      "High-Fidelity Commercial Poster Design",
-      "Brand Identity & Social Media Management",
-      "Continuous Website Assets & Maintenance"
+      "Cross-Platform Unified Codebase (Flutter / React Native)",
+      "Seamless In-App UPI & Razorpay Payment Integration",
+      "Offline-First SQLite Caching & Instant Cloud Bridge",
+      "Push Notifications, Biometrics & Hardware Sync",
+      "Guaranteed Google Play & Apple AppStore Submission"
     ],
-    details: "Your brand is judged by the fidelity of its visual output. We produce punchy, retention-optimized short-form content and striking brand collateral that turns passive viewers into loyal clients.",
+    details: "Reach mobile users on both platforms with a unified, high-performance codebase. Engineered with native device hardware access, real-time push alerts, fluid 60 FPS transitions, and robust offline caching.",
+    metrics: "60 FPS Native • iOS 18 Ready • Android 15",
+    color: "#cdd32c"
+  },
+  {
+    id: "seo",
+    num: "04",
+    title: "Digital Marketing & SEO",
+    icon: Search,
+    image: "/services/seo-showcase.png",
+    tagline: "Algorithm-proof organic search visibility & high-ROAS funnels.",
+    categories: [
+      "Technical SEO Architecture & Google Core Web Vitals",
+      "Local SEO & Google Map Pack Top 3 Domination",
+      "Meta & Google Ads Precision Conversion Funnels",
+      "Structured Schema Markup & Semantic Indexing",
+      "Multi-Touch Attribution Tracking & ROAS Optimization"
+    ],
+    details: "We don't chase vanity traffic. We optimize your technical architecture, local Google Map Pack signals, and structured JSON-LD schemas so ready-to-buy customers discover your business first.",
+    metrics: "250% Avg. ROAS • Top 3 Google Ranks • Daily Audit",
+    color: "#cdd32c"
+  },
+  {
+    id: "billing",
+    num: "05",
+    title: "Custom Software & Billing (POS)",
+    icon: Receipt,
+    image: "/services/billing-showcase.png",
+    tagline: "Tailor-made POS, GST invoicing, barcode sync & WhatsApp receipts.",
+    categories: [
+      "3-Second Counter Sales & Barcode Scanner Sync",
+      "Automated Paperless WhatsApp PDF Invoice Dispatch",
+      "Live Multi-Item Stock Caching & Low-Stock Alerts",
+      "Multi-Branch Centralized Cloud Analytics Dashboard",
+      "Zero Monthly SaaS Fees & 100% Offline Resilience"
+    ],
+    details: "Rigid commercial billing software slows businesses down. We engineer bespoke POS systems, inventory management engines, and automated WhatsApp invoice dispatchers built around your exact daily workflow.",
+    metrics: "3-Sec Invoice • Thermal Ready • 100% Offline",
+    color: "#cdd32c"
+  },
+  {
+    id: "social",
+    num: "06",
+    title: "Social Media Management",
+    icon: Share2,
+    image: "/services/social-showcase.png",
+    tagline: "Viral brand positioning, content calendars & audience retention.",
+    categories: [
+      "Strategic Brand Content Calendars & Carousels",
+      "Active Audience Engagement & Follower Funnels",
+      "High-Impact Commercial Poster & Banner Design",
+      "Multi-Platform Distribution (Instagram, LinkedIn, Meta)",
+      "Monthly Competitor Benchmark & Growth Analytics"
+    ],
+    details: "Elevate your brand presence across Instagram, LinkedIn, and Meta with data-driven social calendars, aesthetic visual collateral, and strategic community management that turns passive scrollers into paying clients.",
+    metrics: "3x Engagement Lift • Daily Analytics • 100% Consistency",
+    color: "#cdd32c"
+  },
+  {
+    id: "video",
+    num: "07",
+    title: "Video Shooting & Editing",
+    icon: Film,
+    image: "/services/video-showcase.png",
+    tagline: "Cinematic 4K brand reels, commercial trailers & high-retention cuts.",
+    categories: [
+      "On-Location 4K Professional Video Shoots & Lighting",
+      "Viral Short-Form Reels, Shorts & TikTok Pacing",
+      "Dynamic Commercial Motion Graphics & 3D Title VFX",
+      "Professional Color Grading & Sound Engineering",
+      "Rapid 24h Turnaround for Daily Social Feeds"
+    ],
+    details: "Visual storytelling that commands attention and stops the scroll. We produce retention-optimized short-form reels, high-fidelity promotional commercials, and striking motion graphics that elevate your brand authority.",
     metrics: "4K Motion Graphics • 1080x1920 Viral Formats • 24h Turnaround",
     color: "#cdd32c"
   },
   {
-    id: "ai",
-    num: "04",
-    title: "AI & Business Automation",
-    icon: Bot,
-    image: "/services/ai-showcase.png",
-    tagline: "Autonomous workflows and intelligent conversational pipelines.",
+    id: "it",
+    num: "08",
+    title: "IT & Technical Services",
+    icon: Server,
+    image: "/services/it-showcase.png",
+    tagline: "Cloud DevOps, server deployment, SSL security & 24/7 tech desk.",
     categories: [
-      "Custom OpenAI / LLM Model Integration",
-      "24/7 WhatsApp AI Sales & Support Bots",
-      "Automated Lead Capture & CRM Sync",
-      "Repetitive Task & Operations Automation"
+      "Cloud VPS & Dedicated Server Setup (AWS / Hostinger / Docker)",
+      "Domain, DNS Configuration, SSL Hardening & DDoS Defense",
+      "REST / GraphQL API Bridges & Database Maintenance",
+      "Automated Daily Cloud Backups & Disaster Recovery",
+      "24/7 Emergency Developer Support Desk on WhatsApp"
     ],
-    details: "Eliminate manual data entry and missed leads. We engineer custom AI agents that interact with customers, qualify inquiries on WhatsApp, and automate your back-office operations seamlessly.",
-    metrics: "70% Manual Time Saved • 24/7 Zero Latency • API Connected",
-    color: "#cdd32c"
-  },
-  {
-    id: "software",
-    num: "05",
-    title: "Custom Software & Mobile",
-    icon: Layers,
-    image: "/services/billing-showcase.png",
-    tagline: "Scalable MERN architectures, native apps & business tools.",
-    categories: [
-      "Cross-Platform iOS & Android (Flutter / React Native)",
-      "Custom Billing & Inventory Management",
-      "Internal Business Admin & Analytics Dashboards",
-      "Secure Cloud Backends & API Infrastructure"
-    ],
-    details: "When off-the-shelf software doesn't fit your workflow, we construct bespoke software solutions tailored to your exact operational parameters with uncompromising security and speed.",
-    metrics: "Zero Subscription Fees • 100% Owned Code • Cloud Native",
+    details: "Complete technical peace of mind. We manage Linux cloud servers, custom domain architectures, SSL certificates, API bridges, and provide on-demand technical engineering support so your business never goes down.",
+    metrics: "99.99% Uptime • 24/7 Dev Desk • Zero-Downtime Deploy",
     color: "#cdd32c"
   }
 ];
@@ -154,7 +213,7 @@ export default function ServicesPage() {
             );
           })()}
 
-          {/* Web Architecture Visual */}
+          {/* 01: Web Architecture Visual */}
           {serviceId === 'web' && (
             <div className="relative z-10 space-y-2.5 w-full font-mono">
               <div className="bg-[#09090d]/90 border border-white/15 rounded-xl p-3 max-w-[200px] mx-auto text-left shadow-xl">
@@ -186,49 +245,7 @@ export default function ServicesPage() {
             </div>
           )}
 
-          {/* Performance Ads Visual */}
-          {serviceId === 'ads' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-amber-500/10 border-2 border-amber-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(251,191,36,0.3)]">
-                <Rocket size={28} className="text-amber-400 animate-bounce" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-amber-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Growth Engine:</span>
-                  <span className="text-amber-400 font-bold">+250% ROAS</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">Algorithmic buyer targeting</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold">
-                  Meta & Google Ads
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* Content & Media Visual */}
-          {serviceId === 'content' && (
-            <div className="relative z-10 space-y-2.5 w-full font-mono">
-              <div className="w-14 h-14 rounded-full bg-purple-500/10 border-2 border-purple-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(168,85,247,0.3)]">
-                <Video size={28} className="text-purple-400" />
-              </div>
-              <div className="bg-[#09090d]/90 border border-purple-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
-                <div className="flex justify-between text-slate-400">
-                  <span>Viral Short-Form:</span>
-                  <span className="text-purple-400 font-bold">4K 60FPS</span>
-                </div>
-                <p className="text-white text-[10px] font-sans mt-0.5">High-retention reel collateral</p>
-              </div>
-              <div className="flex justify-center gap-1 text-[8px]">
-                <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-bold">
-                  Motion Graphics
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* AI Automation Visual */}
+          {/* 02: AI Automation Visual */}
           {serviceId === 'ai' && (
             <div className="relative z-10 space-y-2.5 w-full font-mono">
               <div className="w-14 h-14 rounded-full bg-emerald-500/10 border-2 border-emerald-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(52,211,153,0.3)] animate-pulse">
@@ -249,8 +266,50 @@ export default function ServicesPage() {
             </div>
           )}
 
-          {/* Custom Software & Billing Visual */}
-          {serviceId === 'software' && (
+          {/* 03: Mobile Development Visual */}
+          {serviceId === 'mobile' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-cyan-500/10 border-2 border-cyan-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(6,182,212,0.3)]">
+                <Smartphone size={28} className="text-cyan-400" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-cyan-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>Live UPI Checkout:</span>
+                  <span className="text-cyan-400 font-bold">₹18,500</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">Flutter & React Native 60fps</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 font-bold">
+                  iOS & Android Native
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* 04: Digital Marketing & SEO Visual */}
+          {serviceId === 'seo' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-amber-500/10 border-2 border-amber-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(251,191,36,0.3)]">
+                <Rocket size={28} className="text-amber-400 animate-bounce" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-amber-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>Growth Engine:</span>
+                  <span className="text-amber-400 font-bold">+250% ROAS</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">Google Top 3 & Map Pack</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold">
+                  Meta & Google Ads
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* 05: Custom Software & Billing POS Visual */}
+          {serviceId === 'billing' && (
             <div className="relative z-10 space-y-2.5 w-full font-mono">
               <div className="w-14 h-14 rounded-full bg-[#cdd32c]/10 border-2 border-[#cdd32c] flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(205,211,44,0.3)]">
                 <Receipt size={28} className="text-[#cdd32c]" />
@@ -264,7 +323,70 @@ export default function ServicesPage() {
               </div>
               <div className="flex justify-center gap-1 text-[8px]">
                 <span className="px-2 py-0.5 rounded-full bg-[#cdd32c]/20 text-[#cdd32c] font-bold">
-                  Flutter & MERN
+                  Barcode & Offline Sync
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* 06: Social Media Management Visual */}
+          {serviceId === 'social' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-rose-500/10 border-2 border-rose-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(244,63,94,0.3)]">
+                <Share2 size={28} className="text-rose-400" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-rose-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>Brand Influence:</span>
+                  <span className="text-rose-400 font-bold">+3x Lift</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">Instagram & LinkedIn Calendars</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-300 font-bold">
+                  Community & Posters
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* 07: Video Production Visual */}
+          {serviceId === 'video' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-purple-500/10 border-2 border-purple-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(168,85,247,0.3)]">
+                <Video size={28} className="text-purple-400" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-purple-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>Cinematic 4K Reels:</span>
+                  <span className="text-purple-400 font-bold">60 FPS</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">High-retention commercial cuts</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 font-bold">
+                  Motion Graphics & VFX
+                </span>
+              </div>
+            </div>
+          )}
+
+          {/* 08: IT & Technical Infrastructure Visual */}
+          {serviceId === 'it' && (
+            <div className="relative z-10 space-y-2.5 w-full font-mono">
+              <div className="w-14 h-14 rounded-full bg-blue-500/10 border-2 border-blue-400 flex items-center justify-center mx-auto shadow-[0_0_25px_rgba(59,130,246,0.3)]">
+                <Server size={28} className="text-blue-400" />
+              </div>
+              <div className="bg-[#09090d]/90 border border-blue-500/30 rounded-xl p-2.5 max-w-[200px] mx-auto text-left text-[9px]">
+                <div className="flex justify-between text-slate-400">
+                  <span>Cloud Uptime:</span>
+                  <span className="text-blue-400 font-bold">99.99%</span>
+                </div>
+                <p className="text-white text-[10px] font-sans mt-0.5">AWS, Docker & 24/7 Dev Desk</p>
+              </div>
+              <div className="flex justify-center gap-1 text-[8px]">
+                <span className="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 font-bold">
+                  DevOps & SSL Defense
                 </span>
               </div>
             </div>
@@ -309,10 +431,10 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* --- HEADER: PIVOTROOTS EDITORIAL CONTRAST --- */}
-        <header className="mb-12 md:mb-20 text-left">
+        <header className="mb-12 md:mb-16 text-left">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#cdd32c]/10 border border-[#cdd32c]/30 text-[#cdd32c] text-[10px] md:text-xs font-mono font-black uppercase tracking-widest mb-4">
             <Sparkles size={12} />
-            <span>[ WAYZEN_CAPABILITIES / 05_VERTICALS ]</span>
+            <span>[ WAYZEN_CAPABILITIES / 08_VERTICALS ]</span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
@@ -335,7 +457,7 @@ export default function ServicesPage() {
         </header>
 
         {/* --- MOBILE VIEW: ACCORDION WITH ANIMATED CIRCULAR PORTALS --- */}
-        <div className="lg:hidden space-y-4 mb-20 text-left">
+        <div className="lg:hidden space-y-3.5 mb-20 text-left">
           {services.map((item) => {
             const isExpanded = expandedMobileId === item.id;
             const IconComponent = item.icon;
@@ -351,7 +473,7 @@ export default function ServicesPage() {
               >
                 <button 
                   onClick={() => toggleMobile(item.id)}
-                  className="w-full flex items-center justify-between p-5 text-left"
+                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left"
                 >
                   <div className="flex items-center gap-3.5 pr-2">
                     <div className={`w-11 h-11 rounded-xl flex items-center justify-center font-black transition-colors ${
@@ -363,7 +485,7 @@ export default function ServicesPage() {
                       <span className="text-[10px] font-mono uppercase tracking-widest text-[#cdd32c] block">
                         {item.num} • SERVICE
                       </span>
-                      <h3 className="font-black text-lg text-white leading-tight mt-0.5">
+                      <h3 className="font-black text-base sm:text-lg text-white leading-tight mt-0.5">
                         {item.title}
                       </h3>
                     </div>
@@ -383,7 +505,7 @@ export default function ServicesPage() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="px-5 pb-6 border-t border-white/5 pt-4"
+                      className="px-4 sm:px-5 pb-6 border-t border-white/5 pt-4"
                     >
                       {/* PivotRoots Animated Circular Portal in Mobile Accordion */}
                       {renderCircleVisual(item.id)}
@@ -430,10 +552,10 @@ export default function ServicesPage() {
         </div>
 
         {/* --- DESKTOP VIEW: PIVOTROOTS SPLIT-SCREEN EDITORIAL SHOWCASE --- */}
-        <div className="hidden lg:grid lg:grid-cols-12 gap-10 items-start">
+        <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Column: Interactive Navigation Items */}
-          <div className="lg:col-span-5 space-y-3 sticky top-36">
+          {/* Left Column: Interactive Navigation Items (Scrollable when 8 items) */}
+          <div className="lg:col-span-5 space-y-2.5 sticky top-32 max-h-[calc(100vh-9rem)] overflow-y-auto pr-2">
             {services.map((item) => {
               const isSelected = activeTab.id === item.id;
               const IconComp = item.icon;
@@ -442,8 +564,8 @@ export default function ServicesPage() {
                 <motion.div
                   key={item.id}
                   onClick={() => setActiveTab(item)}
-                  whileHover={{ x: 8 }}
-                  className={`cursor-pointer p-6 rounded-2xl transition-all border text-left relative overflow-hidden ${
+                  whileHover={{ x: 6 }}
+                  className={`cursor-pointer p-4 xl:p-5 rounded-2xl transition-all border text-left relative overflow-hidden ${
                     isSelected 
                       ? "bg-[#141419] border-[#cdd32c] shadow-[0_10px_40px_rgba(205,211,44,0.15)]" 
                       : "bg-white/5 border-white/5 hover:border-white/20 hover:bg-white/10"
@@ -457,27 +579,27 @@ export default function ServicesPage() {
                     />
                   )}
 
-                  <div className="flex items-center gap-5">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-all ${
                       isSelected 
                         ? "bg-[#cdd32c] text-[#0a0101] shadow-lg shadow-[#cdd32c]/30" 
                         : "bg-white/5 text-slate-400"
                     }`}>
-                      <IconComp size={26} />
+                      <IconComp size={22} />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-mono tracking-widest uppercase text-[#cdd32c] font-black">
-                          {item.num} • SPECIALIZATION
+                        <span className="text-[9px] font-mono tracking-widest uppercase text-[#cdd32c] font-black">
+                          {item.num} • SERVICE
                         </span>
                         {isSelected && (
-                          <span className="w-2 h-2 rounded-full bg-[#cdd32c] animate-ping" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#cdd32c]" />
                         )}
                       </div>
-                      <h3 className="text-xl font-black uppercase tracking-tight text-white mt-1">
+                      <h3 className="text-base xl:text-lg font-black uppercase tracking-tight text-white mt-0.5 truncate">
                         {item.title}
                       </h3>
-                      <p className="text-slate-400 text-xs mt-1 line-clamp-1 font-light">
+                      <p className="text-slate-400 text-xs mt-0.5 line-clamp-1 font-light">
                         {item.tagline}
                       </p>
                     </div>
@@ -488,7 +610,7 @@ export default function ServicesPage() {
           </div>
 
           {/* Right Column: Dynamic Architectural Service Detail with PivotRoots Circular Animation */}
-          <div className="lg:col-span-7 bg-[#101014] rounded-[36px] p-8 md:p-12 border border-white/10 backdrop-blur-2xl relative overflow-hidden shadow-2xl">
+          <div className="lg:col-span-7 bg-[#101014] rounded-[32px] p-8 md:p-10 border border-white/10 backdrop-blur-2xl relative overflow-hidden shadow-2xl">
             
             {/* Top Right Decorative Watermark Numeral */}
             <div className="absolute top-6 right-8 text-7xl font-black font-mono text-white/5 select-none pointer-events-none">
@@ -513,48 +635,48 @@ export default function ServicesPage() {
                   </span>
                 </div>
 
-                <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white mb-3">
                   {activeTab.title}
                 </h2>
 
-                <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-4 border-l-2 border-[#cdd32c] pl-6 font-light">
+                <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-4 border-l-2 border-[#cdd32c] pl-5 font-light">
                   {activeTab.details}
                 </p>
 
                 {/* --- PIVOTROOTS CENTRAL ANIMATED CIRCULAR PORTAL --- */}
                 {renderCircleVisual(activeTab.id)}
 
-                <h4 className="text-xs font-mono uppercase tracking-widest text-[#cdd32c] font-black mb-4">
+                <h4 className="text-xs font-mono uppercase tracking-widest text-[#cdd32c] font-black mb-3">
                   [ DELIVERABLE SCOPE & CAPABILITIES ]
                 </h4>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 mb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
                   {activeTab.categories.map((feat, i) => (
                     <motion.div 
                       key={feat}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.05 }}
-                      className="flex items-center gap-3.5 bg-white/5 p-3.5 rounded-xl border border-white/5 hover:border-[#cdd32c]/40 transition-all"
+                      transition={{ delay: i * 0.04 }}
+                      className="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/5 hover:border-[#cdd32c]/40 transition-all"
                     >
                       <CheckCircle2 className="w-4 h-4 text-[#cdd32c] shrink-0" />
-                      <span className="text-slate-200 text-sm font-medium">{feat}</span>
+                      <span className="text-slate-200 text-xs sm:text-sm font-medium">{feat}</span>
                     </motion.div>
                   ))}
                 </div>
 
                 {/* BOTTOM ACTION BAR */}
-                <div className="flex flex-col sm:flex-row items-center gap-4 pt-6 border-t border-white/10">
+                <div className="flex flex-col sm:flex-row items-center gap-4 pt-5 border-t border-white/10">
                   <button
                     onClick={handleStartProject}
-                    className="w-full sm:w-auto bg-[#cdd32c] hover:bg-white text-[#0a0101] px-8 py-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#cdd32c]/20 cursor-pointer"
+                    className="w-full sm:w-auto bg-[#cdd32c] hover:bg-white text-[#0a0101] px-7 py-3.5 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#cdd32c]/20 cursor-pointer"
                   >
                     <span>Request Project Scope</span>
                     <ArrowRight size={16} />
                   </button>
                   <button
                     onClick={() => window.open(`https://wa.me/919398724704?text=Hi%20WayZenTech,%20I%20want%20to%20discuss%20${encodeURIComponent(activeTab.title)}`, '_blank')}
-                    className="w-full sm:w-auto bg-white/10 hover:bg-[#25D366] hover:text-black text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
+                    className="w-full sm:w-auto bg-white/10 hover:bg-[#25D366] hover:text-black text-white border border-white/20 px-7 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
                   >
                     <MessageCircle size={16} />
                     <span>Talk Directly with Engineer</span>
